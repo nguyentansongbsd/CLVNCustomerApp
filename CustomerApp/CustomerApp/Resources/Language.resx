@@ -1992,4 +1992,7 @@
   <data name="giao_dich_va_thanh_toan" xml:space="preserve">
     <value>Giao dịch và Thanh toán</value>
   </data>
+	<data name="phong_thuy" xml:space="preserve">
+    <value>Phong Thủy</value>
+  </data>
 </root>

@@ -15,7 +15,6 @@ namespace CustomerApp.ViewModels
     {
         private ReservationModel _reservation;
         public ReservationModel Reservation { get => _reservation; set { _reservation = value; OnPropertyChanged(nameof(Reservation)); } }
-        public ObservableCollection<FloatButtonItem> ButtonCommandList { get; set; }
 
         public OptionSet _customer;
         public OptionSet Customer { get => _customer; set { _customer = value; OnPropertyChanged(nameof(Customer)); } }
@@ -64,7 +63,6 @@ namespace CustomerApp.ViewModels
             InstallmentList = new ObservableCollection<ReservationInstallmentDetailPageModel>();
             Reservation = new ReservationModel();
             Customer = new OptionSet();
-            ButtonCommandList = new ObservableCollection<FloatButtonItem>();
         }
 
         #region Chinh Sach

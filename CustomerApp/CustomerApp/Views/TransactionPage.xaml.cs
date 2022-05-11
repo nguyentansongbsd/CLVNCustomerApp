@@ -13,121 +13,24 @@ namespace CustomerApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TransactionPage : ContentPage
     {
-        public static bool? NeedToRefreshLead = null;
-        public static bool? NeedToRefreshContact = null;
-        public static bool? NeedToRefreshAccount = null;
-        private QueueContentView QueueContentView;
+        public static bool? NeedToRefreshContract = null;
+        public static bool? NeedToRefreshDatCoc = null;
         private ContractContentview ContractContentview;
         private DatCocContentView DatCocContentView;
         public TransactionPage()
         {
             LoadingHelper.Show();
             InitializeComponent();
-            NeedToRefreshLead = false;
-            NeedToRefreshContact = false;
-            NeedToRefreshAccount = false;
+            NeedToRefreshContract = false;
+            NeedToRefreshDatCoc = false;
             Init();
         }
         public async void Init()
         {
-            VisualStateManager.GoToState(radBorderLead, "Active");
-            VisualStateManager.GoToState(radBorderAccount, "InActive");
-            VisualStateManager.GoToState(radBorderContact, "InActive");
-            VisualStateManager.GoToState(lblLead, "Active");
-            VisualStateManager.GoToState(lblAccount, "InActive");
-            VisualStateManager.GoToState(lblContact, "InActive");
-            if (QueueContentView == null)
-            {
-                QueueContentView = new QueueContentView();
-            }
-            QueueContentView.OnCompleted = async (IsSuccess) =>
-            {
-                TransactionContentView.Children.Add(QueueContentView);
-                LoadingHelper.Hide();
-            };
-        }
-
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            if (QueueContentView != null && NeedToRefreshLead == true)
-            {
-                LoadingHelper.Show();
-                await QueueContentView.viewModel.LoadOnRefreshCommandAsync();
-                NeedToRefreshLead = false;
-                LoadingHelper.Hide();
-            }
-
-            if (ContractContentview != null && NeedToRefreshContact == true)
-            {
-                LoadingHelper.Show();
-                await ContractContentview.viewModel.LoadOnRefreshCommandAsync();
-                NeedToRefreshContact = false;
-                LoadingHelper.Hide();
-            }
-
-            if (DatCocContentView != null && NeedToRefreshAccount == true)
-            {
-                LoadingHelper.Show();
-                await DatCocContentView.viewModel.LoadOnRefreshCommandAsync();
-                NeedToRefreshAccount = false;
-                LoadingHelper.Hide();
-            }
-        }
-
-        private void Lead_Tapped(object sender, EventArgs e)
-        {
-            VisualStateManager.GoToState(radBorderLead, "Active");
-            VisualStateManager.GoToState(radBorderAccount, "InActive");
-            VisualStateManager.GoToState(radBorderContact, "InActive");
-            VisualStateManager.GoToState(lblLead, "Active");
-            VisualStateManager.GoToState(lblAccount, "InActive");
-            VisualStateManager.GoToState(lblContact, "InActive");
-            QueueContentView.IsVisible = true;
-            if (DatCocContentView != null)
-            {
-                DatCocContentView.IsVisible = false;
-            }
-            if (ContractContentview != null)
-            {
-                ContractContentview.IsVisible = false;
-            }
-        }
-
-        private void Account_Tapped(object sender, EventArgs e)
-        {
-            VisualStateManager.GoToState(radBorderLead, "InActive");
-            VisualStateManager.GoToState(radBorderAccount, "Active");
-            VisualStateManager.GoToState(radBorderContact, "InActive");
-            VisualStateManager.GoToState(lblLead, "InActive");
-            VisualStateManager.GoToState(lblAccount, "Active");
-            VisualStateManager.GoToState(lblContact, "InActive");
-            if (DatCocContentView == null)
-            {
-                LoadingHelper.Show();
-                DatCocContentView = new DatCocContentView();
-            }
-            DatCocContentView.OnCompleted = (IsSuccess) =>
-            {
-                TransactionContentView.Children.Add(DatCocContentView);
-                LoadingHelper.Hide();
-            };
-            QueueContentView.IsVisible = false;
-            DatCocContentView.IsVisible = true;
-            if (ContractContentview != null)
-            {
-                ContractContentview.IsVisible = false;
-            }
-        }
-
-        private void Contact_Tapped(object sender, EventArgs e)
-        {
-            VisualStateManager.GoToState(radBorderLead, "InActive");
-            VisualStateManager.GoToState(radBorderAccount, "InActive");
-            VisualStateManager.GoToState(radBorderContact, "Active");
-            VisualStateManager.GoToState(lblLead, "InActive");
-            VisualStateManager.GoToState(lblAccount, "InActive");
-            VisualStateManager.GoToState(lblContact, "Active");
+            VisualStateManager.GoToState(radBorderDatCoc, "InActive");
+            VisualStateManager.GoToState(radBorderContract, "Active");
+            VisualStateManager.GoToState(lblDatCoc, "InActive");
+            VisualStateManager.GoToState(lblContract, "Active");
             if (ContractContentview == null)
             {
                 LoadingHelper.Show();
@@ -138,7 +41,67 @@ namespace CustomerApp.Views
                 TransactionContentView.Children.Add(ContractContentview);
                 LoadingHelper.Hide();
             };
-            QueueContentView.IsVisible = false;
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            if (ContractContentview != null && NeedToRefreshContract == true)
+            {
+                LoadingHelper.Show();
+                await ContractContentview.viewModel.LoadOnRefreshCommandAsync();
+                NeedToRefreshContract = false;
+                LoadingHelper.Hide();
+            }
+
+            if (DatCocContentView != null && NeedToRefreshDatCoc == true)
+            {
+                LoadingHelper.Show();
+                await DatCocContentView.viewModel.LoadOnRefreshCommandAsync();
+                NeedToRefreshDatCoc = false;
+                LoadingHelper.Hide();
+            }
+        }      
+
+        private void DatCoc_Tapped(object sender, EventArgs e)
+        {
+            VisualStateManager.GoToState(radBorderDatCoc, "Active");
+            VisualStateManager.GoToState(radBorderContract, "InActive");
+            VisualStateManager.GoToState(lblDatCoc, "Active");
+            VisualStateManager.GoToState(lblContract, "InActive");
+            if (DatCocContentView == null)
+            {
+                LoadingHelper.Show();
+                DatCocContentView = new DatCocContentView();
+            }
+            DatCocContentView.OnCompleted = (IsSuccess) =>
+            {
+                TransactionContentView.Children.Add(DatCocContentView);
+                LoadingHelper.Hide();
+            };
+            DatCocContentView.IsVisible = true;
+            if (ContractContentview != null)
+            {
+                ContractContentview.IsVisible = false;
+            }
+        }
+
+        private void Contract_Tapped(object sender, EventArgs e)
+        {
+            VisualStateManager.GoToState(radBorderDatCoc, "InActive");
+            VisualStateManager.GoToState(radBorderContract, "Active");
+            VisualStateManager.GoToState(lblDatCoc, "InActive");
+            VisualStateManager.GoToState(lblContract, "Active");
+            if (ContractContentview == null)
+            {
+                LoadingHelper.Show();
+                ContractContentview = new ContractContentview();
+            }
+            ContractContentview.OnCompleted = (IsSuccess) =>
+            {
+                TransactionContentView.Children.Add(ContractContentview);
+                LoadingHelper.Hide();
+            };
             ContractContentview.IsVisible = true;
             if (DatCocContentView != null)
             {

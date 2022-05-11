@@ -549,7 +549,6 @@
                     </Grid>
                 </StackLayout>
             </ScrollView>
-            <controls:FloatingButtonGroup x:Name="floatingButtonGroup" IsVisible="{Binding ShowFloatingButtonGroup}" ItemsSource="{Binding BindingContext.ButtonCommandList,Source={x:Reference this}}"/>
             <!--popup-->
             <ContentView x:Name="ContentPromotion" IsVisible="false" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#90000000" Padding="20">
                 <ContentView.GestureRecognizers>
