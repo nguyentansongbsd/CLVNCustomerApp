@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:CustomerApp.Controls" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             x:Class="CustomerApp.Views.UserInfoDetailPage"
+             xmlns:lang="clr-namespace:CustomerApp.Resources"
+             Title="{x:Static lang:Language.title_thong_tin_ca_nhan}">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,40">
+                <StackLayout>
+                    <telerikPrimitives:RadBorder BorderThickness="1" CornerRadius="10" BorderColor="Gray" Margin="10,20,10,0">
+                        <Grid RowDefinitions="Auto,1,Auto">
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="10" Padding="20,10" Grid.Row="0">
+                                <!--<Grid ColumnDefinitions="Auto,*" Grid.Row="0" Grid.Column="0">
+                                    <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding singleContact.statuscode_color}" VerticalOptions="StartAndExpand">
+                                        <Label Grid.Column="0" Text="{Binding singleContact.statuscode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
+                                    </telerikPrimitives:RadBorder>
+                                    <Label Grid.Column="1" Text="{Binding singleContact.bsd_fullname}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" MaxLines="1" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                                </Grid>
+                                <Grid ColumnDefinitions="Auto,*" Grid.Row="1">
+                                    <Label Text="{Binding Source={x:Static lang:Language.ma_khach_hang},StringFormat='{0}: '}" Grid.Column="0" FontSize="15" TextColor="#444444"/>
+                                    <Label Text="{Binding singleContact.bsd_customercode}" Grid.Column="1" FontSize="15" TextColor="#444444"/>
+                                </Grid>
+                                <Grid ColumnDefinitions="Auto,*" Grid.Row="2">
+                                    <Label Text="{Binding Source={x:Static lang:Language.email},StringFormat='{0}: '}" Grid.Column="0" FontSize="15" TextColor="#444444"/>
+                                    <Label Text="{Binding singleContact.emailaddress1}" Grid.Column="1" FontSize="15" TextColor="#444444"/>
+                                </Grid>
+                                <Grid ColumnDefinitions="Auto,*" Grid.Row="3">
+                                    <Label Text="{Binding Source={x:Static lang:Language.so_dien_thoai},StringFormat='{0}: '}" Grid.Column="0" FontSize="15" TextColor="#444444" />
+                                    <Label Text="{Binding singleContact.mobilephone}" Grid.Column="1" FontSize="15" TextColor="#444444" />
+                                </Grid>
+                                <Grid ColumnDefinitions="Auto,*" Grid.Row="4" IsVisible="{Binding singleContact.bsd_contactaddress,Converter={StaticResource NullToBool}}">
+                                    <Label Text="&#xf3c5;" TextColor="#939393" FontFamily="FontAwesomeSolid" FontSize="Large"/>
+                                    <Label Text="{Binding singleContact.bsd_contactaddress}" Grid.Column="1" FontSize="15" TextColor="#444444"/>
+                                </Grid>-->
+                            </Grid>
+                        </Grid>
+                    </telerikPrimitives:RadBorder>
+                    <Grid ColumnDefinitions="*,*,*" Margin="0,5,0,0">
+                        <BoxView HeightRequest="0.5" BackgroundColor="#939393" Grid.ColumnSpan="3" VerticalOptions="End" />
+                        <telerikPrimitives:RadBorder x:Name="radBorderThongTin" Grid.Column="0" Style="{StaticResource rabBorder_Tab}">
+                            <telerikPrimitives:RadBorder.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ThongTin_Tapped"/>
+                            </telerikPrimitives:RadBorder.GestureRecognizers>
+                            <Label x:Name="lbThongTin" Text="{x:Static lang:Language.thong_tin}" Style="{StaticResource Lb_Tab}"/>
+                        </telerikPrimitives:RadBorder>
+                        <telerikPrimitives:RadBorder x:Name="radBorderLoyalty" Grid.Column="1" Style="{StaticResource rabBorder_Tab}">
+                            <telerikPrimitives:RadBorder.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Loyalty_Tapped"/>
+                            </telerikPrimitives:RadBorder.GestureRecognizers>
+                            <Label x:Name="lbLoyalty" Text="{x:Static lang:Language.loyalty}" Style="{StaticResource Lb_Tab}"/>
+                        </telerikPrimitives:RadBorder>
+                        <telerikPrimitives:RadBorder x:Name="radBorderPhongThuy" Grid.Column="2" Style="{StaticResource rabBorder_Tab}">
+                            <telerikPrimitives:RadBorder.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="PhongThuy_Tapped"/>
+                            </telerikPrimitives:RadBorder.GestureRecognizers>
+                            <Label x:Name="lbPhongThuy" Text="{x:Static lang:Language.phong_thuy}" Style="{StaticResource Lb_Tab}"/>
+                        </telerikPrimitives:RadBorder>
+                    </Grid>
+                    <Grid>
+                        <!--tab thong tin-->
+                        <StackLayout x:Name="TabThongTin" IsVisible="true" Margin="0,10,0,0">
+                        </StackLayout>
+                        <StackLayout x:Name="TabPhongThuy" Margin="0,10,0,0">
+                            <controls:LabelTitleSection Text="{x:Static lang:Language.title_thong_tin_gia_chu}"/>
+                            <StackLayout Spacing="1" BackgroundColor="{StaticResource EnableColor}">
+                                <controls:LabelField Title="{x:Static lang:Language.gioi_tinh}" Text="Name"/>
+                                <controls:LabelField Title="{x:Static lang:Language.nam_sinh_am_lich}" Text="{Binding PhongThuy.ten_nam_sinh_am_lich}"/>
+                                <controls:LabelField Title="{x:Static lang:Language.que_menh}" Text="{Binding PhongThuy.quemenh_label}"/>
+                                <controls:LabelField Title="{x:Static lang:Language.ngu_hanh}" Text="{Binding PhongThuy.menh_label}"/>
+                            </StackLayout>
+                            <controls:LabelTitleSection Text="{x:Static lang:Language.title_la_ban_phong_thuy}"/>
+                            <Image Source="{Binding PhongThuy.image}" Aspect="AspectFit" Margin="60,15,60,15">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <controls:LabelTitleSection Text="{x:Static lang:Language.huong_tot}" TextColor="{StaticResource Primary}"/>
+                            <StackLayout BindableLayout.ItemsSource="{Binding list_HuongTot}" BindableLayout.EmptyView="{x:Static lang:Language.khong_co_du_lieu}" Spacing="1" BackgroundColor="#F1F1F1">
+                                <BindableLayout.EmptyViewTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{x:Static lang:Language.khong_co_du_lieu}" TextColor="#444444" HorizontalTextAlignment="Center" BackgroundColor="White" Padding="0,15"/>
+                                    </DataTemplate>
+                                </BindableLayout.EmptyViewTemplate>
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid BackgroundColor="White" RowDefinitions="Auto,Auto">
+                                            <Label Text="{Binding Name}" Grid.Row="0" TextColor="#444444" Padding="25,5,25,0" BackgroundColor="White" FontAttributes="Bold" FontSize="16" VerticalTextAlignment="Center"/>
+                                            <Label LineHeight="1.3" Text="{Binding Detail}" Grid.Row="1" FontSize="15" Padding="25,0,25,10" TextColor="#444444"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                            <controls:LabelTitleSection Text="{x:Static lang:Language.huong_xau}" TextColor="{StaticResource Primary}"/>
+                            <StackLayout BindableLayout.ItemsSource="{Binding list_HuongXau}" BindableLayout.EmptyView="{x:Static lang:Language.khong_co_du_lieu}" Spacing="1" BackgroundColor="#F1F1F1">
+                                <BindableLayout.EmptyViewTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{x:Static lang:Language.khong_co_du_lieu}" TextColor="#444444" HorizontalTextAlignment="Center" BackgroundColor="White" Padding="0,15"/>
+                                    </DataTemplate>
+                                </BindableLayout.EmptyViewTemplate>
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid BackgroundColor="White" RowDefinitions="Auto,Auto">
+                                            <Label Text="{Binding Name}" Grid.Row="0" TextColor="#444444" Padding="25,5,25,0" BackgroundColor="White" FontAttributes="Bold" FontSize="16"/>
+                                            <Label LineHeight="1.3" Text="{Binding Detail}" Grid.Row="1" FontSize="15" Padding="25,0,25,10" TextColor="#444444"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </StackLayout>
+                        <!--Loyalty-->
+                        <StackLayout x:Name="TabLoyalty">
+                            <controls:TitleSection Text="{x:Static lang:Language.loyalty}" IsExpanded="True">
+                                <controls:TitleSection.Content>
+                                    <StackLayout BackgroundColor="#f1f1f1f1" Spacing="1">
+                                        <controls:LabelField Title="{x:Static lang:Language.da_giao_dich}"
+                                                 Text="{Binding Loyalty.bsd_transacted_format}"/>
+                                        <controls:LabelField Title="{x:Static lang:Language.tong_tien_giao_dich}"
+                                                 Text="{Binding Loyalty.bsd_totaltransaction}"/>
+                                        <controls:LabelField Title="{x:Static lang:Language.bac_thanh_vien}"
+                                                 Text="{Binding Loyalty.bsd_membershiptier_name}"/>
+                                        <controls:LabelField Title="{x:Static lang:Language.tong_diem_so_huu}"
+                                                 Text="{Binding Loyalty.bsd_totalpointsofownership}"/>
+                                        <controls:LabelField Title="{x:Static lang:Language.tong_diem_bao_gom_dieu_kien}"
+                                                 Text="{Binding Loyalty.bsd_totalpointsincludecondition}"/>
+                                        <controls:LabelField Title="{x:Static lang:Language.tong_tien_trong_thoi_gian_hieu_luc}"
+                                                 Text="{Binding Loyalty.bsd_totalamountineffectivetime}"/>
+                                        <controls:LabelField Title="{x:Static lang:Language.tong_tien_so_huu}"
+                                                 Text="{Binding Loyalty.bsd_totalamountofownership}"/>
+                                        <controls:LabelField Title="{x:Static lang:Language.layalty_date}"
+                                                 Text="{Binding Loyalty.bsd_loyaltydate}"/>
+                                        <controls:LabelField Title="{x:Static lang:Language.hang}"
+                                                 Text="{Binding Loyalty.bsd_rankup_name}"/>
+                                        <controls:LabelField Title="{x:Static lang:Language.hang_dac_biet}"
+                                                 Text="{Binding Loyalty.bsd_rankupspecial_name}"/>
+                                        <controls:LabelField Title="{x:Static lang:Language.tong_diem_dieu_kien}"
+                                                 Text="{Binding Loyalty.bsd_totalpointsofcondition}"/>
+                                    </StackLayout>
+                                </controls:TitleSection.Content>
+                            </controls:TitleSection>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+            <!--<controls:FloatingButtonGroup x:Name="floatingButtonGroup" ItemsSource="{Binding BindingContext.ButtonCommandList,Source={x:Reference this}}"/>-->
+            <!--<Grid x:Name="LookUpImage" IsVisible="false" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
+                <controls:PinchZoomImage>
+                    <controls:PinchZoomImage.Content>
+                        <Image x:Name="ImageDetail"/>
+                    </controls:PinchZoomImage.Content>
+                </controls:PinchZoomImage>
+                <telerikPrimitives:RadBorder VerticalOptions="Start" HorizontalOptions="End" Margin="{OnPlatform Android='0,10,10,0',iOS='0,100,10,0'}" BorderColor="#444444" BorderThickness="1" HeightRequest="25" WidthRequest="25" CornerRadius="13">
+                    <telerikPrimitives:RadBorder.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Close_LookUpImage_Tapped" NumberOfTapsRequired="1"/>
+                    </telerikPrimitives:RadBorder.GestureRecognizers>
+                    <Label FontFamily="FontAwesomeSolid" Text="&#xf00d;" TextColor="#444444" FontSize="Small" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="White"/>
+                </telerikPrimitives:RadBorder>
+            </Grid>-->
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

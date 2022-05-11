@@ -39,8 +39,6 @@ namespace CustomerApp.Views
                 LoadDataChinhSach(ReservationId),
                 viewModel.LoadCoOwners(ReservationId)
                 );
-
-            SetUpButtonGroup();
             if (viewModel.Reservation.quoteid != Guid.Empty)
             {
                 OnCompleted?.Invoke(true);
@@ -67,8 +65,6 @@ namespace CustomerApp.Views
                     LoadDataChinhSach(ReservationId),
                     viewModel.LoadCoOwners(ReservationId)
                 );
-                viewModel.ButtonCommandList.Clear();
-                SetUpButtonGroup();
                 if (QueuesDetialPage.NeedToRefreshBTG.HasValue) QueuesDetialPage.NeedToRefreshBTG = true;
                 NeedToRefresh = false;
 
@@ -81,10 +77,8 @@ namespace CustomerApp.Views
                 viewModel.ShowInstallmentList = false;
                 viewModel.NumberInstallment = 0;
                 viewModel.InstallmentList.Clear();
-                viewModel.ButtonCommandList.Clear();
 
                 await viewModel.LoadInstallmentList(ReservationId);
-                SetUpButtonGroup();
                 NeedToRefreshInstallment = false;
 
                 LoadingHelper.Hide();
@@ -200,49 +194,6 @@ namespace CustomerApp.Views
                 TabLich.IsVisible = false;
             }
         }
-
-        private void SetUpButtonGroup()
-        {
-            //if (viewModel.Reservation.statuscode == 100000007 || viewModel.Reservation.statuscode == 100000000)
-            //{
-            //    viewModel.ButtonCommandList.Add(new FloatButtonItem("Hủy Đặt Cọc", "FontAwesomeSolid", "\uf05e", null, CancelDeposit));
-            //}
-
-            if (viewModel.Reservation.statuscode == 100000007)
-            {
-                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.cap_nhat_bang_tinh_gia, "FontAwesomeRegular", "\uf044", null, EditQuotes));
-                if (viewModel.InstallmentList.Count == 0)
-                {
-                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_lich_thanh_toan, "FontAwesomeRegular", "\uf271", null, CreatePaymentScheme));
-                }
-                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.xoa_lich_thanh_toan, "FontAwesomeRegular", "\uf1c3", null, CancelInstallment));
-                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.xac_nhan_in, "FontAwesomeSolid", "\uf02f", null, ConfirmSigning));
-                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.huy_bang_tinh_gia, "FontAwesomeRegular", "\uf273", null, CancelQuotes));
-                if (viewModel.InstallmentList.Count > 0 && viewModel.Reservation.bsd_quotationprinteddate != null)
-                {
-                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.ky_bang_tinh_gia, "FontAwesomeRegular", "\uf274", null, SignQuotationClicked));
-                }
-            }
-
-            if (viewModel.Reservation.bsd_reservationformstatus == 100000001 && viewModel.Reservation.bsd_reservationprinteddate != null && viewModel.Reservation.bsd_reservationuploadeddate == null && viewModel.Reservation.bsd_rfsigneddate == null)
-            {
-                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.xac_nhan_tai_pdc, "FontAwesomeRegular", "\uf15c", null, ConfirmReservation));
-            }
-            if (viewModel.Reservation.bsd_reservationformstatus == 100000001 && viewModel.Reservation.bsd_reservationprinteddate != null && viewModel.Reservation.bsd_reservationuploadeddate != null && viewModel.Reservation.bsd_rfsigneddate == null)
-            {
-                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.ky_phieu_dat_coc, "FontAwesomeRegular", "\uf274", null, CompletedReservation));
-            }
-
-            if (viewModel.ButtonCommandList.Count > 0)
-            {
-                floatingButtonGroup.IsVisible = true;
-            }
-            else
-            {
-                floatingButtonGroup.IsVisible = false;
-            }
-        }
-
         private async void CancelInstallment(object sender, EventArgs e)
         {
             LoadingHelper.Show();
