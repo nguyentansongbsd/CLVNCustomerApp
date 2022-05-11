@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CustomerApp.Views.PhasesLanchDetailPage"
+             xmlns:lang="clr-namespace:CustomerApp.Resources" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:controls="clr-namespace:CustomerApp.Controls"
+             Title="{x:Static lang:Language.title_dot_mo_ban}">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView>
+                <StackLayout>
+                    <telerikPrimitives:RadBorder BorderColor="#808080" CornerRadius="10" BorderThickness="1" BackgroundColor="White" Margin="10,10,10,0" Grid.Row="1" VerticalOptions="EndAndExpand">
+                        <StackLayout Margin="15">
+                            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto">
+                                <controls:StatusBox Text="{Binding PhasesLanch.statuscode_format}" ColorStatus="{Binding PhasesLanch.statuscode_color}" Grid.Column="0"/>
+                                <Label Grid.Column="1" Text="{Binding PhasesLanch.bsd_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            </Grid>
+                            <controls:LabelListViewItem Title="{x:Static lang:Language.so_dot_mo_ban}" Text="{Binding PhasesLanch.bsd_phaselaunchnumber}"/>
+                            <controls:LabelListViewItem Title="{x:Static lang:Language.hinh_thuc_phan_phoi}" Text="{Binding PhasesLanch.bsd_formofdistribution_format}"/>
+                        </StackLayout>
+                    </telerikPrimitives:RadBorder>
+                    <StackLayout>
+                        <controls:TitleSection Text="{x:Static lang:Language.title_thong_tin_bat_buoc}" IsExpanded="True">
+                            <controls:TitleSection.Content>
+                                <StackLayout BackgroundColor="#f1f1f1f1" Spacing="1">
+                                    <controls:LabelField Title="{x:Static lang:Language.so_tien_dat_coc}"
+                                                 Text="{Binding PhasesLanch.bsd_depositamount}"/>
+                                    <controls:LabelField Title="{x:Static lang:Language.bang_gia}"
+                                                 Text="{Binding PhasesLanch.pricelist_name}"/>
+                                    <controls:LabelField Title="{x:Static lang:Language.thoi_gian_ngan_han}"
+                                                 Text="{Binding PhasesLanch.bsd_shorttimeminute}"/>
+                                    <controls:LabelField Title="{x:Static lang:Language.loai_phat_hanh}"
+                                                 Text="{Binding PhasesLanch.bsd_releasetype_format}"/>
+                                    <controls:LabelField Title="{x:Static lang:Language.thoi_gian}"
+                                                 Text="{Binding PhasesLanch.bsd_times}"/>
+                                </StackLayout>
+                            </controls:TitleSection.Content>
+                        </controls:TitleSection>
+                        <controls:TitleSection Text="{x:Static lang:Language.thong_tin}" IsExpanded="True">
+                            <controls:TitleSection.Content>
+                                <StackLayout BackgroundColor="#f1f1f1f1" Spacing="1">
+                                    <controls:LabelField Title="{x:Static lang:Language.thoi_gian_bat_dau}"
+                                                 Text="{Binding PhasesLanch.bsd_startdate}"/>
+                                    <controls:LabelField Title="{x:Static lang:Language.thoi_gian_ket_thuc}"
+                                                 Text="{Binding PhasesLanch.bsd_enddate}"/>
+                                    <controls:LabelField Title="{x:Static lang:Language.ngay_mo_ban}"
+                                                 Text="{Binding PhasesLanch.bsd_launchedon}"/>
+                                    <controls:LabelField Title="{x:Static lang:Language.mo_ban_boi}"
+                                                 Text="{Binding PhasesLanch.launche_name}"/>
+                                    <controls:LabelField Title="{x:Static lang:Language.khoi_phuc_vao}"
+                                                 Text="{Binding PhasesLanch.bsd_recoveryon}"/>
+                                    <controls:LabelField Title="{x:Static lang:Language.khoi_phuc_boi}"
+                                                 Text="{Binding PhasesLanch.recoveryby_name}"/>
+                                </StackLayout>
+                            </controls:TitleSection.Content>
+                        </controls:TitleSection>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

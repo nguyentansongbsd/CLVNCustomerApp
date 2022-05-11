@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:CustomerApp.Controls" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             x:Class="CustomerApp.Views.QueueForm"
+             xmlns:lang="clr-namespace:CustomerApp.Resources" xmlns:converters="clr-namespace:CustomerApp.Converters"
+             Title="{x:Static lang:Language.title_tao_giu_cho}"
+             x:Name="this">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="rabBorder_Tab" TargetType="telerikPrimitives:RadBorder">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="InActive">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor" Value="#939393"/>
+                                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Active">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor" Value="#2196F3"/>
+                                    <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style x:Key="Lb_Tab" TargetType="Label">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="0,10"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="InActive">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#939393"/>
+                                    <Setter Property="FontAttributes" Value="None"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Active">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#2196F3"/>
+                                    <Setter Property="FontAttributes" Value="Bold"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style x:Key="ExpanderHeaderStyle" TargetType="telerikPrimitives:ExpanderHeader">
+                <Setter Property="IndicatorText" Value="&#xf105;"/>
+                <Setter Property="IndicatorLocation" Value="End"/>
+                <Setter Property="IndicatorFontSize" Value="18"/>
+                <Setter Property="IndicatorColor" Value="#939393"/>
+                <Setter Property="BackgroundColor" Value="#F2F2F2"/>
+                <Setter Property="BorderColor" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Padding" Value="10,8"/>
+                <Setter Property="IndicatorFontFamily" Value="FontAwesomeSolid"/>
+            </Style>
+            <converters:NullToHideConverter x:Key="NullToHideConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="0,10,0,60">
+                <StackLayout>
+                    <controls:TitleSection Text="{x:Static lang:Language.thong_tin_san_pham}" IsExpanded="True">
+                        <controls:TitleSection.Content>
+                            <StackLayout BackgroundColor="White" Padding="10">
+                                <controls:EntryField Title="{x:Static lang:Language.du_an}"
+                                                     Text="{Binding Queue.bsd_project_name}"
+                                                     isEnabledField="True"/>
+                                <controls:EntryField Title="{x:Static lang:Language.dot_mo_ban}"
+                                                     Text="{Binding Queue.bsd_phaseslaunch_name}"
+                                                     isEnabledField="True"/>
+                                <controls:EntryField Title="{x:Static lang:Language.san_pham}"
+                                                     Text="{Binding Queue.bsd_units_name}"
+                                                     isEnabledField="True"/>
+                                <controls:EntryField Title="{x:Static lang:Language.phi_giu_cho}"
+                                                     Text="{Binding Queue.bsd_queuingfee_format}"
+                                                     isEnabledField="True"/>
+                            </StackLayout>
+                        </controls:TitleSection.Content>
+                    </controls:TitleSection>
+                    <controls:TitleSection Text="{x:Static lang:Language.thong_tin_giu_cho}" IsExpanded="True">
+                        <controls:TitleSection.Content>
+                            <StackLayout BackgroundColor="White" Padding="10">
+                                <controls:EntryField x:Name="topic" 
+                                                     Title="{x:Static lang:Language.tieu_de}"
+                                                     Text="{Binding Queue.name}"
+                                                     Placeholder="{x:Static lang:Language.nhap_tieu_de_cua_giu_cho}"
+                                                     isRequired="True"/>
+                                <controls:EntryField Title="{x:Static lang:Language.khach_hang}"
+                                                     Text="{Binding Customer.Name}" 
+                                                     isEnabledField="True"/>
+                                <!--<controls:FormLabelRequired Text="{x:Static lang:Language.khach_hang}" Margin="0,10,0,0"/>
+                                <controls:LookUpMultipleTabs x:Name="Lookup_KhachHang" Placeholder="{x:Static lang:Language.chon_khach_hang}" ShowAccount="True" ShowContact="True" ShowLead="False" LoadNewLead="True" ShowAddButton="True" SelectedItem="{Binding Customer}" CenterModal="{x:Reference centerModal}"/>-->
+
+                                <controls:FormLabel Text="{x:Static lang:Language.mo_ta}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_mo_ta}" Text="{Binding Queue.description}" FontSize="15" />
+
+                                <controls:FormLabel Text="{x:Static lang:Language.dai_ly_san_giao_dich}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:LookUp x:Name="lookUpDaiLy" Grid.Column="1" Grid.Row="3" Placeholder="{x:Static lang:Language.chon_dai_ly}" ItemsSource="{Binding DaiLyOptions}" SelectedItem="{Binding DailyOption}" NameDisplay="Name" BottomModal="{x:Reference LookUpModal}" SelectedItemChange="lookUpDaiLy_SelectedItemChange"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.nhan_vien_dai_ly_san}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_nhan_vien_dao_ly}" Text="{Binding Queue.bsd_nameofstaffagent}" FontSize="15" />
+
+                                <controls:FormLabel Text="{x:Static lang:Language.cong_tac_vien}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:LookUp x:Name="lookUpCollaborator" Grid.Column="1" Grid.Row="3" Placeholder="{x:Static lang:Language.chon_cong_tac_vien}" ItemsSource="{Binding ListCollaborator}" SelectedItem="{Binding Collaborator}" NameDisplay="Name" BottomModal="{x:Reference LookUpModal}" SelectedItemChange="lookUpCollaborator_SelectedItemChange"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.khach_hang_gioi_thieu}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:LookUp x:Name="lookUpCustomerReferral" Grid.Column="1" Grid.Row="3" Placeholder="{x:Static lang:Language.chon_khach_hang_gioi_thieu}" ItemsSource="{Binding ListCustomerReferral}" SelectedItem="{Binding CustomerReferral}" NameDisplay="Name" BottomModal="{x:Reference LookUpModal}" SelectedItemChange="lookUpCustomerReferral_SelectedItemChange"/>
+
+                            </StackLayout>
+                        </controls:TitleSection.Content>
+                    </controls:TitleSection>
+                </StackLayout>
+            </ScrollView>
+            <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White" VerticalOptions="EndAndExpand" Padding="10">
+                <controls:ButtonCustom x:Name="btnSave" Text="{x:Static lang:Language.btn_tao_giu_cho}" Clicked="btnSave_Clicked" isBusy="{Binding isBusy}"/>
+            </Grid>
+            <controls:CenterModal x:Name="centerModal"/>
+            <controls:BottomModal x:Name="LookUpModal"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

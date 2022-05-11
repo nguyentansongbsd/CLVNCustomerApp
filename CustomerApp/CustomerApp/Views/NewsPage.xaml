@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+    xmlns:lang="clr-namespace:CustomerApp.Resources"
+    xmlns:controls="clr-namespace:CustomerApp.Controls"
+    x:Class="CustomerApp.Views.NewsPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid RowDefinitions="Auto,*" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid Grid.Row="0" ColumnDefinitions="*,*" ColumnSpacing="0" VerticalOptions="Center" >
+                    <BoxView HeightRequest="0.5" BackgroundColor="#939393" Grid.ColumnSpan="2" VerticalOptions="End" />
+                    <telerikPrimitives:RadBorder x:Name="radBorderNews" Grid.Column="0" Style="{StaticResource rabBorder_Tab}">
+                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="News_Tapped"/>
+                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                        <Label x:Name="lblNews" Text="{x:Static lang:Language.tin_tuc_khuyen_mai}" Style="{StaticResource Lb_Tab}"/>
+                    </telerikPrimitives:RadBorder>
+                    <telerikPrimitives:RadBorder x:Name="radBorderPhasesLaunch" Grid.Column="1" Style="{StaticResource rabBorder_Tab}">
+                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="PhasesLaunch_Tapped"/>
+                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                        <Label x:Name="lblPhasesLaunch" Text="{x:Static lang:Language.dot_mo_ban}" Style="{StaticResource Lb_Tab}"/>
+                    </telerikPrimitives:RadBorder>
+                </Grid>
+                <WebView x:Name="webNews" Grid.Row="1" BackgroundColor="#eeeeee" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+                <controls:BsdListView x:Name="listPhasesLaunch" Grid.Row="1" IsVisible="false" ItemsSource="{Binding PhasesLaunchs}">
+                    <controls:BsdListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor="White" Padding="10,8" Margin="0,1">
+                                    <Grid ColumnDefinitions="Auto,*" Grid.Row="0" Grid.Column="0">
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statuscode_color}" VerticalOptions="StartAndExpand">
+                                            <Label Grid.Column="0" Text="{Binding statuscode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
+                                        </telerikPrimitives:RadBorder>
+                                        <Label Grid.Column="1" Text="{Binding bsd_name}" TextColor="{StaticResource Primary}" FontSize="16" FontAttributes="Bold" MaxLines="1" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*">
+                                        <Label Text="{Binding Source={x:Static lang:Language.du_an},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
+                                        <Label Text="{Binding project_name}" TextColor="#444444" FontSize="15" Grid.Column="1" />
+                                    </Grid>
+                                    <Label>
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0:dd/MM/yyyy} - {1:dd/MM/yyyy}">
+                                                <Binding Path="bsd_startdate" />
+                                                <Binding Path="bsd_enddate" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:BsdListView.ItemTemplate>
+                </controls:BsdListView>
+            </Grid>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="CustomerApp.Controls.LabelField"
+      ColumnDefinitions="3*,6*"
+      BackgroundColor="White">
+    <Label x:Name="lb_title" Text="{Binding Title}" FontSize="15" TextColor="{StaticResource TextColor}" Grid.Column="0" Padding="25,10,0,10"/>
+    <Label x:Name="lb_text" Text="{Binding Text}" FontSize="15" Grid.Column="1" Padding="0,10,25,10" HorizontalTextAlignment="End">
+        <Label.GestureRecognizers>
+            <TapGestureRecognizer Tapped="Text_Tapped" NumberOfTapsRequired="1"/>
+        </Label.GestureRecognizers>
+    </Label>
+</Grid>

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:controls="clr-namespace:CustomerApp.Controls"
+       xmlns:converters="clr-namespace:CustomerApp.Converters"
+       xmlns:views="clr-namespace:CustomerApp.Views"
+       xmlns:lang="clr-namespace:CustomerApp.Resources"
+       xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+       xmlns:ffimageTranformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+       Title="CustomerApp"
+       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+       ios:Page.UseSafeArea="true"
+       Shell.BackgroundColor="{StaticResource NavigationPrimary}"
+       Shell.TabBarIsVisible="False" Shell.TitleColor="White"
+       FlyoutHeaderBehavior="Fixed" FlyoutBackdrop="#C0808080" ForegroundColor="White"
+       x:Class="CustomerApp.AppShell">
+    <Shell.Resources>
+        <ResourceDictionary>
+            <converters:Base64ToImageSourceConverter x:Key="Base64ToImageSource"/>
+        </ResourceDictionary>
+    </Shell.Resources>
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="20,*" Padding="16,8,16,8" ColumnSpacing="16">
+                <Image Source="{Binding Icon}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Text="{Binding Text}" TextColor="#444444" FontSize="17" Grid.Column="1" VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <StackLayout Orientation="Horizontal" Padding="16,8,16,8" Spacing="16" >
+                <Image Source="{Binding Icon}" WidthRequest="20" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Text="{Binding Title}" TextColor="#555555" FontSize="17" VerticalTextAlignment="Center" />
+            </StackLayout>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.FlyoutHeader>
+        <StackLayout BackgroundColor="White" HeightRequest="130">
+            <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="0" HorizontalOptions="Start" Margin="18,34,18,18">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UserInfor_Tapped"/>
+                </Grid.GestureRecognizers>
+                <controls:ExtendedFrame Grid.Column="0" Grid.RowSpan="3" Padding="4" CornerRadius="34"  HorizontalOptions="Center" VerticalOptions="StartAndExpand">
+                    <ffimageloading:CachedImage Source="{Binding Avartar,Converter={StaticResource Base64ToImageSource}}" LoadingPlaceholder="user.png" HeightRequest="60" WidthRequest="60" DownsampleWidth="500">
+                        <ffimageloading:CachedImage.Transformations>
+                            <ffimageTranformations:CircleTransformation/>
+                        </ffimageloading:CachedImage.Transformations>
+                    </ffimageloading:CachedImage>
+                </controls:ExtendedFrame>
+                <Label Grid.Column="1" Grid.Row="0" Text="{Binding ContactName}" TextColor="{StaticResource NavigationPrimary}" FontSize="18" FontAttributes="Bold" Margin="0,6,0,0"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding UserName}" FontSize="16" TextColor="#555555" />
+                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Source={x:Static lang:Language.nhan_de_chinh_sua},StringFormat='{0} >>'}" FontSize="12" TextColor="#B3B3B3" />
+            </Grid>
+
+            <BoxView HeightRequest="1" BackgroundColor="LightGray"/>
+        </StackLayout>
+    </Shell.FlyoutHeader>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="{x:Static lang:Language.trang_chu}" ContentTemplate="{DataTemplate views:DashboardPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf015;" Size="18"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="{x:Static lang:Language.du_an}" ContentTemplate="{DataTemplate views:DashboardPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf015;" Size="18"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="{x:Static lang:Language.giao_dich_va_thanh_toan}" ContentTemplate="{DataTemplate views:DashboardPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf015;" Size="18"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="{x:Static lang:Language.phan_hoi}" ContentTemplate="{DataTemplate views:CasesPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf015;" Size="18"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <!--<ShellContent Title="{x:Static lang:Language.gio_hang}" ContentTemplate="{DataTemplate views:DirectSale}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf07a;" Size="18"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="{x:Static lang:Language.giao_dich}" ContentTemplate="{DataTemplate views:TransactionPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf07c;" Size="18"/>
+            </ShellContent.Icon>
+        </ShellContent>-->
+    </FlyoutItem>
+    <!--<FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="{x:Static lang:Language.phan_hoi}" ContentTemplate="{DataTemplate views:CasesPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf086;" Size="18"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="{x:Static lang:Language.lich}" ContentTemplate="{DataTemplate views:LichLamViecPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf073;" Size="18"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="{x:Static lang:Language.tin_tuc}" ContentTemplate="{DataTemplate views:NewsPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf1ea;" Size="18"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>-->
+    <MenuItem Text="{x:Static lang:Language.dang_xuat}" Clicked="Logout_Clicked">
+        <MenuItem.IconImageSource>
+            <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf2f5;" Size="18"/>
+        </MenuItem.IconImageSource>
+    </MenuItem>
+    <TabBar>
+        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate views:LoginPage}" />
+    </TabBar>
+    <Shell.FlyoutFooter>
+        <Label Text="{Binding VerApp}" TextColor="#444444" FontSize="15" Padding="20,16,10,16"/>
+    </Shell.FlyoutFooter>
+</Shell>
+

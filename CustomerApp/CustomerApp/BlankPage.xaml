@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:CustomerApp.Controls"
+    x:Class="CustomerApp.BlankPage">
+    <ContentPage.Content>
+        <!--<controls:DatePickerControl x:Name="DatePickerStart"  Placeholder="thoi gian" DisplayFormat="dd/MM/yyyy - HH:mm" SpinnerFormat="dd/MM/yyyy HH:mm" />-->
+        <Label Text="tessssst"/>
+    </ContentPage.Content>
+</ContentPage>

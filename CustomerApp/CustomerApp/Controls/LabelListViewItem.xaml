@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CustomerApp.Controls.LabelListViewItem"
+      ColumnDefinitions="Auto,*">
+    <Label x:Name="lb_title" Text="{Binding Title,StringFormat='{0}:'}" FontSize="15" TextColor="{StaticResource TextColor}" Grid.Column="0"/>
+    <Label x:Name="lb_text" Text="{Binding Text}" FontSize="15" Grid.Column="1"/>
+</Grid>

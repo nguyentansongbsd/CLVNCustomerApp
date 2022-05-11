@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+    xmlns:controls="clr-namespace:CustomerApp.Controls"
+    xmlns:lang="clr-namespace:CustomerApp.Resources"
+    xmlns:converter ="clr-namespace:CustomerApp.Converters"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    Title="Cập Nhật"
+    x:Class="CustomerApp.Views.MeetingFormPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,60">
+                <StackLayout BackgroundColor="White" Padding="10">
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.chu_de}"/>
+                    <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                        <Label Text="{Binding MeetingModel.subject}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.nguoi_tham_du_bat_buoc}" Margin="0,10,0,0"/>
+                    <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1" >
+                        <Label Text="{Binding Required}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.nguoi_tham_khong_du_bat_buoc}" Margin="0,10,0,0"/>
+                    <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1" >
+                        <Label Text="{Binding Optional}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.nguoi_lien_quan}" FontSize="15" Margin="0,10,0,0"/>
+                    <telerikPrimitives:RadBorder x:Name="RegardingMapping" BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1" >
+                        <Label Text="{Binding CustomerMapping.Label}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.dia_diem}" FontSize="15" Margin="0,10,0,0"/>
+                    <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                        <Label Text="{Binding MeetingModel.location}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                    </telerikPrimitives:RadBorder>
+                    
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.thoi_gian_bat_dau}" Margin="0,10,0,0"/>
+                    <controls:DatePickerControl x:Name="DatePickerStart" Date="{Binding MeetingModel.scheduledstart}" Placeholder="{x:Static lang:Language.chon_thoi_gian_bat_dau}" DisplayFormat="dd/MM/yyyy - HH:mm" SpinnerFormat="dd/MM/yyyy HH:mm" DateSelected="DatePickerStart_DateSelected"/>
+
+                    <Grid ColumnDefinitions="Auto,Auto" Margin="0,10,0,0">
+                        <controls:FormLabel Text="{x:Static lang:Language.su_kien_ca_ngay}" Grid.Column="0"/>
+                        <CheckBox HorizontalOptions="End" Grid.Column="1" IsChecked="{Binding MeetingModel.isalldayevent}" CheckedChanged="AllDayEvent_changeChecked"/>
+                    </Grid>
+                    
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.thoi_gian_ket_thuc}" Margin="0,10,0,0"/>
+                    <controls:DatePickerControl x:Name="DatePickerEnd" Date="{Binding MeetingModel.scheduledend}" Placeholder="{x:Static lang:Language.chon_thoi_gian_ket_thuc}" DisplayFormat="dd/MM/yyyy - HH:mm" SpinnerFormat="dd/MM/yyyy HH:mm" DateSelected="DatePickerEnd_DateSelected" />
+
+                    <controls:FormLabel Text="{x:Static lang:Language.mo_ta}" FontSize="15" Margin="0,10,0,0"/>
+                    <controls:MainEditor Text="{Binding MeetingModel.description}" IsEnabled="False" Placeholder="{x:Static lang:Language.nhap_mo_ta}" FontSize="15" HeightRequest="100"/>
+                </StackLayout>
+            </ScrollView>
+            <Grid Padding="10,15,10,10" VerticalOptions="EndAndExpand" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
+                <Button x:Name="BtnSave" Text="Cập Nhật" Clicked="Update_Clicked" IsVisible="{Binding ShowButton}" BackgroundColor="#1399D5" TextColor="White" FontAttributes="Bold" HeightRequest="35" Padding="10,5" FontSize="16" CornerRadius="5"/>
+            </Grid>
+            <controls:CenterModal x:Name="CenterModal"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

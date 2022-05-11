@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerikPrimitives:RadBorder  xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+                              xmlns="http://xamarin.com/schemas/2014/forms" 
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              x:Class="CustomerApp.Controls.StatusBox"
+                              CornerRadius="5"
+                              VerticalOptions="Start">
+    <StackLayout Orientation="Horizontal" Padding="5,5,10,5">
+        <Label x:Name="icon" Text="{Binding Icon}" FontSize="15" TextColor="White" FontAttributes="Bold" VerticalTextAlignment="Center" FontFamily="FontAwesomeSolid"/>
+        <Label x:Name="lb_text" Text="{Binding Text}" FontSize="15" TextColor="White" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+    </StackLayout>
+</telerikPrimitives:RadBorder>
