@@ -60,7 +60,7 @@ namespace CustomerApp
                 return;
             }
 
-            await Shell.Current.Navigation.PushAsync(new UserInfoPage());
+            await Shell.Current.Navigation.PushAsync(new UserInfoDetailPage());
             this.FlyoutIsPresented = false;
             LoadingHelper.Hide();
         }

@@ -68,7 +68,7 @@
                 <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf015;" Size="18"/>
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="{x:Static lang:Language.giao_dich_va_thanh_toan}" ContentTemplate="{DataTemplate views:DashboardPage}">
+        <ShellContent Title="{x:Static lang:Language.giao_dich_va_thanh_toan}" ContentTemplate="{DataTemplate views:TransactionPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf015;" Size="18"/>
             </ShellContent.Icon>
