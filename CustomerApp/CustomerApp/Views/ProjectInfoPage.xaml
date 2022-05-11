@@ -369,10 +369,9 @@
                     </Grid>
                 </StackLayout>
             </ScrollView>
-            <StackLayout x:Name="btnGiuCho" IsVisible="{Binding IsShowBtnGiuCho}" AbsoluteLayout.LayoutBounds="0,1,1,50" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="White" Padding="10,0">
+            <!--<StackLayout x:Name="btnGiuCho" IsVisible="{Binding IsShowBtnGiuCho}" AbsoluteLayout.LayoutBounds="0,1,1,50" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="White" Padding="10,0">
                 <controls:ButtonCustom Text="{x:Static lang:Language.giu_cho}" Clicked="GiuCho_Clicked"/>
-                <!--<Button Text="{x:Static language:Language.giu_cho}" Clicked="GiuCho_Clicked" TextColor="White" FontAttributes="Bold" FontSize="16" HeightRequest="40" BackgroundColor="{StaticResource NavigationPrimary}" CornerRadius="10" Margin="10,5"/>-->
-            </StackLayout>
+            </StackLayout>-->
 
             <ContentView x:Name="ContentEvent" IsVisible="false" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#90000000" Padding="20">
                 <ContentView.GestureRecognizers>

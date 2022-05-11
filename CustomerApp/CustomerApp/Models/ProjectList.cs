@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CustomerApp.Datas;
 
 namespace CustomerApp.Models
 {
@@ -13,5 +14,9 @@ namespace CustomerApp.Models
         public DateTime? bsd_acttopdate { get; set; }
 
         public string bsd_projectid { get; set; }
+        public string statuscode { get; set; }
+
+        public string statusBackground { get { return ProjectStatusData.GetProjectStatusById(statuscode).Background; } }
+        public string statusName { get { return ProjectStatusData.GetProjectStatusById(statuscode).Name; } }
     }
 }
