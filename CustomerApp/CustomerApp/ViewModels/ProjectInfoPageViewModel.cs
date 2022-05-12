@@ -39,6 +39,9 @@ namespace CustomerApp.ViewModels
         private EventModel _event;
         public EventModel Event { get => _event; set { _event = value; OnPropertyChanged(nameof(Event)); } }
 
+        private List<PDFModel> _listPDF;
+        public List<PDFModel> ListPDF { get => _listPDF; set { _listPDF = value; OnPropertyChanged(nameof(ListPDF)); } }
+
         private ProjectModel _project;
         public ProjectModel Project
         {
@@ -509,6 +512,16 @@ namespace CustomerApp.ViewModels
             {
                 ListPhasesLanch.Add(item);
             }
+        }
+        public async Task LoadPDF()
+        {
+            ListPDF = new List<PDFModel>();
+            List<PDFModel> list = new List<PDFModel>();
+            list.Add(new PDFModel { name = "FRDCRM-CS-01-LICH THANH TOAN.pdf", source = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/FRDCRM-CS-01-DU%20AN.pdf?alt=media&token=76a06c7c-dbca-48f7-a8d4-cc29460a65c0" });
+            list.Add(new PDFModel { name = "FRDCRM-CS-01-DU AN.pdf", source = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/FRDCRM-CS-01-DU%20AN.pdf?alt=media&token=76a06c7c-dbca-48f7-a8d4-cc29460a65c0" });
+            list.Add(new PDFModel { name = "FRDCRM-CS-01-DOT MO BAN.pdf", source = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/FRDCRM-CS-01-DU%20AN.pdf?alt=media&token=76a06c7c-dbca-48f7-a8d4-cc29460a65c0" });
+            list.Add(new PDFModel { name = "FRDCRM-CS-01-DIEU KIEN BAN GIAO.pdf", source = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/FRDCRM-CS-01-DU%20AN.pdf?alt=media&token=76a06c7c-dbca-48f7-a8d4-cc29460a65c0" });
+            ListPDF = list;
         }
     }
 }

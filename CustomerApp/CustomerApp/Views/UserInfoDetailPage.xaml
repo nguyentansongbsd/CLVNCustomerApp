@@ -5,41 +5,26 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              x:Class="CustomerApp.Views.UserInfoDetailPage"
-             xmlns:lang="clr-namespace:CustomerApp.Resources"
+             xmlns:lang="clr-namespace:CustomerApp.Resources" 
+             xmlns:ffimagetransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:converters="clr-namespace:CustomerApp.Converters"
              Title="{x:Static lang:Language.title_thong_tin_ca_nhan}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:Base64ToImageSourceConverter x:Key="Base64ToImageSource"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout>
             <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,40">
-                <StackLayout>
-                    <telerikPrimitives:RadBorder BorderThickness="1" CornerRadius="10" BorderColor="Gray" Margin="10,20,10,0">
-                        <Grid RowDefinitions="Auto,1,Auto">
-                            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="10" Padding="20,10" Grid.Row="0">
-                                <!--<Grid ColumnDefinitions="Auto,*" Grid.Row="0" Grid.Column="0">
-                                    <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding singleContact.statuscode_color}" VerticalOptions="StartAndExpand">
-                                        <Label Grid.Column="0" Text="{Binding singleContact.statuscode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
-                                    </telerikPrimitives:RadBorder>
-                                    <Label Grid.Column="1" Text="{Binding singleContact.bsd_fullname}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" MaxLines="1" VerticalOptions="Center" LineBreakMode="TailTruncation" />
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" Grid.Row="1">
-                                    <Label Text="{Binding Source={x:Static lang:Language.ma_khach_hang},StringFormat='{0}: '}" Grid.Column="0" FontSize="15" TextColor="#444444"/>
-                                    <Label Text="{Binding singleContact.bsd_customercode}" Grid.Column="1" FontSize="15" TextColor="#444444"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" Grid.Row="2">
-                                    <Label Text="{Binding Source={x:Static lang:Language.email},StringFormat='{0}: '}" Grid.Column="0" FontSize="15" TextColor="#444444"/>
-                                    <Label Text="{Binding singleContact.emailaddress1}" Grid.Column="1" FontSize="15" TextColor="#444444"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" Grid.Row="3">
-                                    <Label Text="{Binding Source={x:Static lang:Language.so_dien_thoai},StringFormat='{0}: '}" Grid.Column="0" FontSize="15" TextColor="#444444" />
-                                    <Label Text="{Binding singleContact.mobilephone}" Grid.Column="1" FontSize="15" TextColor="#444444" />
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" Grid.Row="4" IsVisible="{Binding singleContact.bsd_contactaddress,Converter={StaticResource NullToBool}}">
-                                    <Label Text="&#xf3c5;" TextColor="#939393" FontFamily="FontAwesomeSolid" FontSize="Large"/>
-                                    <Label Text="{Binding singleContact.bsd_contactaddress}" Grid.Column="1" FontSize="15" TextColor="#444444"/>
-                                </Grid>-->
-                            </Grid>
-                        </Grid>
-                    </telerikPrimitives:RadBorder>
-                    <Grid ColumnDefinitions="*,*,*" Margin="0,5,0,0">
+                <StackLayout Padding="0,30,0,0">
+                    <controls:ExtendedFrame Padding="4" CornerRadius="39" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0">
+                        <ffimageloading:CachedImage Source="{Binding Avatar,Converter={StaticResource Base64ToImageSource}}" LoadingPlaceholder="user.png" HeightRequest="80" WidthRequest="80" DownsampleWidth="500">
+                            <ffimageloading:CachedImage.Transformations>
+                                <ffimagetransformations:CircleTransformation/>
+                            </ffimageloading:CachedImage.Transformations>
+                        </ffimageloading:CachedImage>
+                    </controls:ExtendedFrame>
+                    <!--<Grid ColumnDefinitions="*,*,*" Margin="0,5,0,0">
                         <BoxView HeightRequest="0.5" BackgroundColor="#939393" Grid.ColumnSpan="3" VerticalOptions="End" />
                         <telerikPrimitives:RadBorder x:Name="radBorderThongTin" Grid.Column="0" Style="{StaticResource rabBorder_Tab}">
                             <telerikPrimitives:RadBorder.GestureRecognizers>
@@ -59,12 +44,24 @@
                             </telerikPrimitives:RadBorder.GestureRecognizers>
                             <Label x:Name="lbPhongThuy" Text="{x:Static lang:Language.phong_thuy}" Style="{StaticResource Lb_Tab}"/>
                         </telerikPrimitives:RadBorder>
-                    </Grid>
+                    </Grid>-->
                     <Grid>
                         <!--tab thong tin-->
-                        <StackLayout x:Name="TabThongTin" IsVisible="true" Margin="0,10,0,0">
+                        <StackLayout x:Name="TabThongTin" IsVisible="true" Margin="0,10,0,0" BackgroundColor="#f1f1f1f1" Spacing="1">
+                            <controls:LabelField Title="{x:Static lang:Language.ho_ten}"
+                                                 Text="{Binding Contact.bsd_fullname}"/>
+                            <controls:LabelField Title="{x:Static lang:Language.email}"
+                                                 Text="{Binding Contact.emailaddress1}"/>
+                            <controls:LabelField Title="{x:Static lang:Language.so_dien_thoai}"
+                                                 Text="{Binding Contact.mobilephone}"/>
+                            <controls:LabelField Title="{x:Static lang:Language.ngay_sinh}"
+                                                 Text="{Binding Contact.birthdate}"/>
+                            <controls:LabelField Title="{x:Static lang:Language.gioi_tinh}"
+                                                 Text="{Binding Gender.Label}"/>
+                            <controls:LabelField Title="{x:Static lang:Language.dia_chi}"
+                                                 Text="{Binding Contact.bsd_contactaddress}"/>
                         </StackLayout>
-                        <StackLayout x:Name="TabPhongThuy" Margin="0,10,0,0">
+                        <StackLayout x:Name="TabPhongThuy" Margin="0,10,0,0" IsVisible="false">
                             <controls:LabelTitleSection Text="{x:Static lang:Language.title_thong_tin_gia_chu}"/>
                             <StackLayout Spacing="1" BackgroundColor="{StaticResource EnableColor}">
                                 <controls:LabelField Title="{x:Static lang:Language.gioi_tinh}" Text="Name"/>
@@ -112,7 +109,7 @@
                             </StackLayout>
                         </StackLayout>
                         <!--Loyalty-->
-                        <StackLayout x:Name="TabLoyalty">
+                        <StackLayout x:Name="TabLoyalty" IsVisible="false">
                             <controls:TitleSection Text="{x:Static lang:Language.loyalty}" IsExpanded="True">
                                 <controls:TitleSection.Content>
                                     <StackLayout BackgroundColor="#f1f1f1f1" Spacing="1">

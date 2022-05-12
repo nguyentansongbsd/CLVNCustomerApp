@@ -2590,6 +2590,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mặt Bằng Tầng.
+        /// </summary>
+        internal static string mat_bang_tang {
+            get {
+                return ResourceManager.GetString("mat_bang_tang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mật khẩu.
         /// </summary>
         internal static string mat_khau {

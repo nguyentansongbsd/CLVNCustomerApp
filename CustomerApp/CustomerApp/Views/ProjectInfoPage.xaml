@@ -164,6 +164,12 @@
                             </telerikPrimitives:RadBorder.GestureRecognizers>
                             <Label x:Name="lblGiuCho" Text="{x:Static lang:Language.title_giu_cho}"  Style="{StaticResource labelTap}"/>
                         </telerikPrimitives:RadBorder>
+                        <telerikPrimitives:RadBorder x:Name="radborderPDF" Grid.Column="3" Style="{StaticResource radBorderTap}">
+                            <telerikPrimitives:RadBorder.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="PDF_Tapped"/>
+                            </telerikPrimitives:RadBorder.GestureRecognizers>
+                            <Label x:Name="lblPDF" Text="{x:Static lang:Language.mat_bang_tang}"  Style="{StaticResource labelTap}" LineBreakMode="TailTruncation"/>
+                        </telerikPrimitives:RadBorder>
                     </Grid>
                     <!--Content-->
                     <Grid>
@@ -365,6 +371,21 @@
                                 </StackLayout>
                                 <Button Clicked="ShowMoreListDatCho_Clicked" IsVisible="{Binding ShowMoreBtnGiuCho}" BorderColor="#1399D5" CornerRadius="5" BorderWidth="1" BackgroundColor="Transparent" Text="{x:Static lang:Language.xem_them}" TextTransform="None" TextColor="#1399D5" HeightRequest="30" HorizontalOptions="Center" Margin="0,5,0,10" Padding="30,0,30,0"/>
                             </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout x:Name="stackPDF">
+                            <ListView Grid.Row="1" ItemsSource="{Binding ListPDF}" HasUnevenRows="True">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid ColumnDefinitions="Auto,*" Padding="20,10,0,10">
+                                                <Label Text="&#xf1c1;" FontFamily="FontAwesomeRegular" FontSize="30" TextColor="Red" VerticalOptions="Center"/>
+                                                <Label Grid.Column="1" Text="{Binding name}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Start"/>
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                    </ListView.ItemTemplate>
+                            </ListView>
                         </StackLayout>
                     </Grid>
                 </StackLayout>
