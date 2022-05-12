@@ -37,7 +37,6 @@ namespace CustomerApp.Views
             }
             else
                 OnCompleted?.Invoke(false);
-            LoadingHelper.Hide();
         }
 
         // tab lich

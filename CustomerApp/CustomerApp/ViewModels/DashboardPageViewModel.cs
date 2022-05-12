@@ -53,16 +53,89 @@ namespace CustomerApp.ViewModels
             IsRefreshing = false;
         });
 
+
+
+        private List<string> _topBanners;
+        public List<string> TopBanners { get => _topBanners; set { _topBanners = value;OnPropertyChanged(nameof(TopBanners)); } }
+
+        public ObservableCollection<ContractModel> Contracts { get; set; } = new ObservableCollection<ContractModel>();
+        public ObservableCollection<ProjectList> Projects { get; set; } = new ObservableCollection<ProjectList>();
+
+
         public DashboardPageViewModel()
         {
-            dateBefor = DateTime.Now;
-            DateTime threeMonthsAgo = DateTime.Now.AddMonths(-3);
-            dateAfter = new DateTime(threeMonthsAgo.Year, threeMonthsAgo.Month, 1);
-            first_Month = dateAfter;
-            second_Month = dateAfter.AddMonths(1);
-            third_Month = second_Month.AddMonths(1);
-            fourth_Month = dateBefor;
+            TopBanners = new List<string>() { "image1.jpeg", "iamge2.jpeg", "image3.jpeg", "image4.webp" };
+
+
+
+
+            //dateBefor = DateTime.Now;
+            //DateTime threeMonthsAgo = DateTime.Now.AddMonths(-3);
+            //dateAfter = new DateTime(threeMonthsAgo.Year, threeMonthsAgo.Month, 1);
+            //first_Month = dateAfter;
+            //second_Month = dateAfter.AddMonths(1);
+            //third_Month = second_Month.AddMonths(1);
+            //fourth_Month = dateBefor;
         }
+
+        public async Task LoadContracts()
+        {
+            string fetchXml = $@"<fetch version='1.0' count='5' page='1' output-format='xml-platform' mapping='logical' distinct='false'>
+                                <entity name='salesorder'>
+                                    <attribute name='name' />
+                                    <attribute name='customerid' />
+                                    <attribute name='statuscode' />
+                                    <attribute name='totalamount' />
+                                    <attribute name='bsd_unitnumber' alias='unit_id'/>
+                                    <attribute name='bsd_project' alias='project_id'/>
+                                    <attribute name='salesorderid' />
+                                    <attribute name='ordernumber' />
+                                    <order attribute='bsd_project' descending='true' />
+                                    <filter type='and'>
+                                        <condition attribute = 'customerid' operator= 'eq' value = '{UserLogged.Id}' />        
+                                    </filter >
+                                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' link-type='outer' alias='aa'>
+                                        <attribute name='bsd_name' alias='project_name'/>
+                                    </link-entity>
+                                    <link-entity name='product' from='productid' to='bsd_unitnumber' link-type='outer' alias='ab'>
+                                        <attribute name='name' alias='unit_name'/>
+                                    </link-entity>
+                                </entity>
+                            </fetch>";
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<ContractModel>>("salesorders", fetchXml);
+            if (result == null || result.value.Count == 0) return;
+
+            foreach (var item in result.value)
+            {
+                this.Contracts.Add(item);
+            }
+        }
+
+        public async Task LoadProjects()
+        {
+            string fetchXml = $@"<fetch version='1.0' count='5' page='1' output-format='xml-platform' mapping='logical' distinct='false'>
+                                <entity name='bsd_project'>
+                                    <attribute name='bsd_projectid'/>
+                                    <attribute name='bsd_projectcode'/>
+                                    <attribute name='bsd_name'/>
+                                    <attribute name='createdon' />
+                                    <attribute name ='statuscode' />
+                                    <attribute name ='bsd_address' />
+                                    <attribute name ='bsd_projecttype' />
+                                    <attribute name ='bsd_projectslogo' />
+                                    <order attribute='bsd_name' descending='false' />
+                                  </entity>
+                            </fetch>";
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<ProjectList>>("bsd_projects", fetchXml);
+            if (result == null || result.value.Count == 0) return;
+
+            foreach (var item in result.value)
+            {
+                this.Projects.Add(item);
+            }
+        }
+
+
 
         public async Task LoadContactLoyalty()
         {
@@ -262,19 +335,26 @@ namespace CustomerApp.ViewModels
 
         private async Task RefreshDashboard()
         {
-            this.Loyalty = null;
-            this.DataMonthQueue.Clear();
-            this.DataMonthQuote.Clear();
-            this.DataMonthOptionEntry.Clear();
-            this.DataMonthUnit.Clear();
-
+            this.Contracts.Clear();
+            this.Projects.Clear();
             await Task.WhenAll(
-                LoadContactLoyalty(),
-                LoadQueueFourMonths(),
-                LoadQuoteFourMonths(),
-                LoadOptionEntryFourMonths(),
-                LoadUnitFourMonths()
+                LoadContracts(),
+                LoadProjects()
                 );
+
+            //this.Loyalty = null;
+            //this.DataMonthQueue.Clear();
+            //this.DataMonthQuote.Clear();
+            //this.DataMonthOptionEntry.Clear();
+            //this.DataMonthUnit.Clear();
+
+            //await Task.WhenAll(
+            //    LoadContactLoyalty(),
+            //    LoadQueueFourMonths(),
+            //    LoadQuoteFourMonths(),
+            //    LoadOptionEntryFourMonths(),
+            //    LoadUnitFourMonths()
+            //    );
         }
 
         public async Task LoadMeetings()
@@ -510,43 +590,43 @@ namespace CustomerApp.ViewModels
             }
         }
 
-        public async Task LoadContracts()
-        {
-            string fetchXml = $@"<fetch version='1.0' count='3' page='1' output-format='xml-platform' mapping='logical' distinct='false'>
-                                  <entity name='salesorder'>
-                                    <attribute name='name' alias='Title'/>
-                                    <attribute name='statuscode' alias='State'/>
-                                    <attribute name='createdon' alias='StartDate'/>
-                                    <attribute name='salesorderid' alias='Id'/>
-                                    <order attribute='createdon' descending='true' />
-                                    <filter type='and'>
-                                      <condition attribute='bsd_contractprinteddate' operator='not-null' />
-                                      <condition attribute='bsd_signedcontractdate' operator='null' />
-                                      <condition attribute='createdon' operator='today' />
-                                    </filter>
-                                    <link-entity name='contactorders' from='salesorderid' to='salesorderid' visible='false' intersect='true'>
-                                      <link-entity name='contact' from='contactid' to='contactid' alias='aa'>
-                                        <filter type='and'>
-                                          <condition attribute='contactid' operator='eq' value='{UserLogged.Id}' />
-                                        </filter>
-                                      </link-entity>
-                                    </link-entity>
-                                  </entity>
-                                </fetch>";
-            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<CalendarModel>>("salesorders", fetchXml);
-            var data = result.value;
-            if (data.Any())
-            {
-                foreach (var item in data)
-                {
-                    item.Type = CalendarType.Contract;
-                    item.StartDate = item.StartDate.ToLocalTime();
-                    item.EndDate = item.StartDate.ToLocalTime();
-                    item.Color = Color.FromHex("#A0DB8E");
-                    item.BackgroundColor = Color.White;
-                    DataEvents.Add(item);
-                }
-            }
-        }
+        //public async Task LoadContracts()
+        //{
+        //    string fetchXml = $@"<fetch version='1.0' count='3' page='1' output-format='xml-platform' mapping='logical' distinct='false'>
+        //                          <entity name='salesorder'>
+        //                            <attribute name='name' alias='Title'/>
+        //                            <attribute name='statuscode' alias='State'/>
+        //                            <attribute name='createdon' alias='StartDate'/>
+        //                            <attribute name='salesorderid' alias='Id'/>
+        //                            <order attribute='createdon' descending='true' />
+        //                            <filter type='and'>
+        //                              <condition attribute='bsd_contractprinteddate' operator='not-null' />
+        //                              <condition attribute='bsd_signedcontractdate' operator='null' />
+        //                              <condition attribute='createdon' operator='today' />
+        //                            </filter>
+        //                            <link-entity name='contactorders' from='salesorderid' to='salesorderid' visible='false' intersect='true'>
+        //                              <link-entity name='contact' from='contactid' to='contactid' alias='aa'>
+        //                                <filter type='and'>
+        //                                  <condition attribute='contactid' operator='eq' value='{UserLogged.Id}' />
+        //                                </filter>
+        //                              </link-entity>
+        //                            </link-entity>
+        //                          </entity>
+        //                        </fetch>";
+        //    var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<CalendarModel>>("salesorders", fetchXml);
+        //    var data = result.value;
+        //    if (data.Any())
+        //    {
+        //        foreach (var item in data)
+        //        {
+        //            item.Type = CalendarType.Contract;
+        //            item.StartDate = item.StartDate.ToLocalTime();
+        //            item.EndDate = item.StartDate.ToLocalTime();
+        //            item.Color = Color.FromHex("#A0DB8E");
+        //            item.BackgroundColor = Color.White;
+        //            DataEvents.Add(item);
+        //        }
+        //    }
+        //}
     }
 }

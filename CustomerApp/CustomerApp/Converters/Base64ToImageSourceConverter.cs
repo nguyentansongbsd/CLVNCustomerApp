@@ -14,8 +14,17 @@ namespace CustomerApp.Converters
             if (value != null && !string.IsNullOrWhiteSpace(value.ToString()) && value is string)
             {
                 image = null;
-                byte[] bytes = System.Convert.FromBase64String(value.ToString());
-                image = ImageSource.FromStream(() => new MemoryStream(bytes));
+                try
+                {
+                    byte[] bytes = System.Convert.FromBase64String(value.ToString());
+                    image = ImageSource.FromStream(() => new MemoryStream(bytes));
+                }
+                catch(Exception ex)
+                {
+                    string name = value.ToString();
+                    return $"https://ui-avatars.com/api/?background=2196F3&rounded=false&color=ffffff&size=150&length=2&name={name}";
+                }
+                
                 return image;
             }
             else
@@ -25,6 +34,7 @@ namespace CustomerApp.Converters
             }
             
         }
+
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

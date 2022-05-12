@@ -24,6 +24,26 @@
                                         </telerikPrimitives:RadBorder>
                                         <Label Grid.Column="1" Text="{Binding bsd_name}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                                     </Grid>
+
+                                    <Grid ColumnDefinitions="Auto,*">
+                                        <Label Grid.Column="0" Text="Mã dự án: " FontSize="15" TextColor="#444444"/>
+                                        <Label Grid.Column="1" Text="{Binding bsd_projectcode}" TextColor="#444444" FontSize="15"/>
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="Auto,*">
+                                        <Label Grid.Column="0" Text="Loại: " FontSize="15" TextColor="#444444"/>
+                                        <Label Grid.Column="1" Text="{Binding projectType}" TextColor="#444444" FontSize="15"/>
+                                    </Grid>
+
+                                    <Label FontSize="15" TextColor="#444444">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="&#xf3c5;" FontFamily="FontAwesomeSolid" FontSize="15" TextColor="#790311"/>
+                                                <Span Text="  "/>
+                                                <Span Text="{Binding bsd_address}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

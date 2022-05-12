@@ -58,22 +58,22 @@ namespace CustomerApp.Views
             LoadingHelper.Show();
             ContractModel item = e.Item as ContractModel;
             ContractDetailPage contractDetailPage = new ContractDetailPage(item.salesorderid);
-            await Navigation.PushAsync(contractDetailPage);
+            //await Navigation.PushAsync(contractDetailPage);
 
-            //contractDetailPage.OnCompleted = async (OnCompleted) =>
-            //{
-            //    if (OnCompleted == true)
-            //    {
-            //        await Navigation.PushAsync(contractDetailPage);
-            //        LoadingHelper.Hide();
-            //    }
-            //    else
-            //    {
-            //        LoadingHelper.Hide();
-            //        ToastMessageHelper.ShortMessage("Không tìm thấy thông tin hợp đồng");
-            //    }
+            contractDetailPage.OnCompleted = async (OnCompleted) =>
+            {
+                if (OnCompleted == true)
+                {
+                    await Navigation.PushAsync(contractDetailPage);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage("Không tìm thấy thông tin hợp đồng");
+                }
 
-            //};
+            };
         }
     }
 }
