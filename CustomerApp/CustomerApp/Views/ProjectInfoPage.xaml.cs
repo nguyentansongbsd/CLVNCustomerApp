@@ -1,13 +1,15 @@
 ﻿using CustomerApp.Datas;
 using CustomerApp.Helper;
+using CustomerApp.Models;
 using CustomerApp.Resources;
 using CustomerApp.ViewModels;
+using Stormlion.PhotoBrowser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,7 +22,7 @@ namespace CustomerApp.Views
         public static bool? NeedToRefreshQueue = null;
         public static bool? NeedToRefreshNumQueue = null;
         public ProjectInfoPageViewModel viewModel;
-
+        private ShowMedia showMedia;
         public ProjectInfoPage(Guid projectId, string projectName = null)
         {
             InitializeComponent();
@@ -89,6 +91,8 @@ namespace CustomerApp.Views
                 NeedToRefreshNumQueue = false;
                 LoadingHelper.Hide();
             }
+            if (showMedia != null)
+                showMedia.StopMedia();
         }
 
         private async void ThongKe_Tapped(object sender, EventArgs e)
@@ -105,6 +109,7 @@ namespace CustomerApp.Views
             stackThongTin.IsVisible = false;
             stackGiuCho.IsVisible = false;
             stackPDF.IsVisible = false;
+            stackCollection.IsVisible = false;
         }
 
         private async void ThongTin_Tapped(object sender, EventArgs e)
@@ -121,6 +126,7 @@ namespace CustomerApp.Views
             stackThongTin.IsVisible = true;
             stackGiuCho.IsVisible = false;
             stackPDF.IsVisible = false;
+            stackCollection.IsVisible = false;
         }
 
         private async void GiuCho_Tapped(object sender, EventArgs e)
@@ -136,11 +142,16 @@ namespace CustomerApp.Views
             VisualStateManager.GoToState(lblPDF, "InActive");
             stackThongKe.IsVisible = false;
             stackThongTin.IsVisible = false;
-            stackGiuCho.IsVisible = true;
+           // stackGiuCho.IsVisible = true;
             stackPDF.IsVisible = false;
-            if (viewModel.IsLoadedGiuCho == false)
+            stackCollection.IsVisible = true;
+            //if (viewModel.IsLoadedGiuCho == false)
+            //{
+            //    await viewModel.LoadGiuCho();
+            //}
+            if (viewModel.ListCollection == null)
             {
-                await viewModel.LoadGiuCho();
+                await viewModel.LoadCollection();
             }
             LoadingHelper.Hide();
         }
@@ -159,6 +170,7 @@ namespace CustomerApp.Views
             stackThongKe.IsVisible = false;
             stackThongTin.IsVisible = false;
             stackGiuCho.IsVisible = false;
+            stackCollection.IsVisible = false;
             stackPDF.IsVisible = true;
             if (viewModel.ListPDF == null)
             {
@@ -312,6 +324,42 @@ namespace CustomerApp.Views
                     ToastMessageHelper.ShortMessage(Language.noti_khong_tim_thay_thong_tin_vui_long_thu_lai);
                 }
             };
+        }
+
+        private void ListCollection_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            var item = (CollectionData)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            if (item.SharePointType == SharePointType.Image)
+            {
+                var img = viewModel.Photos.SingleOrDefault(x => x.URL == item.ImageSource);
+                var index = viewModel.Photos.IndexOf(img);
+
+                new PhotoBrowser()
+                {
+                    Photos = viewModel.Photos,
+                    StartIndex = index,
+                    EnableGrid = true
+                }.Show();
+            }
+            else if (item.SharePointType == SharePointType.Video)
+            {
+                showMedia = new ShowMedia(item.MediaSourceId, item.MediaSourceId);
+                showMedia.OnCompleted = async (isSuccess) =>
+                {
+                    if (isSuccess)
+                    {
+                        await Navigation.PushAsync(showMedia);
+                        LoadingHelper.Hide();
+                    }
+                    else
+                    {
+                        LoadingHelper.Hide();
+                        ToastMessageHelper.ShortMessage("Không lấy được video");
+                    }
+                };
+            }
+            LoadingHelper.Hide();
         }
     }
 }

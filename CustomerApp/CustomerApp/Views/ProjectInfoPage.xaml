@@ -65,12 +65,12 @@
             <ScrollView Padding="0,0,0,60" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
                 <StackLayout >
                     <Grid RowDefinitions="Auto,80">
-                        <CarouselView x:Name="carouseView" ItemsSource="{Binding Collections}" Grid.Row="0" HeightRequest="200" IsVisible="{Binding ShowCollections}">
+                        <CarouselView x:Name="carouseView" ItemsSource="{Binding ListCollection}" Grid.Row="0" HeightRequest="200" IsVisible="{Binding ShowCollections}">
                             <CarouselView.ItemTemplate>
                                 <DataTemplate >
                                     <Grid>
                                         <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ItemSlider_Tapped" CommandParameter="{Binding .}"/>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ListCollection_Tapped" CommandParameter="{Binding .}"/>
                                         </Grid.GestureRecognizers>
                                         <ffimageloading:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" LoadingPlaceholder="image_placeholder.jpg" DownsampleWidth="500"/>
                                         <Label Text="&#xf144;" IsVisible="{Binding MediaSourceId,Converter={StaticResource nullToHideConverter}}" TextColor="#F1F1F1" FontSize="35" FontFamily="FontAwesomeRegular" VerticalOptions="Center" HorizontalOptions="Center"/>
@@ -145,7 +145,7 @@
                             </telerikPrimitives:RadBorder>
                         </Grid>
                     </Grid>
-                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto" ColumnSpacing="0">
+                    <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto" ColumnSpacing="0">
                         <telerikPrimitives:RadBorder x:Name="radborderThongKe" Grid.Column="0" Style="{StaticResource radBorderTap}">
                             <telerikPrimitives:RadBorder.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ThongKe_Tapped"/>
@@ -373,6 +373,32 @@
                             </StackLayout>
                         </StackLayout>
 
+                        <StackLayout x:Name="stackCollection">
+                            <CollectionView ItemsSource="{Binding ListCollection}" SelectionMode="None">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical"
+                                    Span="3"
+                                    VerticalItemSpacing="0.5"
+                                    HorizontalItemSpacing="0.5" />           
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Padding="2,2,0,0" BackgroundColor="White">
+                                            <Grid>
+                                                <ffimageloading:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" LoadingPlaceholder="image_placeholder.jpg" DownsampleWidth="300"/>
+                                                <Label Text="&#xf144;" IsVisible="{Binding MediaSourceId,Converter={StaticResource nullToHideConverter}}" TextColor="#F1F1F1" FontSize="35" FontFamily="FontAwesomeRegular" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ListCollection_Tapped" CommandParameter="{Binding .}"/>
+                                                </Grid.GestureRecognizers>
+                                            </Grid>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </StackLayout>
+                        
                         <StackLayout x:Name="stackPDF">
                             <ListView Grid.Row="1" ItemsSource="{Binding ListPDF}" HasUnevenRows="True">
                                 <ListView.ItemTemplate>

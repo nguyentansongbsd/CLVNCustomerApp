@@ -2,6 +2,7 @@
 using CustomerApp.Helper;
 using CustomerApp.Models;
 using CustomerApp.Settings;
+using Stormlion.PhotoBrowser;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,7 @@ namespace CustomerApp.ViewModels
     {
         public ObservableCollection<CollectionData> Collections { get; set; } = new ObservableCollection<CollectionData>();
 
-      //  public List<Photo> Photos { get; set; }
+        public List<Photo> Photos { get; set; }
         private bool _showCollections = false;
         public bool ShowCollections { get => _showCollections; set { _showCollections = value; OnPropertyChanged(nameof(ShowCollections)); } }
 
@@ -108,6 +109,9 @@ namespace CustomerApp.ViewModels
 
         private StatusCodeModel _statusCode;
         public StatusCodeModel StatusCode { get => _statusCode; set { _statusCode = value; OnPropertyChanged(nameof(StatusCode)); } }
+
+        private List<CollectionData> _listCollection;
+        public List<CollectionData> ListCollection { get => _listCollection; set { _listCollection = value; OnPropertyChanged(nameof(ListCollection)); } }
 
         public ProjectInfoPageViewModel()
         {
@@ -522,6 +526,24 @@ namespace CustomerApp.ViewModels
             list.Add(new PDFModel { name = "FRDCRM-CS-01-DOT MO BAN.pdf", source = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/FRDCRM-CS-01-DU%20AN.pdf?alt=media&token=76a06c7c-dbca-48f7-a8d4-cc29460a65c0" });
             list.Add(new PDFModel { name = "FRDCRM-CS-01-DIEU KIEN BAN GIAO.pdf", source = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/FRDCRM-CS-01-DU%20AN.pdf?alt=media&token=76a06c7c-dbca-48f7-a8d4-cc29460a65c0" });
             ListPDF = list;
+        }
+        public async Task LoadCollection()
+        {
+            ShowCollections = true;
+            ListCollection = new List<CollectionData>();
+            Photos = new List<Photo>();
+            List<CollectionData> list = new List<CollectionData>();
+            list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/an-binh-golden-town-2.jpg?alt=media&token=17e47607-c761-4d49-a628-6efbc23fe356", SharePointType = SharePointType.Image });
+            Photos.Add(new Photo { URL = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/an-binh-golden-town-2.jpg?alt=media&token=17e47607-c761-4d49-a628-6efbc23fe356" });
+            list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/du-an-cham-tien-do-1564765702.jpg?alt=media&token=7e8be40e-9756-4d0e-8a1b-bb81d99941ea", SharePointType = SharePointType.Image });
+            Photos.Add(new Photo { URL = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/du-an-cham-tien-do-1564765702.jpg?alt=media&token=7e8be40e-9756-4d0e-8a1b-bb81d99941ea" });
+            list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/mat-bang-an-binh-golden-town.jpg?alt=media&token=843e5477-0819-4726-9de2-60df1a7baa73", SharePointType = SharePointType.Image });
+            Photos.Add(new Photo { URL = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/mat-bang-an-binh-golden-town.jpg?alt=media&token=843e5477-0819-4726-9de2-60df1a7baa73" });
+            list.Add(new CollectionData { ImageSource= "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Screenshot%20(98).png?alt=media&token=b45c5601-fbe7-410a-ae1c-aa8592beb923", MediaSourceId = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Feliz%20en%20Vista%20-%20The%20Story%20Behind%20A%20Masterpiece.mp4?alt=media&token=01068c7e-bae9-40c8-b5f5-0ff34ee8e0fb", SharePointType = SharePointType.Video });
+            list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Screenshot%20(100).png?alt=media&token=4c64dbdc-2b2e-4ba0-8f3c-baf541a40f68", MediaSourceId = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20d%E1%BB%B1%20%C3%A1n%20%C4%91%E1%BB%89nh%20cao%20Feliz%20en%20Vista%20c%E1%BB%A7a%20CapitaLand%20-%20Crafting%20Tomorrow%E2%80%99s%20Beauty.mp4?alt=media&token=d9a4d8c1-f454-4661-9806-ecce3d26810c", SharePointType = SharePointType.Video });
+            ListCollection = list;
+            TotalMedia = 3;
+            TotalPhoto = 2;
         }
     }
 }
