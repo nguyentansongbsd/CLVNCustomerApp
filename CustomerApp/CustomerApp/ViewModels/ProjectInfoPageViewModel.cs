@@ -2,9 +2,11 @@
 using CustomerApp.Helper;
 using CustomerApp.Models;
 using CustomerApp.Settings;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,8 +41,11 @@ namespace CustomerApp.ViewModels
         private EventModel _event;
         public EventModel Event { get => _event; set { _event = value; OnPropertyChanged(nameof(Event)); } }
 
-        private List<PDFModel> _listPDF;
-        public List<PDFModel> ListPDF { get => _listPDF; set { _listPDF = value; OnPropertyChanged(nameof(ListPDF)); } }
+        //private List<PDFModel> _listPDF;
+        //public List<PDFModel> ListPDF { get => _listPDF; set { _listPDF = value; OnPropertyChanged(nameof(ListPDF)); } }
+
+        public ObservableCollection<PDFModel> ListPDF { get; set; } = new ObservableCollection<PDFModel>();
+        public Stream Stream { get; set; }
 
         private ProjectModel _project;
         public ProjectModel Project
@@ -515,13 +520,20 @@ namespace CustomerApp.ViewModels
         }
         public async Task LoadPDF()
         {
-            ListPDF = new List<PDFModel>();
-            List<PDFModel> list = new List<PDFModel>();
-            list.Add(new PDFModel { name = "FRDCRM-CS-01-LICH THANH TOAN.pdf", source = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/FRDCRM-CS-01-DU%20AN.pdf?alt=media&token=76a06c7c-dbca-48f7-a8d4-cc29460a65c0" });
-            list.Add(new PDFModel { name = "FRDCRM-CS-01-DU AN.pdf", source = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/FRDCRM-CS-01-DU%20AN.pdf?alt=media&token=76a06c7c-dbca-48f7-a8d4-cc29460a65c0" });
-            list.Add(new PDFModel { name = "FRDCRM-CS-01-DOT MO BAN.pdf", source = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/FRDCRM-CS-01-DU%20AN.pdf?alt=media&token=76a06c7c-dbca-48f7-a8d4-cc29460a65c0" });
-            list.Add(new PDFModel { name = "FRDCRM-CS-01-DIEU KIEN BAN GIAO.pdf", source = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/FRDCRM-CS-01-DU%20AN.pdf?alt=media&token=76a06c7c-dbca-48f7-a8d4-cc29460a65c0" });
-            ListPDF = list;
+            if (string.IsNullOrWhiteSpace(UserLogged.ListPdf))
+            {
+                ListPDF.Add(new PDFModel() { id = Guid.NewGuid(), name = "MultiPage PDF File.pdf" });
+                ListPDF.Add(new PDFModel() { id = Guid.NewGuid(), name = "One Pearl Bank Community.pdf" });
+                UserLogged.ListPdf = JsonConvert.SerializeObject(ListPDF);
+            }
+            else
+            {
+                var data = JsonConvert.DeserializeObject<List<PDFModel>>(UserLogged.ListPdf);
+                foreach (var item in data)
+                {
+                    this.ListPDF.Add(item);
+                }
+            }
         }
     }
 }

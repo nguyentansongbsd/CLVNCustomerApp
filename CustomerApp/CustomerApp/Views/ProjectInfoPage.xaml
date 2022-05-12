@@ -261,14 +261,14 @@
                                 <controls:TitleSection Text="{x:Static lang:Language.danh_sach_dot_mo_ban}" IsExpanded="False" Margin="0,20">
                                     <controls:TitleSection.Content>
                                         <StackLayout BindableLayout.ItemsSource="{Binding ListPhasesLanch}" BackgroundColor="#eeeeee" Spacing="1">
-                                                <BindableLayout.EmptyViewTemplate>
-                                                    <DataTemplate>
-                                                        <Label Text="{x:Static lang:Language.khong_co_du_lieu}" TextColor="#444444" HorizontalTextAlignment="Center" BackgroundColor="White" Padding="0,15"/>
-                                                    </DataTemplate>
-                                                </BindableLayout.EmptyViewTemplate>
-                                                <BindableLayout.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Grid RowDefinitions="Auto,Auto" BackgroundColor ="White" Padding="20" Margin="0,1">
+                                            <BindableLayout.EmptyViewTemplate>
+                                                <DataTemplate>
+                                                    <Label Text="{x:Static lang:Language.khong_co_du_lieu}" TextColor="#444444" HorizontalTextAlignment="Center" BackgroundColor="White" Padding="0,15"/>
+                                                </DataTemplate>
+                                            </BindableLayout.EmptyViewTemplate>
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid RowDefinitions="Auto,Auto" BackgroundColor ="White" Padding="20" Margin="0,1">
                                                         <Grid ColumnDefinitions="Auto,*" Grid.Row="0" Grid.Column="0">
                                                             <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statuscode_color}" VerticalOptions="StartAndExpand">
                                                                 <Label Grid.Column="0" Text="{Binding statuscode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
@@ -284,9 +284,9 @@
                                                             <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="PhasesLanch_Tapped" CommandParameter="{Binding bsd_phaseslaunchid}"/>
                                                         </Grid.GestureRecognizers>
                                                     </Grid>
-                                                    </DataTemplate>
-                                                </BindableLayout.ItemTemplate>
-                                            </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
                                     </controls:TitleSection.Content>
                                 </controls:TitleSection>
                             </StackLayout>
@@ -374,22 +374,30 @@
                         </StackLayout>
 
                         <StackLayout x:Name="stackPDF">
-                            <ListView Grid.Row="1" ItemsSource="{Binding ListPDF}" HasUnevenRows="True">
-                                <ListView.ItemTemplate>
+                            <StackLayout BindableLayout.ItemsSource="{Binding ListPDF}" Spacing="0">
+                                <BindableLayout.ItemTemplate>
                                     <DataTemplate>
-                                        <ViewCell>
-                                            <Grid ColumnDefinitions="Auto,*" Padding="20,10,0,10">
-                                                <Label Text="&#xf1c1;" FontFamily="FontAwesomeRegular" FontSize="30" TextColor="Red" VerticalOptions="Center"/>
+                                        <StackLayout BackgroundColor="#eeeeee" Padding="0,1">
+                                            <Grid ColumnDefinitions="Auto,*" Padding="20,10" BackgroundColor="White" >
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="File_Tapped" CommandParameter="{Binding name}"/>
+                                                </Grid.GestureRecognizers>
+                                                <Label Text="&#xf1c1;" FontFamily="FontAwesomeRegular" FontSize="20" TextColor="Red" VerticalOptions="Center"/>
                                                 <Label Grid.Column="1" Text="{Binding name}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Start"/>
                                             </Grid>
-                                        </ViewCell>
+                                        </StackLayout>
                                     </DataTemplate>
-                                    </ListView.ItemTemplate>
-                            </ListView>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
                         </StackLayout>
                     </Grid>
                 </StackLayout>
             </ScrollView>
+            <StackLayout x:Name="stButton"  AbsoluteLayout.LayoutBounds="0,1,1,70" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" Padding="0,10,20,20">
+                <controls:ExtendedFrame x:Name="frAddFilePdf" IsVisible="false" Padding="0" BackgroundColor="{x:StaticResource NavigationPrimary}" HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="End">
+                    <Button Text="&#xf067;" FontFamily="FontAwesomeSolid" FontSize="24" BackgroundColor="{x:StaticResource NavigationPrimary}" Padding="0" HeightRequest="40" WidthRequest="40" CornerRadius="20" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Clicked="AddFilePdf_Clicked"/>
+                </controls:ExtendedFrame>
+            </StackLayout>
             <!--<StackLayout x:Name="btnGiuCho" IsVisible="{Binding IsShowBtnGiuCho}" AbsoluteLayout.LayoutBounds="0,1,1,50" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="White" Padding="10,0">
                 <controls:ButtonCustom Text="{x:Static lang:Language.giu_cho}" Clicked="GiuCho_Clicked"/>
             </StackLayout>-->

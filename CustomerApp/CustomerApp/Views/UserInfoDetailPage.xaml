@@ -17,7 +17,7 @@
         <AbsoluteLayout>
             <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,40">
                 <StackLayout Padding="0,30,0,0">
-                    <controls:ExtendedFrame Padding="4" CornerRadius="39" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0">
+                    <controls:ExtendedFrame Padding="4" CornerRadius="44" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0">
                         <ffimageloading:CachedImage Source="{Binding Avatar,Converter={StaticResource Base64ToImageSource}}" LoadingPlaceholder="user.png" HeightRequest="80" WidthRequest="80" DownsampleWidth="500">
                             <ffimageloading:CachedImage.Transformations>
                                 <ffimagetransformations:CircleTransformation/>
@@ -55,7 +55,7 @@
                             <controls:LabelField Title="{x:Static lang:Language.so_dien_thoai}"
                                                  Text="{Binding Contact.mobilephone}"/>
                             <controls:LabelField Title="{x:Static lang:Language.ngay_sinh}"
-                                                 Text="{Binding Contact.birthdate}"/>
+                                                 Text="{Binding Contact.birthdate,StringFormat='{0:dd/MM/yyyy}'}"/>
                             <controls:LabelField Title="{x:Static lang:Language.gioi_tinh}"
                                                  Text="{Binding Gender.Label}"/>
                             <controls:LabelField Title="{x:Static lang:Language.dia_chi}"

@@ -95,5 +95,11 @@ namespace CustomerApp.Settings
             get => AppSettings.GetValueOrDefault(nameof(IsSaveInforUser), false);
             set => AppSettings.AddOrUpdateValue(nameof(IsSaveInforUser), value);
         }
+
+        public static string ListPdf
+        {
+            get => AppSettings.GetValueOrDefault(nameof(ListPdf), string.Empty);
+            set => AppSettings.AddOrUpdateValue(nameof(ListPdf), value);
+        }
     }
 }

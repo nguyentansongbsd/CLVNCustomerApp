@@ -26,7 +26,7 @@ namespace CustomerApp
         public AppShell()
         {
             InitializeComponent();
-            UserName = UserLogged.User;
+            UserName = UserLogged.Email;
             ContactName = string.IsNullOrWhiteSpace(UserLogged.ContactName) ? UserLogged.User : UserLogged.ContactName;
             Avartar = UserLogged.Avartar;
             VerApp = Config.OrgConfig.VerApp;
