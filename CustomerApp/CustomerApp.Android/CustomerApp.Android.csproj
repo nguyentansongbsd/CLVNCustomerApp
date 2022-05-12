@@ -84,6 +84,7 @@
     <Compile Include="Renderers\MainEntryRenderer.cs" />
     <Compile Include="Renderers\MainSearchBarRenderer.cs" />
     <Compile Include="Renderers\TimePickerBorderRenderer.cs" />
+    <Compile Include="Services\PdfService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
