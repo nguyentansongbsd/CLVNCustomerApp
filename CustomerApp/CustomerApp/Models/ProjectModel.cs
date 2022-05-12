@@ -37,8 +37,19 @@ namespace CustomerApp.Models
         public decimal bsd_queuesperunit { get; set; } // giữ chỗ trên dự án
         public decimal bsd_longqueuingtime { get; set; } // thời gian giữ chỗ dài hạn
         public decimal bsd_shortqueingtime { get; set; } // thời gian giữ chỗ ngắn hạn
-        public string bsd_logo { get; set; }
+        
         public string bsd_projectslogo { get; set; }
+        public string bsd_logo { get {
+                if (!string.IsNullOrWhiteSpace(bsd_projectslogo))
+                {
+                    return bsd_projectslogo;
+                }
+                else
+                {
+                    return bsd_name;
+                }
+            } }
+
         public bool bsd_queueproject { get; set; }
         public string bsd_queueproject_format { get { return Data.GetStringByBool(bsd_queueproject); } }
         public bool bsd_printagreement { get; set; }
