@@ -1,13 +1,16 @@
 ﻿using CustomerApp.Datas;
 using CustomerApp.Helper;
+using CustomerApp.IServices;
 using CustomerApp.Resources;
+using CustomerApp.Settings;
 using CustomerApp.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,6 +23,7 @@ namespace CustomerApp.Views
         public static bool? NeedToRefreshQueue = null;
         public static bool? NeedToRefreshNumQueue = null;
         public ProjectInfoPageViewModel viewModel;
+        FirebaseStorageHelper storageHelper = new FirebaseStorageHelper();
 
         public ProjectInfoPage(Guid projectId, string projectName = null)
         {
@@ -104,7 +108,7 @@ namespace CustomerApp.Views
             stackThongKe.IsVisible = true;
             stackThongTin.IsVisible = false;
             stackGiuCho.IsVisible = false;
-            stackPDF.IsVisible = false;
+            frAddFilePdf.IsVisible = stackPDF.IsVisible = false;
         }
 
         private async void ThongTin_Tapped(object sender, EventArgs e)
@@ -120,7 +124,7 @@ namespace CustomerApp.Views
             stackThongKe.IsVisible = false;
             stackThongTin.IsVisible = true;
             stackGiuCho.IsVisible = false;
-            stackPDF.IsVisible = false;
+            frAddFilePdf.IsVisible = stackPDF.IsVisible = false;
         }
 
         private async void GiuCho_Tapped(object sender, EventArgs e)
@@ -137,7 +141,7 @@ namespace CustomerApp.Views
             stackThongKe.IsVisible = false;
             stackThongTin.IsVisible = false;
             stackGiuCho.IsVisible = true;
-            stackPDF.IsVisible = false;
+            frAddFilePdf.IsVisible = stackPDF.IsVisible = false;
             if (viewModel.IsLoadedGiuCho == false)
             {
                 await viewModel.LoadGiuCho();
@@ -159,8 +163,8 @@ namespace CustomerApp.Views
             stackThongKe.IsVisible = false;
             stackThongTin.IsVisible = false;
             stackGiuCho.IsVisible = false;
-            stackPDF.IsVisible = true;
-            if (viewModel.ListPDF == null)
+            frAddFilePdf.IsVisible = stackPDF.IsVisible = true;
+            if (viewModel.ListPDF.Count == 0)
             {
                 await viewModel.LoadPDF();
             }
@@ -312,6 +316,60 @@ namespace CustomerApp.Views
                     ToastMessageHelper.ShortMessage(Language.noti_khong_tim_thay_thong_tin_vui_long_thu_lai);
                 }
             };
+        }
+
+
+
+        private async void File_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            string fileName = (string)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            string file = await storageHelper.GetFile(fileName);
+            await DependencyService.Get<IPdfService>().View(file, "File Pdf");
+
+            LoadingHelper.Hide();
+        }
+
+        private async void AddFilePdf_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var status = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+                if (status != PermissionStatus.Granted)
+                {
+                    status = await Permissions.RequestAsync<Permissions.StorageRead>();
+                }
+                if (status != PermissionStatus.Granted) return;
+
+                var pickerFile = await FilePicker.PickAsync(new PickOptions()
+                {
+                    FileTypes = FilePickerFileType.Pdf,
+                    PickerTitle = "Chọn File",
+                });
+                if (pickerFile != null)
+                {
+                    LoadingHelper.Show();
+                    viewModel.ListPDF.Add(new Models.PDFModel() { id = Guid.NewGuid(), name = pickerFile.FileName });
+                    viewModel.Stream = await pickerFile.OpenReadAsync();
+
+                    var isSuccess = await storageHelper.UploadFile(viewModel.Stream, pickerFile.FileName);
+                    if (!string.IsNullOrWhiteSpace(isSuccess))
+                    {
+                        UserLogged.ListPdf = JsonConvert.SerializeObject(viewModel.ListPDF);
+                        ToastMessageHelper.ShortMessage(Language.noti_thanh_cong);
+                    }
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
         }
     }
 }

@@ -51,7 +51,7 @@
                 </controls:ExtendedFrame>
                 <Label Grid.Column="1" Grid.Row="0" Text="{Binding ContactName}" TextColor="{StaticResource NavigationPrimary}" FontSize="18" FontAttributes="Bold" Margin="0,6,0,0"/>
                 <Label Grid.Column="1" Grid.Row="1" Text="{Binding UserName}" FontSize="16" TextColor="#555555" />
-                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Source={x:Static lang:Language.nhan_de_chinh_sua},StringFormat='{0} >>'}" FontSize="12" TextColor="#B3B3B3" />
+                <Label Grid.Column="1" Grid.Row="2" Text="Thông tin tài khoản >>" FontSize="12" TextColor="#B3B3B3" />
             </Grid>
 
             <BoxView HeightRequest="1" BackgroundColor="LightGray"/>
@@ -65,17 +65,17 @@
         </ShellContent>
         <ShellContent Title="{x:Static lang:Language.du_an}" ContentTemplate="{DataTemplate views:ProjectsPage}">
             <ShellContent.Icon>
-                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf015;" Size="18"/>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf64f;" Size="18"/>
             </ShellContent.Icon>
         </ShellContent>
         <ShellContent Title="{x:Static lang:Language.giao_dich_va_thanh_toan}" ContentTemplate="{DataTemplate views:TransactionPage}">
             <ShellContent.Icon>
-                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf015;" Size="18"/>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf788;" Size="18"/>
             </ShellContent.Icon>
         </ShellContent>
         <ShellContent Title="{x:Static lang:Language.phan_hoi}" ContentTemplate="{DataTemplate views:CasesPage}">
             <ShellContent.Icon>
-                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf015;" Size="18"/>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf086;" Size="18"/>
             </ShellContent.Icon>
         </ShellContent>
         <!--<ShellContent Title="{x:Static lang:Language.gio_hang}" ContentTemplate="{DataTemplate views:DirectSale}">
