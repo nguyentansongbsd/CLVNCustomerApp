@@ -162,7 +162,7 @@
                             <telerikPrimitives:RadBorder.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="GiuCho_Tapped"/>
                             </telerikPrimitives:RadBorder.GestureRecognizers>
-                            <Label x:Name="lblGiuCho" Text="{x:Static lang:Language.title_giu_cho}"  Style="{StaticResource labelTap}"/>
+                            <Label x:Name="lblGiuCho" Text="Tiến độ dự án"  Style="{StaticResource labelTap}" MaxLines="1" LineBreakMode="TailTruncation"/>
                         </telerikPrimitives:RadBorder>
                         <telerikPrimitives:RadBorder x:Name="radborderPDF" Grid.Column="3" Style="{StaticResource radBorderTap}">
                             <telerikPrimitives:RadBorder.GestureRecognizers>
@@ -258,7 +258,7 @@
                                     </StackLayout>
                                 </Grid>
 
-                                <controls:TitleSection Text="{x:Static lang:Language.danh_sach_dot_mo_ban}" IsExpanded="False" Margin="0,20">
+                                <!--<controls:TitleSection Text="{x:Static lang:Language.danh_sach_dot_mo_ban}" IsExpanded="False" Margin="0,20">
                                     <controls:TitleSection.Content>
                                         <StackLayout BindableLayout.ItemsSource="{Binding ListPhasesLanch}" BackgroundColor="#eeeeee" Spacing="1">
                                             <BindableLayout.EmptyViewTemplate>
@@ -288,7 +288,7 @@
                                             </BindableLayout.ItemTemplate>
                                         </StackLayout>
                                     </controls:TitleSection.Content>
-                                </controls:TitleSection>
+                                </controls:TitleSection>-->
                             </StackLayout>
                         </StackLayout>
 
@@ -373,7 +373,7 @@
                             </StackLayout>
                         </StackLayout>
 
-                        <StackLayout x:Name="stackCollection">
+                        <StackLayout x:Name="stackCollection" IsVisible="false">
                             <CollectionView ItemsSource="{Binding ListCollection}" SelectionMode="None">
                                 <CollectionView.ItemsLayout>
                                     <GridItemsLayout Orientation="Vertical"

@@ -51,17 +51,17 @@ namespace CustomerApp.Views
                 checkboxRememberAcc.IsChecked = false;
             }
 
-            if (UserLogged.Language == "vi")
-            {
-                flagVN.BorderColor = Color.FromHex("#2196F3");
-                flagEN.BorderColor = Color.FromHex("#eeeeee");
-            }
+            //if (UserLogged.Language == "vi")
+            //{
+            //    flagVN.BorderColor = Color.FromHex("#2196F3");
+            //    flagEN.BorderColor = Color.FromHex("#eeeeee");
+            //}
 
-            else if (UserLogged.Language == "en")
-            {
-                flagVN.BorderColor = Color.FromHex("#eeeeee");
-                flagEN.BorderColor = Color.FromHex("#2196F3");
-            }
+            //else if (UserLogged.Language == "en")
+            //{
+            //    flagVN.BorderColor = Color.FromHex("#eeeeee");
+            //    flagEN.BorderColor = Color.FromHex("#2196F3");
+            //}
         }
 
         protected override bool OnBackButtonPressed()
@@ -158,28 +158,28 @@ namespace CustomerApp.Views
 
         private void Flag_Tapped(object sender, EventArgs e)
         {
-            string code = (string)((sender as RadBorder).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            if (code == UserLogged.Language) return;
-            LoadingHelper.Show();
-            UserLogged.Language = code;
-            CultureInfo cultureInfo = new CultureInfo(UserLogged.Language);
-            Language.Culture = cultureInfo;
-            if (code == "vi")
-            {
-                flagVN.BorderColor = Color.FromHex("#2196F3");
-                flagEN.BorderColor = Color.FromHex("#eeeeee");
-                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("vi-VN");
-            }
+            //string code = (string)((sender as RadBorder).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            //if (code == UserLogged.Language) return;
+            //LoadingHelper.Show();
+            //UserLogged.Language = code;
+            //CultureInfo cultureInfo = new CultureInfo(UserLogged.Language);
+            //Language.Culture = cultureInfo;
+            //if (code == "vi")
+            //{
+            //    flagVN.BorderColor = Color.FromHex("#2196F3");
+            //    flagEN.BorderColor = Color.FromHex("#eeeeee");
+            //    CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("vi-VN");
+            //}
 
-            else if (code == "en")
-            {
-                flagVN.BorderColor = Color.FromHex("#eeeeee");
-                flagEN.BorderColor = Color.FromHex("#2196F3");
-                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
-            }
-            Application.Current.MainPage = new AppShell();
-            Shell.Current.Navigation.PushAsync(new LoginPage(), false);
-            LoadingHelper.Hide();
+            //else if (code == "en")
+            //{
+            //    flagVN.BorderColor = Color.FromHex("#eeeeee");
+            //    flagEN.BorderColor = Color.FromHex("#2196F3");
+            //    CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+            //}
+            //Application.Current.MainPage = new AppShell();
+            //Shell.Current.Navigation.PushAsync(new LoginPage(), false);
+            //LoadingHelper.Hide();
         }
 
         private async void Button_Clicked(object sender, EventArgs e)

@@ -47,6 +47,8 @@ namespace CustomerApp.Views
             VisualStateManager.GoToState(lblThongKe, "Active");
             VisualStateManager.GoToState(lblThongTin, "InActive");
             VisualStateManager.GoToState(lblGiuCho, "InActive");
+            VisualStateManager.GoToState(radborderPDF, "InActive");
+            VisualStateManager.GoToState(lblPDF, "InActive");
 
             await Task.WhenAll(
                 viewModel.LoadData(),
@@ -56,7 +58,8 @@ namespace CustomerApp.Views
                 viewModel.LoadThongKeGiuCho(),
                 viewModel.LoadThongKeHopDong(),
                 viewModel.LoadThongKeBangTinhGia(),
-                viewModel.LoadPhasesLanch()
+                viewModel.LoadPhasesLanch(),
+                viewModel.LoadCollection()
             );
 
             if (viewModel.Project != null)
@@ -287,14 +290,14 @@ namespace CustomerApp.Views
 
         private void ScollTo_Video_Tapped(object sender, EventArgs e)
         {
-            //var index = viewModel.Collections.IndexOf(viewModel.Collections.FirstOrDefault(x => x.SharePointType == SharePointType.Video));
-            //carouseView.ScrollTo(index, position: ScrollToPosition.End);
+            var index = viewModel.ListCollection.IndexOf(viewModel.ListCollection.FirstOrDefault(x => x.SharePointType == SharePointType.Video));
+            carouseView.ScrollTo(index, position: ScrollToPosition.End);
         }
 
         private void ScollTo_Image_Tapped(object sender, EventArgs e)
         {
-            //var index = viewModel.Collections.IndexOf(viewModel.Collections.FirstOrDefault(x => x.SharePointType == SharePointType.Image));
-            //carouseView.ScrollTo(index, position: ScrollToPosition.End);
+            var index = viewModel.ListCollection.IndexOf(viewModel.ListCollection.FirstOrDefault(x => x.SharePointType == SharePointType.Image));
+            carouseView.ScrollTo(index, position: ScrollToPosition.End);
         }
 
         private async void OpenEvent_Tapped(object sender, EventArgs e)
