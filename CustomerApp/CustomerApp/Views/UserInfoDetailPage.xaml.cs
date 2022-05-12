@@ -63,42 +63,42 @@ namespace CustomerApp.Views
         }
         private void Tab_Tapped(int tab)
         {
-            if (tab == 1)
-            {
-                VisualStateManager.GoToState(radBorderThongTin, "Selected");
-                VisualStateManager.GoToState(lbThongTin, "Selected");
-                TabThongTin.IsVisible = true;
-            }
-            else
-            {
-                VisualStateManager.GoToState(radBorderThongTin, "Normal");
-                VisualStateManager.GoToState(lbThongTin, "Normal");
-                TabThongTin.IsVisible = false;
-            }
-            if (tab == 2)
-            {
-                VisualStateManager.GoToState(radBorderLoyalty, "Selected");
-                VisualStateManager.GoToState(lbLoyalty, "Selected");
-                TabLoyalty.IsVisible = true;
-            }
-            else
-            {
-                VisualStateManager.GoToState(radBorderLoyalty, "Normal");
-                VisualStateManager.GoToState(lbLoyalty, "Normal");
-                TabLoyalty.IsVisible = false;
-            }
-            if (tab == 3)
-            {
-                VisualStateManager.GoToState(radBorderPhongThuy, "Selected");
-                VisualStateManager.GoToState(lbPhongThuy, "Selected");
-                TabPhongThuy.IsVisible = true;
-            }
-            else
-            {
-                VisualStateManager.GoToState(radBorderPhongThuy, "Normal");
-                VisualStateManager.GoToState(lbPhongThuy, "Normal");
-                TabPhongThuy.IsVisible = false;
-            }
+            //if (tab == 1)
+            //{
+            //    VisualStateManager.GoToState(radBorderThongTin, "Selected");
+            //    VisualStateManager.GoToState(lbThongTin, "Selected");
+            //    TabThongTin.IsVisible = true;
+            //}
+            //else
+            //{
+            //    VisualStateManager.GoToState(radBorderThongTin, "Normal");
+            //    VisualStateManager.GoToState(lbThongTin, "Normal");
+            //    TabThongTin.IsVisible = false;
+            //}
+            //if (tab == 2)
+            //{
+            //    VisualStateManager.GoToState(radBorderLoyalty, "Selected");
+            //    VisualStateManager.GoToState(lbLoyalty, "Selected");
+            //    TabLoyalty.IsVisible = true;
+            //}
+            //else
+            //{
+            //    VisualStateManager.GoToState(radBorderLoyalty, "Normal");
+            //    VisualStateManager.GoToState(lbLoyalty, "Normal");
+            //    TabLoyalty.IsVisible = false;
+            //}
+            //if (tab == 3)
+            //{
+            //    VisualStateManager.GoToState(radBorderPhongThuy, "Selected");
+            //    VisualStateManager.GoToState(lbPhongThuy, "Selected");
+            //    TabPhongThuy.IsVisible = true;
+            //}
+            //else
+            //{
+            //    VisualStateManager.GoToState(radBorderPhongThuy, "Normal");
+            //    VisualStateManager.GoToState(lbPhongThuy, "Normal");
+            //    TabPhongThuy.IsVisible = false;
+            //}
         }
     }
 }

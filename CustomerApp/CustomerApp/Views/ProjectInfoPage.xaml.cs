@@ -96,12 +96,15 @@ namespace CustomerApp.Views
             VisualStateManager.GoToState(radborderThongKe, "Active");
             VisualStateManager.GoToState(radborderThongTin, "InActive");
             VisualStateManager.GoToState(radborderGiuCho, "InActive");
+            VisualStateManager.GoToState(radborderPDF, "InActive");
             VisualStateManager.GoToState(lblThongKe, "Active");
             VisualStateManager.GoToState(lblThongTin, "InActive");
             VisualStateManager.GoToState(lblGiuCho, "InActive");
+            VisualStateManager.GoToState(lblPDF, "InActive");
             stackThongKe.IsVisible = true;
             stackThongTin.IsVisible = false;
             stackGiuCho.IsVisible = false;
+            stackPDF.IsVisible = false;
         }
 
         private async void ThongTin_Tapped(object sender, EventArgs e)
@@ -109,12 +112,15 @@ namespace CustomerApp.Views
             VisualStateManager.GoToState(radborderThongKe, "InActive");
             VisualStateManager.GoToState(radborderThongTin, "Active");
             VisualStateManager.GoToState(radborderGiuCho, "InActive");
+            VisualStateManager.GoToState(radborderPDF, "InActive");
             VisualStateManager.GoToState(lblThongKe, "InActive");
             VisualStateManager.GoToState(lblThongTin, "Active");
             VisualStateManager.GoToState(lblGiuCho, "InActive");
+            VisualStateManager.GoToState(lblPDF, "InActive");
             stackThongKe.IsVisible = false;
             stackThongTin.IsVisible = true;
             stackGiuCho.IsVisible = false;
+            stackPDF.IsVisible = false;
         }
 
         private async void GiuCho_Tapped(object sender, EventArgs e)
@@ -122,16 +128,41 @@ namespace CustomerApp.Views
             LoadingHelper.Show();
             VisualStateManager.GoToState(radborderThongKe, "InActive");
             VisualStateManager.GoToState(radborderThongTin, "InActive");
+            VisualStateManager.GoToState(radborderPDF, "InActive");
             VisualStateManager.GoToState(radborderGiuCho, "Active");
             VisualStateManager.GoToState(lblThongKe, "InActive");
             VisualStateManager.GoToState(lblThongTin, "InActive");
             VisualStateManager.GoToState(lblGiuCho, "Active");
+            VisualStateManager.GoToState(lblPDF, "InActive");
             stackThongKe.IsVisible = false;
             stackThongTin.IsVisible = false;
             stackGiuCho.IsVisible = true;
+            stackPDF.IsVisible = false;
             if (viewModel.IsLoadedGiuCho == false)
             {
                 await viewModel.LoadGiuCho();
+            }
+            LoadingHelper.Hide();
+        }
+
+        private async void PDF_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            VisualStateManager.GoToState(radborderThongKe, "InActive");
+            VisualStateManager.GoToState(radborderThongTin, "InActive");
+            VisualStateManager.GoToState(radborderGiuCho, "InActive");
+            VisualStateManager.GoToState(radborderPDF, "Active");
+            VisualStateManager.GoToState(lblThongKe, "InActive");
+            VisualStateManager.GoToState(lblThongTin, "InActive");
+            VisualStateManager.GoToState(lblGiuCho, "InActive");
+            VisualStateManager.GoToState(lblPDF, "Active");
+            stackThongKe.IsVisible = false;
+            stackThongTin.IsVisible = false;
+            stackGiuCho.IsVisible = false;
+            stackPDF.IsVisible = true;
+            if (viewModel.ListPDF == null)
+            {
+                await viewModel.LoadPDF();
             }
             LoadingHelper.Hide();
         }
