@@ -18,7 +18,9 @@ namespace CustomerApp.ViewModels
                                     <attribute name='bsd_projectcode'/>
                                     <attribute name='bsd_name'/>
                                     <attribute name='createdon' />
-                                    <attribute name = 'statuscode' />
+                                    <attribute name ='statuscode' />
+                                    <attribute name ='bsd_address' />
+                                    <attribute name ='bsd_projecttype' />
                                     <order attribute='bsd_name' descending='false' />
                                     <filter type='or'>
                                       <condition attribute='bsd_projectcode' operator='like' value='%25{Keyword}%25' />
