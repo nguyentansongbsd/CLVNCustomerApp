@@ -1,15 +1,18 @@
 ﻿using CustomerApp.Datas;
 using CustomerApp.Helper;
+using CustomerApp.Models;
 using CustomerApp.IServices;
 using CustomerApp.Resources;
 using CustomerApp.Settings;
 using CustomerApp.ViewModels;
+using Stormlion.PhotoBrowser;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,8 +26,8 @@ namespace CustomerApp.Views
         public static bool? NeedToRefreshQueue = null;
         public static bool? NeedToRefreshNumQueue = null;
         public ProjectInfoPageViewModel viewModel;
+        private ShowMedia showMedia;
         FirebaseStorageHelper storageHelper = new FirebaseStorageHelper();
-
         public ProjectInfoPage(Guid projectId, string projectName = null)
         {
             InitializeComponent();
@@ -93,6 +96,8 @@ namespace CustomerApp.Views
                 NeedToRefreshNumQueue = false;
                 LoadingHelper.Hide();
             }
+            if (showMedia != null)
+                showMedia.StopMedia();
         }
 
         private async void ThongKe_Tapped(object sender, EventArgs e)
@@ -108,6 +113,7 @@ namespace CustomerApp.Views
             stackThongKe.IsVisible = true;
             stackThongTin.IsVisible = false;
             stackGiuCho.IsVisible = false;
+            stackCollection.IsVisible = false;
             frAddFilePdf.IsVisible = stackPDF.IsVisible = false;
         }
 
@@ -125,6 +131,7 @@ namespace CustomerApp.Views
             stackThongTin.IsVisible = true;
             stackGiuCho.IsVisible = false;
             frAddFilePdf.IsVisible = stackPDF.IsVisible = false;
+            stackCollection.IsVisible = false;
         }
 
         private async void GiuCho_Tapped(object sender, EventArgs e)
@@ -140,11 +147,16 @@ namespace CustomerApp.Views
             VisualStateManager.GoToState(lblPDF, "InActive");
             stackThongKe.IsVisible = false;
             stackThongTin.IsVisible = false;
-            stackGiuCho.IsVisible = true;
+           // stackGiuCho.IsVisible = true;
             frAddFilePdf.IsVisible = stackPDF.IsVisible = false;
-            if (viewModel.IsLoadedGiuCho == false)
+            stackCollection.IsVisible = true;
+            //if (viewModel.IsLoadedGiuCho == false)
+            //{
+            //    await viewModel.LoadGiuCho();
+            //}
+            if (viewModel.ListCollection == null)
             {
-                await viewModel.LoadGiuCho();
+                await viewModel.LoadCollection();
             }
             LoadingHelper.Hide();
         }
@@ -162,7 +174,8 @@ namespace CustomerApp.Views
             VisualStateManager.GoToState(lblPDF, "Active");
             stackThongKe.IsVisible = false;
             stackThongTin.IsVisible = false;
-            stackGiuCho.IsVisible = false;
+//             stackGiuCho.IsVisible = false;
+            stackCollection.IsVisible = false;
             frAddFilePdf.IsVisible = stackPDF.IsVisible = true;
             if (viewModel.ListPDF.Count == 0)
             {
@@ -318,7 +331,41 @@ namespace CustomerApp.Views
             };
         }
 
+        private void ListCollection_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            var item = (CollectionData)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            if (item.SharePointType == SharePointType.Image)
+            {
+                var img = viewModel.Photos.SingleOrDefault(x => x.URL == item.ImageSource);
+                var index = viewModel.Photos.IndexOf(img);
 
+                new PhotoBrowser()
+                {
+                    Photos = viewModel.Photos,
+                    StartIndex = index,
+                    EnableGrid = true
+                }.Show();
+            }
+            else if (item.SharePointType == SharePointType.Video)
+            {
+                showMedia = new ShowMedia(item.MediaSourceId, item.MediaSourceId);
+                showMedia.OnCompleted = async (isSuccess) =>
+                {
+                    if (isSuccess)
+                    {
+                        await Navigation.PushAsync(showMedia);
+                        LoadingHelper.Hide();
+                    }
+                    else
+                    {
+                        LoadingHelper.Hide();
+                        ToastMessageHelper.ShortMessage("Không lấy được video");
+                    }
+                };
+            }
+            LoadingHelper.Hide();
+        }
 
         private async void File_Tapped(object sender, EventArgs e)
         {
@@ -326,7 +373,6 @@ namespace CustomerApp.Views
             string fileName = (string)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
             string file = await storageHelper.GetFile(fileName);
             await DependencyService.Get<IPdfService>().View(file, "File Pdf");
-
             LoadingHelper.Hide();
         }
 
@@ -369,7 +415,6 @@ namespace CustomerApp.Views
             {
 
             }
-            
         }
     }
 }
