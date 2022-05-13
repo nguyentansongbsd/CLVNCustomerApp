@@ -5,7 +5,7 @@
   </item>
   <item>
     <bitmap
-        android:src="@drawable/CapitaLand_SplashScreen"
+        android:src="@drawable/Logo"
         android:tileMode="disabled"
         android:gravity="center"/>
   </item>

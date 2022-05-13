@@ -61,12 +61,15 @@ namespace CustomerApp.ViewModels
         public ObservableCollection<ContractModel> Contracts { get; set; } = new ObservableCollection<ContractModel>();
         public ObservableCollection<ProjectList> Projects { get; set; } = new ObservableCollection<ProjectList>();
 
+        private int _numNoti = 0;
+        public int NumNoti { get => _numNoti; set { _numNoti = value;OnPropertyChanged(nameof(NumNoti)); } }
+
 
         public DashboardPageViewModel()
         {
             TopBanners = new List<string>() { "image1.jpeg", "iamge2.jpeg", "image3.jpeg", "image4.webp" };
 
-
+            
 
 
             //dateBefor = DateTime.Now;
@@ -77,6 +80,8 @@ namespace CustomerApp.ViewModels
             //third_Month = second_Month.AddMonths(1);
             //fourth_Month = dateBefor;
         }
+
+
 
         public async Task LoadContracts()
         {
@@ -90,6 +95,7 @@ namespace CustomerApp.ViewModels
                                     <attribute name='bsd_project' alias='project_id'/>
                                     <attribute name='salesorderid' />
                                     <attribute name='ordernumber' />
+                                    <attribute name='bsd_optionno' />
                                     <order attribute='bsd_project' descending='true' />
                                     <filter type='and'>
                                         <condition attribute = 'customerid' operator= 'eq' value = '{UserLogged.Id}' />        
@@ -124,6 +130,9 @@ namespace CustomerApp.ViewModels
                                     <attribute name ='bsd_projecttype' />
                                     <attribute name ='bsd_projectslogo' />
                                     <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                      <condition attribute='statuscode' operator='eq' value='861450002' />
+                                    </filter>
                                   </entity>
                             </fetch>";
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<ProjectList>>("bsd_projects", fetchXml);

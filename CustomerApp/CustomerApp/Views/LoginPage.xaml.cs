@@ -41,7 +41,7 @@ namespace CustomerApp.Views
             if (UserLogged.IsLogged && UserLogged.IsSaveInforUser)
             {
                 checkboxRememberAcc.IsChecked = true;
-                UserName = UserLogged.User;
+                UserName = UserLogged.Email;
                 Password = UserLogged.Password;
                 SetGridUserName();
                 SetGridPassword();
@@ -208,7 +208,7 @@ namespace CustomerApp.Views
                     UserModel user = await LoginUser();
                     if (user != null)
                     {
-                        if (user.fullname != UserName && user.emailaddress1 != UserName)
+                        if (user.mobilephone != UserName && user.emailaddress1 != UserName)
                         {
                             LoadingHelper.Hide();
                             ToastMessageHelper.ShortMessage(Language.ten_dang_nhap_khong_dung);
@@ -225,6 +225,7 @@ namespace CustomerApp.Views
                         UserLogged.Id = user.contactid;
                         UserLogged.User = user.fullname;
                         UserLogged.Email = user.emailaddress1;
+                        UserLogged.Phone = user.mobilephone;
                         UserLogged.Password = user.bsd_password;
                         UserLogged.ManagerId = user._ownerid_value;
                         UserLogged.IsSaveInforUser = checkboxRememberAcc.IsChecked;
@@ -238,7 +239,7 @@ namespace CustomerApp.Views
                     else
                     {
                         LoadingHelper.Hide();
-                        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_user);
+                        ToastMessageHelper.ShortMessage(Language.ten_dang_nhap_khong_dung);
                     }
                 }
             }
@@ -259,9 +260,10 @@ namespace CustomerApp.Views
                     <attribute name='ownerid'/>
                     <attribute name='bsd_password'/>
                     <attribute name='entityimage'/>
+                    <attribute name='mobilephone'/>
                     <order attribute='fullname' descending='false' />
                     <filter type='or'>
-                      <condition attribute='fullname' operator='eq' value='{UserName}' />
+                      <condition attribute='mobilephone' operator='eq' value='{UserName}' />
                       <condition attribute='emailaddress1' operator='eq' value='{UserName}' />
                     </filter>
                   </entity>

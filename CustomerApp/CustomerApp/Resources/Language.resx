@@ -142,7 +142,7 @@
     <value>Đăng xuất</value>
   </data>
 	<data name="ten_dang_nhap" xml:space="preserve">
-    <value>Tên đăng nhập/Email</value>
+    <value>Email/Số điện thoại</value>
   </data>
 	<data name="mat_khau" xml:space="preserve">
     <value>Mật khẩu</value>
@@ -163,7 +163,7 @@
     <value>Mật khẩu không được để trống.</value>
   </data>
 	<data name="ten_dang_nhap_khong_dung" xml:space="preserve">
-    <value>Tên đăng nhập không đúng.</value>
+    <value>Email/Số điện thoại không đúng.</value>
   </data>
 	<data name="khong_tim_thay_user" xml:space="preserve">
     <value>Không tìm thấy user.</value>
