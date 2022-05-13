@@ -2995,6 +2995,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nhập họ tên.
+        /// </summary>
+        internal static string nhap_ho_ten {
+            get {
+                return ResourceManager.GetString("nhap_ho_ten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nhập mã sản phẩm.
         /// </summary>
         internal static string nhap_ma_san_pham {
@@ -3063,6 +3072,15 @@ namespace CustomerApp.Resources {
         internal static string nhap_so_nha_duong_phuong {
             get {
                 return ResourceManager.GetString("nhap_so_nha_duong_phuong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nhập subject.
+        /// </summary>
+        internal static string nhap_subject {
+            get {
+                return ResourceManager.GetString("nhap_subject", resourceCulture);
             }
         }
         
@@ -4273,6 +4291,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subject.
+        /// </summary>
+        internal static string subject {
+            get {
+                return ResourceManager.GetString("subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tầng.
         /// </summary>
         internal static string tang {
@@ -4818,6 +4845,15 @@ namespace CustomerApp.Resources {
         internal static string title_la_ban_phong_thuy {
             get {
                 return ResourceManager.GetString("title_la_ban_phong_thuy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phản Hồi.
+        /// </summary>
+        internal static string title_phan_hoi {
+            get {
+                return ResourceManager.GetString("title_phan_hoi", resourceCulture);
             }
         }
         
