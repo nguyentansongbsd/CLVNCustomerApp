@@ -14,6 +14,19 @@
         <converters:CalendarStatusConverter x:Key="CalendarStatusConverter"/>
         <converters:Base64ToImageSourceConverter x:Key="Base64ToImagesource"/>
     </ContentPage.Resources>
+    <Shell.TitleView>
+        <StackLayout Margin="10">
+            <Grid HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Padding="2">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="GoToNotificationPage_Tapped"/>
+                </Grid.GestureRecognizers>
+                <Label Text="&#xf0f3;" FontFamily="FontAwesomeSolid" FontSize="32" HorizontalOptions="EndAndExpand" TextColor="White"/>
+                <controls:ExtendedFrame BackgroundColor="Red" CornerRadius="10" Padding="2" VerticalOptions="Start"  HorizontalOptions="Start">
+                    <Label Text="{Binding NumNoti}" TextColor="White" FontSize="10" Padding="4,0"/>
+                </controls:ExtendedFrame>
+            </Grid>
+        </StackLayout>
+    </Shell.TitleView>
     <ContentPage.Content>
         <AbsoluteLayout>
             <RefreshView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
@@ -29,6 +42,50 @@
                             </CarouselView>
                             <IndicatorView x:Name="indicatorView" IndicatorSize="10" Margin="0,0,0,14" VerticalOptions="EndAndExpand"  IndicatorColor="LightGray" SelectedIndicatorColor="DarkGray" HorizontalOptions="Center" />
                         </Grid>
+
+                        <StackLayout Orientation="Horizontal" Padding="14,14,14,8">
+                            <Label Text="{x:Static lang:Language.du_an}" FontSize="16" VerticalTextAlignment="Center" TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Source={x:Static lang:Language.xem_them},StringFormat='{0} >>>'}" FontSize="15" TextColor="{StaticResource NavigationPrimary}" VerticalTextAlignment="End"  HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ShowMoreDuAn_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                        <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="0,8,0,0">
+                            <StackLayout BindableLayout.ItemsSource="{Binding Projects}" Orientation="Horizontal" Padding="14,0" Spacing="10">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <telerikPrimitives:RadBorder BorderColor="LightGray" BorderThickness="1" CornerRadius="5" BackgroundColor="White" WidthRequest="360">
+                                            <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,*" RowSpacing="3" BackgroundColor ="White" Padding="10,8" >
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="ProjectDetail_Tapped" CommandParameter="{Binding bsd_projectid}" />
+                                                </Grid.GestureRecognizers>
+                                                <controls:ExtendedFrame Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Start" BorderColor="LightGray" Padding="3" CornerRadius="5">
+                                                    <ffimageloading:CachedImage  Source="{Binding logo, Converter={StaticResource Base64ToImagesource}}" LoadingPlaceholder="placeholder_image.png" />
+                                                </controls:ExtendedFrame>
+
+                                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding bsd_name}" MaxLines="1" LineBreakMode="TailTruncation" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+
+                                                <Grid ColumnDefinitions="Auto,*" Grid.Row="1" Grid.Column="1">
+                                                    <Label Grid.Column="0" Text="Loại: " FontSize="15" TextColor="#444444"/>
+                                                    <Label Grid.Column="1" Text="{Binding projectType}" TextColor="#444444" FontSize="15"/>
+                                                </Grid>
+
+                                                <Label Grid.Row="2" Grid.ColumnSpan="2" FontSize="15" TextColor="#444444" MaxLines="1" LineBreakMode="TailTruncation">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="&#xf3c5;" FontFamily="FontAwesomeSolid" FontSize="15" TextColor="#790311"/>
+                                                            <Span Text="  "/>
+                                                            <Span Text="{Binding bsd_address}"/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </Grid>
+                                        </telerikPrimitives:RadBorder>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </ScrollView>
 
                         <StackLayout Orientation="Horizontal" Padding="14,14,14,8">
                             <Label Text="{x:Static lang:Language.hop_dong}" FontSize="16" VerticalTextAlignment="Center" TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold"/>
@@ -51,15 +108,15 @@
                                                     <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statuscode_color}" VerticalOptions="StartAndExpand">
                                                         <Label Grid.Column="0" Text="{Binding statuscode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
                                                     </telerikPrimitives:RadBorder>
-                                                    <Label Grid.Column="1" Text="{Binding ordernumber}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" MaxLines="1" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                                                    <Label Grid.Column="1" Text="{Binding unit_name}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" MaxLines="1" VerticalOptions="Center" LineBreakMode="TailTruncation" />
                                                 </Grid>
                                                 <Grid ColumnDefinitions="Auto,*" Grid.Row="1">
                                                     <Label Text="{x:Binding Source={x:Static lang:Language.du_an},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
                                                     <Label Text="{Binding project_name}" TextColor="#444444" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" />
                                                 </Grid>
                                                 <Grid ColumnDefinitions="Auto,*" Grid.Row="2">
-                                                    <Label Text="{x:Binding Source={x:Static lang:Language.san_pham},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
-                                                    <Label Text="{Binding unit_name}" TextColor="#444444" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" />
+                                                    <Label Text="Mã hợp đồng: " TextColor="#444444" FontSize="15" Grid.Column="0"/>
+                                                    <Label Text="{Binding bsd_optionno}" TextColor="#444444" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" />
                                                 </Grid>
                                                 <Grid ColumnDefinitions="Auto,*" Grid.Row="3">
                                                     <Label Text="{x:Binding Source={x:Static lang:Language.tong_tien},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
@@ -72,59 +129,6 @@
                             </StackLayout>
                         </ScrollView>
 
-                        <StackLayout Orientation="Horizontal" Padding="14,14,14,8">
-                            <Label Text="{x:Static lang:Language.du_an}" FontSize="16" VerticalTextAlignment="Center" TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold"/>
-                            <Label Text="{Binding Source={x:Static lang:Language.xem_them},StringFormat='{0} >>>'}" FontSize="15" TextColor="{StaticResource NavigationPrimary}" VerticalTextAlignment="End"  HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ShowMoreDuAn_Tapped"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </StackLayout>
-                        <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="0,8,0,0">
-                            <StackLayout BindableLayout.ItemsSource="{Binding Projects}" Orientation="Horizontal" Padding="14,0" Spacing="10">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <telerikPrimitives:RadBorder BorderColor="LightGray" BorderThickness="1" CornerRadius="5" BackgroundColor="White" WidthRequest="360">
-                                            <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*" RowSpacing="3" BackgroundColor ="White" Padding="10,8" >
-                                                <Grid.GestureRecognizers>
-                                                    <TapGestureRecognizer Tapped="ProjectDetail_Tapped" CommandParameter="{Binding bsd_projectid}" />
-                                                </Grid.GestureRecognizers>
-                                                <controls:ExtendedFrame Grid.Column="0" Grid.RowSpan="3" VerticalOptions="Start" BorderColor="LightGray" Padding="3" CornerRadius="5">
-                                                    <ffimageloading:CachedImage  Source="{Binding logo, Converter={StaticResource Base64ToImagesource}}" LoadingPlaceholder="placeholder_image.png" />
-                                                </controls:ExtendedFrame>
-                                                
-                                                <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto" Grid.Row="0" Grid.Column="1">
-                                                    <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statusBackground}" VerticalOptions="Start">
-                                                        <Label Grid.Column="0" Text="{Binding statusName}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
-                                                    </telerikPrimitives:RadBorder>
-                                                    <Label Grid.Column="1" Text="{Binding bsd_name}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
-                                                </Grid>
-
-                                                <Grid ColumnDefinitions="Auto,*" Grid.Row="1" Grid.Column="1">
-                                                    <Label Grid.Column="0" Text="Mã dự án: " FontSize="15" TextColor="#444444"/>
-                                                    <Label Grid.Column="1" Text="{Binding bsd_projectcode}" TextColor="#444444" FontSize="15"/>
-                                                </Grid>
-
-                                                <Grid ColumnDefinitions="Auto,*" Grid.Row="2" Grid.Column="1">
-                                                    <Label Grid.Column="0" Text="Loại: " FontSize="15" TextColor="#444444"/>
-                                                    <Label Grid.Column="1" Text="{Binding projectType}" TextColor="#444444" FontSize="15"/>
-                                                </Grid>
-
-                                                <Label Grid.Row="3" Grid.ColumnSpan="2" FontSize="15" TextColor="#444444" MaxLines="1" LineBreakMode="TailTruncation">
-                                                    <Label.FormattedText>
-                                                        <FormattedString>
-                                                            <Span Text="&#xf3c5;" FontFamily="FontAwesomeSolid" FontSize="15" TextColor="#790311"/>
-                                                            <Span Text="  "/>
-                                                            <Span Text="{Binding bsd_address}"/>
-                                                        </FormattedString>
-                                                    </Label.FormattedText>
-                                                </Label>
-                                            </Grid>
-                                        </telerikPrimitives:RadBorder>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>
-                        </ScrollView>
                         <ffimageloading:CachedImage Source="bottom_banner1.jpeg" Margin="0,14,0,0" Aspect="AspectFill" LoadingPlaceholder="image_placeholder.jpg"/>
                     </StackLayout>
                 </ScrollView>
