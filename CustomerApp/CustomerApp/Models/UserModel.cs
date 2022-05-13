@@ -10,5 +10,6 @@ namespace CustomerApp.Models
         public string bsd_password { get; set; }
         //avata
         public string entityimage { get; set; }
+        public string mobilephone { get; set; }
     }
 }
