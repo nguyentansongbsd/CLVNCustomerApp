@@ -2003,15 +2003,6 @@ namespace CustomerApp.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Nhập họ tên.
-        /// </summary>
-        internal static string nhap_ho_ten {
-            get {
-                return ResourceManager.GetString("nhap_ho_ten", resourceCulture);
-            }
-        }
-        
         internal static string da_thanh_toan_phi_giu_cho {
             get {
                 return ResourceManager.GetString("da_thanh_toan_phi_giu_cho", resourceCulture);
@@ -2057,15 +2048,6 @@ namespace CustomerApp.Resources {
         internal static string khong_tim_thay_san_pham {
             get {
                 return ResourceManager.GetString("khong_tim_thay_san_pham", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nhập subject.
-        /// </summary>
-        internal static string nhap_subject {
-            get {
-                return ResourceManager.GetString("nhap_subject", resourceCulture);
             }
         }
         
@@ -2873,15 +2855,6 @@ namespace CustomerApp.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Subject.
-        /// </summary>
-        internal static string subject {
-            get {
-                return ResourceManager.GetString("subject", resourceCulture);
-            }
-        }
-        
         internal static string danh_sach_chiet_khau {
             get {
                 return ResourceManager.GetString("danh_sach_chiet_khau", resourceCulture);
@@ -3245,15 +3218,6 @@ namespace CustomerApp.Resources {
         internal static string nguoi_lien_quan {
             get {
                 return ResourceManager.GetString("nguoi_lien_quan", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Phản Hồi.
-        /// </summary>
-        internal static string title_phan_hoi {
-            get {
-                return ResourceManager.GetString("title_phan_hoi", resourceCulture);
             }
         }
         
@@ -3740,6 +3704,30 @@ namespace CustomerApp.Resources {
         internal static string mat_bang_tang {
             get {
                 return ResourceManager.GetString("mat_bang_tang", resourceCulture);
+            }
+        }
+        
+        internal static string title_phan_hoi {
+            get {
+                return ResourceManager.GetString("title_phan_hoi", resourceCulture);
+            }
+        }
+        
+        internal static string subject {
+            get {
+                return ResourceManager.GetString("subject", resourceCulture);
+            }
+        }
+        
+        internal static string nhap_ho_ten {
+            get {
+                return ResourceManager.GetString("nhap_ho_ten", resourceCulture);
+            }
+        }
+        
+        internal static string nhap_subject {
+            get {
+                return ResourceManager.GetString("nhap_subject", resourceCulture);
             }
         }
     }
