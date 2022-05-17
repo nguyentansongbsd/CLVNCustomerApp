@@ -7,7 +7,7 @@ using CustomerApp.IServices;
 [assembly: Xamarin.Forms.Dependency(typeof(PdfService))]
 namespace CustomerApp.Droid.Services
 {
-    public class PdfService :IPdfService
+    public class PdfService : IPdfService
     {
         public async Task View(string url, string name)
         {

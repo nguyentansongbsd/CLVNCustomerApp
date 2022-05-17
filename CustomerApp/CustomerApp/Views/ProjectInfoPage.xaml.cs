@@ -28,7 +28,9 @@ namespace CustomerApp.Views
         public ProjectInfoPageViewModel viewModel;
         private ShowMedia showMedia;
         FirebaseStorageHelper storageHelper = new FirebaseStorageHelper();
-        public ProjectInfoPage(Guid projectId, string projectName = null)
+        private bool IsFromNotificationImg { get; set; }
+
+        public ProjectInfoPage(Guid projectId, string projectName = null,bool isFromNotificationImg = false)
         {
             InitializeComponent();
             this.BindingContext = viewModel = new ProjectInfoPageViewModel();
@@ -36,20 +38,43 @@ namespace CustomerApp.Views
             NeedToRefreshNumQueue = false;
             viewModel.ProjectId = projectId;
             viewModel.ProjectName = projectName;
+            IsFromNotificationImg = isFromNotificationImg;
             Init();
         }
 
         public async void Init()
         {
-            VisualStateManager.GoToState(radborderThongKe, "Active");
-            VisualStateManager.GoToState(radborderThongTin, "InActive");
-            VisualStateManager.GoToState(radborderGiuCho, "InActive");
-            VisualStateManager.GoToState(lblThongKe, "Active");
-            VisualStateManager.GoToState(lblThongTin, "InActive");
-            VisualStateManager.GoToState(lblGiuCho, "InActive");
-            VisualStateManager.GoToState(radborderPDF, "InActive");
-            VisualStateManager.GoToState(lblPDF, "InActive");
-
+            if (IsFromNotificationImg)
+            {
+                VisualStateManager.GoToState(radborderThongKe, "InActive");
+                VisualStateManager.GoToState(radborderThongTin, "InActive");
+                VisualStateManager.GoToState(radborderGiuCho, "Active");
+                VisualStateManager.GoToState(lblThongKe, "InActive");
+                VisualStateManager.GoToState(lblThongTin, "InActive");
+                VisualStateManager.GoToState(lblGiuCho, "Active");
+                VisualStateManager.GoToState(radborderPDF, "InActive");
+                VisualStateManager.GoToState(lblPDF, "InActive");
+                stackThongKe.IsVisible = false;
+                stackThongTin.IsVisible = false;
+                stackCollection.IsVisible = true;
+                frAddFilePdf.IsVisible = stackPDF.IsVisible = false;
+            }
+            else
+            {
+                VisualStateManager.GoToState(radborderThongKe, "Active");
+                VisualStateManager.GoToState(radborderThongTin, "InActive");
+                VisualStateManager.GoToState(radborderGiuCho, "InActive");
+                VisualStateManager.GoToState(lblThongKe, "Active");
+                VisualStateManager.GoToState(lblThongTin, "InActive");
+                VisualStateManager.GoToState(lblGiuCho, "InActive");
+                VisualStateManager.GoToState(radborderPDF, "InActive");
+                VisualStateManager.GoToState(lblPDF, "InActive");
+                stackThongKe.IsVisible = true;
+                stackThongTin.IsVisible = false;
+                stackCollection.IsVisible = false;
+                frAddFilePdf.IsVisible = stackPDF.IsVisible = false;
+            }
+            
             await Task.WhenAll(
                 viewModel.LoadData(),
                 viewModel.LoadAllCollection(),
@@ -375,7 +400,15 @@ namespace CustomerApp.Views
             LoadingHelper.Show();
             string fileName = (string)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
             string file = await storageHelper.GetFile(fileName);
-            await DependencyService.Get<IPdfService>().View(file, "File Pdf");
+            try
+            {
+                await DependencyService.Get<IPdfService>().View(file, "File Pdf");
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
             LoadingHelper.Hide();
         }
 
@@ -401,7 +434,7 @@ namespace CustomerApp.Views
                     viewModel.ListPDF.Add(new Models.PDFModel() { id = Guid.NewGuid(), name = pickerFile.FileName });
                     viewModel.Stream = await pickerFile.OpenReadAsync();
 
-                    var isSuccess = await storageHelper.UploadFile(viewModel.Stream, pickerFile.FileName);
+                    var isSuccess = await storageHelper.UploadFile(viewModel.Stream,viewModel.Project.bsd_projectcode,"pdf", pickerFile.FileName);
                     if (!string.IsNullOrWhiteSpace(isSuccess))
                     {
                         UserLogged.ListPdf = JsonConvert.SerializeObject(viewModel.ListPDF);

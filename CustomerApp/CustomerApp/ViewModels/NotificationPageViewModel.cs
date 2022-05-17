@@ -30,9 +30,10 @@ namespace CustomerApp.ViewModels
                                       Id = item.Object.Id,
                                       Title = item.Object.Title,
                                       Body = item.Object.Body,
+                                      ProjectId = item.Object.ProjectId,
                                       IsRead = item.Object.IsRead,
                                       CreatedDate = item.Object.CreatedDate,
-                                  });
+                                  }).OrderByDescending(x=>x.CreatedDate);
             foreach (var item in Items)
             {
                 if (item.IsRead)
@@ -49,7 +50,7 @@ namespace CustomerApp.ViewModels
 
         public async Task UpdateStatus(string key, NotificaModel data)
         {
-            await firebaseClient.Child("Notifications").Child(key).PutAsync(new NotificaModel() { Id = data.Id, Title = data.Title,Body = data.Body,IsRead= true,CreatedDate=data.CreatedDate });
+            await firebaseClient.Child("Notifications").Child(key).PutAsync(new NotificaModel() { Id = data.Id, Title = data.Title,Body = data.Body,ProjectId = data.ProjectId,IsRead= true,CreatedDate=data.CreatedDate });
         }
     }
 }

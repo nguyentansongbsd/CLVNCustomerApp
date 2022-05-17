@@ -24,7 +24,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout>
-            <ListView ItemsSource="{Binding Notifications}" ItemTapped="ListView_ItemTapped" HasUnevenRows="True" SelectionMode="None" SeparatorVisibility="None">
+            <ListView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" ItemsSource="{Binding Notifications}" ItemTapped="ListView_ItemTapped" HasUnevenRows="True" SelectionMode="None" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -38,6 +38,9 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout HeightRequest="20"/>
+                </ListView.Footer>
             </ListView>
         </AbsoluteLayout>
     </ContentPage.Content>

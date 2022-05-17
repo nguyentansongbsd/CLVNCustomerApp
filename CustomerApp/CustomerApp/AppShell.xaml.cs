@@ -67,7 +67,10 @@ namespace CustomerApp
 
         private async void Logout_Clicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//LoginPage");
+            Application.Current.MainPage = new AppShell();
+            await Shell.Current.Navigation.PushAsync(new LoginPage(), false);
+            UserLogged.IsLogged = false;
+            UserLogged.AccessToken = null;
         }
     }
 }

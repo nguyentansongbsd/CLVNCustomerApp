@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CustomerApp.Helper;
 using CustomerApp.Models;
+using CustomerApp.Resources;
 using CustomerApp.ViewModels;
 using Xamarin.Forms;
 
@@ -16,6 +17,11 @@ namespace CustomerApp.Views
             InitializeComponent();
             this.BindingContext = viewModel = new NotificationPageViewModel();
             Init();
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
         }
 
         private async void Init()
@@ -45,15 +51,29 @@ namespace CustomerApp.Views
 
         private async void ListView_ItemTapped(System.Object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
-            LoadingHelper.Show();
             var item = e.Item as NotificaModel;
-            if (item.IsRead == true) return;
-            item.IsRead = true;
-            await viewModel.UpdateStatus(item.Key, item);
-            if (DashboardPage.NeedToRefesh.HasValue) DashboardPage.NeedToRefesh = true;
-            viewModel.Notifications.Clear();
-            await viewModel.LoadData();
-            LoadingHelper.Hide();
+            if (item.ProjectId != null)
+            {
+                LoadingHelper.Show();
+                ProjectInfoPage project = new ProjectInfoPage(item.ProjectId, null, true);
+                project.OnCompleted = async (isSuccess) => {
+                    if (isSuccess)
+                    {
+                        await Navigation.PushAsync(project);
+                        LoadingHelper.Hide();
+                        if (item.IsRead == true) return;
+                        await viewModel.UpdateStatus(item.Key, item);
+                        if (DashboardPage.NeedToRefesh.HasValue) DashboardPage.NeedToRefesh = true;
+                        viewModel.Notifications.Clear();
+                        await viewModel.LoadData();
+                    }
+                    else
+                    {
+                        LoadingHelper.Hide();
+                        ToastMessageHelper.ShortMessage(Language.noti_khong_tim_thay_thong_tin_vui_long_thu_lai);
+                    }
+                };
+            }
         }
 
         
