@@ -106,5 +106,11 @@ namespace CustomerApp.Settings
             get => AppSettings.GetValueOrDefault(nameof(ListPdf), string.Empty);
             set => AppSettings.AddOrUpdateValue(nameof(ListPdf), value);
         }
+
+        public static string DeviceToken
+        {
+            get => AppSettings.GetValueOrDefault(nameof(DeviceToken), string.Empty); 
+            set => AppSettings.AddOrUpdateValue(nameof(DeviceToken), value);
+        }
     }
 }

@@ -12,11 +12,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Firebase.Database;
+using Firebase.Database.Query;
 
 namespace CustomerApp.ViewModels
 {
     public class ProjectInfoPageViewModel : BaseViewModel
     {
+        FirebaseClient firebaseClient = new FirebaseClient("https://smsappcrm-default-rtdb.asia-southeast1.firebasedatabase.app/",
+            new FirebaseOptions { AuthTokenAsyncFactory = () => Task.FromResult("kLHIPuBhEIrL6s3J6NuHpQI13H7M0kHjBRLmGEPF") });
+
         public ObservableCollection<CollectionData> Collections { get; set; } = new ObservableCollection<CollectionData>();
 
         public List<Photo> Photos { get; set; }
@@ -545,17 +550,38 @@ namespace CustomerApp.ViewModels
             ListCollection = new List<CollectionData>();
             Photos = new List<Photo>();
             List<CollectionData> list = new List<CollectionData>();
-            list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/an-binh-golden-town-2.jpg?alt=media&token=17e47607-c761-4d49-a628-6efbc23fe356", SharePointType = SharePointType.Image });
-            Photos.Add(new Photo { URL = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/an-binh-golden-town-2.jpg?alt=media&token=17e47607-c761-4d49-a628-6efbc23fe356" });
-            list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/du-an-cham-tien-do-1564765702.jpg?alt=media&token=7e8be40e-9756-4d0e-8a1b-bb81d99941ea", SharePointType = SharePointType.Image });
-            Photos.Add(new Photo { URL = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/du-an-cham-tien-do-1564765702.jpg?alt=media&token=7e8be40e-9756-4d0e-8a1b-bb81d99941ea" });
-            list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/mat-bang-an-binh-golden-town.jpg?alt=media&token=843e5477-0819-4726-9de2-60df1a7baa73", SharePointType = SharePointType.Image });
-            Photos.Add(new Photo { URL = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/mat-bang-an-binh-golden-town.jpg?alt=media&token=843e5477-0819-4726-9de2-60df1a7baa73" });
-            list.Add(new CollectionData { ImageSource= "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Screenshot%20(98).png?alt=media&token=b45c5601-fbe7-410a-ae1c-aa8592beb923", MediaSourceId = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Feliz%20en%20Vista%20-%20The%20Story%20Behind%20A%20Masterpiece.mp4?alt=media&token=01068c7e-bae9-40c8-b5f5-0ff34ee8e0fb", SharePointType = SharePointType.Video });
+
+            try
+            {
+                var Items = (await firebaseClient
+                                  .Child("FEV")
+                                  .OnceAsync<CollectionData>()).Select(item => new CollectionData
+                                  {
+                                      Id = item.Object.Id,
+                                      ImageSource = item.Object.ImageSource,
+                                      MediaSourceId = item.Object.MediaSourceId,
+                                      SharePointType = item.Object.SharePointType,
+                                      Index = item.Object.Index,
+                                  });
+                foreach (var item in Items)
+                {
+                    string file = item.ImageSource;
+                    string link = $"https://firebasestorage.googleapis.com/v0/b/smsappcrm.appspot.com/o/FEV%2Fimages%2F{file}?alt=media";
+                    Photos.Add(new Photo { URL = link });
+                    list.Add(new CollectionData { ImageSource = link, SharePointType = item.SharePointType });
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+            list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Screenshot%20(98).png?alt=media&token=b45c5601-fbe7-410a-ae1c-aa8592beb923", MediaSourceId = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Feliz%20en%20Vista%20-%20The%20Story%20Behind%20A%20Masterpiece.mp4?alt=media&token=01068c7e-bae9-40c8-b5f5-0ff34ee8e0fb", SharePointType = SharePointType.Video });
             list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Screenshot%20(100).png?alt=media&token=4c64dbdc-2b2e-4ba0-8f3c-baf541a40f68", MediaSourceId = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20d%E1%BB%B1%20%C3%A1n%20%C4%91%E1%BB%89nh%20cao%20Feliz%20en%20Vista%20c%E1%BB%A7a%20CapitaLand%20-%20Crafting%20Tomorrow%E2%80%99s%20Beauty.mp4?alt=media&token=d9a4d8c1-f454-4661-9806-ecce3d26810c", SharePointType = SharePointType.Video });
+
             ListCollection = list;
-            TotalMedia = 3;
-            TotalPhoto = 2;
+            TotalMedia = list.Where(x=>x.SharePointType == SharePointType.Video).Count();
+            TotalPhoto = list.Where(x => x.SharePointType == SharePointType.Image).Count();
         }
     }
 }

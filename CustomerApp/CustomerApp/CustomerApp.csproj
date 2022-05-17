@@ -46,6 +46,7 @@
     <None Remove="Behaviors\" />
     <None Remove="Datas\" />
     <None Remove="FirebaseStorage.net" />
+    <None Remove="Plugin.FirebasePushNotification" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -167,5 +168,10 @@
     <Compile Update="Views\LichLamViecTheoTuanPage.xaml.cs">
       <DependentUpon>LichLamViecTheoTuanPage.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Plugin.FirebasePushNotification">
+      <HintPath>..\..\..\..\Projects_trunglq\Libraries\FirebasePushNotificationPlugin-master\Plugin.FirebasePushNotification\bin\Release\netstandard2.0\Plugin.FirebasePushNotification.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

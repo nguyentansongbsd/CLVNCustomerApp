@@ -12,6 +12,7 @@ namespace CustomerApp.Models
         public string Body { get; set; }
         public bool IsRead { get; set; }
         public DateTime CreatedDate { get; set; }
+        public Guid ProjectId { get; set; }
 
         private string _backgroundColor;
         public string BackgroundColor { get => _backgroundColor; set { _backgroundColor = value; OnPropertyChanged(nameof(BackgroundColor)); } }

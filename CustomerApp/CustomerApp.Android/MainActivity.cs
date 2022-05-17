@@ -6,6 +6,10 @@ using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms;
 using CustomerApp.IServices;
+using Android.Gms.Common;
+using System.Threading.Tasks;
+using Android.Util;
+using Plugin.FirebasePushNotification;
 
 namespace CustomerApp.Droid
 {
@@ -21,8 +25,15 @@ namespace CustomerApp.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
-
+            
             DependencyService.Get<ILoadingService>().Initilize();
+
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
+            FirebasePushNotificationManager.DefaultNotificationChannelId = "CLVNNotification";
+            FirebasePushNotificationManager.DefaultNotificationChannelName = "CLVN";
+            FirebasePushNotificationManager.DefaultNotificationChannelImportance = NotificationImportance.Max;
+
+            FirebasePushNotificationManager.Initialize(this, true);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

@@ -15,7 +15,8 @@
         <converters:Base64ToImageSourceConverter x:Key="Base64ToImagesource"/>
     </ContentPage.Resources>
     <Shell.TitleView>
-        <StackLayout Margin="10">
+        <StackLayout Margin="10" Orientation="Horizontal">
+            <Label Text="{x:Static lang:Language.trang_chu}" FontAttributes="Bold" TextColor="White" FontSize="20" VerticalTextAlignment="Center"/>
             <Grid HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Padding="2">
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="GoToNotificationPage_Tapped"/>
@@ -61,7 +62,7 @@
                                                     <TapGestureRecognizer Tapped="ProjectDetail_Tapped" CommandParameter="{Binding bsd_projectid}" />
                                                 </Grid.GestureRecognizers>
                                                 <controls:ExtendedFrame Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Start" BorderColor="LightGray" Padding="3" CornerRadius="5">
-                                                    <ffimageloading:CachedImage  Source="{Binding logo, Converter={StaticResource Base64ToImagesource}}" LoadingPlaceholder="placeholder_image.png" />
+                                                    <ffimageloading:CachedImage  Source="{Binding logo, Converter={StaticResource Base64ToImagesource}}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40" LoadingPlaceholder="placeholder_image.png" />
                                                 </controls:ExtendedFrame>
 
                                                 <Label Grid.Row="0" Grid.Column="1" Text="{Binding bsd_name}" MaxLines="1" LineBreakMode="TailTruncation" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>

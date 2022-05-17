@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CustomerApp.Helper;
+using CustomerApp.IServices;
 using CustomerApp.Models;
 using CustomerApp.Resources;
 using CustomerApp.Settings;
 using CustomerApp.ViewModels;
+using Firebase.Database;
+using Firebase.Database.Query;
 using Newtonsoft.Json;
 using Telerik.XamarinForms.Primitives;
 using Xamarin.Forms;
@@ -19,6 +22,9 @@ namespace CustomerApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        FirebaseClient firebaseClient = new FirebaseClient("https://smsappcrm-default-rtdb.asia-southeast1.firebasedatabase.app/",
+            new FirebaseOptions { AuthTokenAsyncFactory = () => Task.FromResult("kLHIPuBhEIrL6s3J6NuHpQI13H7M0kHjBRLmGEPF") });
+
         private string _userName;
         public string UserName { get => _userName; set { _userName = value; OnPropertyChanged(nameof(UserName)); } }
         private string _password;
@@ -231,6 +237,7 @@ namespace CustomerApp.Views
                         UserLogged.IsSaveInforUser = checkboxRememberAcc.IsChecked;
                         UserLogged.IsLogged = true;
                         UserLogged.Avartar = user.entityimage;
+                        await SaveToken();
 
                         Application.Current.MainPage = new AppShell();
 
@@ -248,6 +255,15 @@ namespace CustomerApp.Views
                 LoadingHelper.Hide();
                 ToastMessageHelper.LongMessage(ex.Message);
             }
+        }
+
+        private async Task SaveToken()
+        {
+            string token = await DependencyService.Get<INotificationService>().SaveToken();
+            UserLogged.DeviceToken = token;
+            TokenModel data = new TokenModel();
+            data.Token = token;
+            var a = firebaseClient.Child("NotificationToken").PutAsync(data);
         }
 
         public async Task<UserModel> LoginUser()
