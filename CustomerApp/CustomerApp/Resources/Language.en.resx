@@ -2007,4 +2007,10 @@
 	<data name="nhap_subject" xml:space="preserve">
     <value>Enter subject</value>
   </data>
+<data name="title_thong_tin_phieu_dat_coc" xml:space="preserve">
+    <value>Thông Tin Phiếu Đặt Cọc</value>
+  </data>
+<data name="title_giao_dich_va_thanh_toan" xml:space="preserve">
+    <value>Transactions and Payment</value>
+  </data>
 </root>

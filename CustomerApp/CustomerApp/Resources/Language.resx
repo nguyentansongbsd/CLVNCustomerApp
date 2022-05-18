@@ -1597,28 +1597,28 @@
     <value>Hợp đồng</value>
   </data>
 	<data name="contract_1st_installment_sts" xml:space="preserve">
-    <value>1st Installment</value>
+    <value>TT Đủ Đợt 1</value>
   </data>
 	<data name="contract_acceptance_sts" xml:space="preserve">
     <value>Acceptance</value>
   </data>
 	<data name="contract_being_payment_sts" xml:space="preserve">
-    <value>Being payment</value>
+    <value>Đang thanh toán</value>
   </data>
 	<data name="contract_canceled_sts" xml:space="preserve">
-    <value>Canceled</value>
+    <value>Đã hủy</value>
   </data>
 	<data name="contract_complete_payment_sts" xml:space="preserve">
-    <value>Complete payment</value>
+    <value>TT Hoàn tất</value>
   </data>
 	<data name="contract_complete_sts" xml:space="preserve">
-    <value>Complete</value>
+    <value>Đã hoàn thành</value>
   </data>
 	<data name="contract_confirm_document_sts" xml:space="preserve">
     <value>Confirm document</value>
   </data>
 	<data name="contract_foreigner_SPA_type" xml:space="preserve">
-    <value>Foreigner SPA</value>
+    <value>HĐMB nước ngoài</value>
   </data>
 	<data name="contract_handover_sts" xml:space="preserve">
     <value>Quanlify - Units handover</value>
@@ -1627,19 +1627,19 @@
     <value>Invoiced</value>
   </data>
 	<data name="contract_in_progress_sts" xml:space="preserve">
-    <value>In progress</value>
+    <value>Đang xử lý</value>
   </data>
 	<data name="contract_local_SPA_type" xml:space="preserve">
-    <value>Local SPA</value>
+    <value>HĐMB trong nước</value>
   </data>
 	<data name="contract_long_term_lease_type" xml:space="preserve">
-    <value>Long term lease</value>
+    <value>Cho thuê dài hạn</value>
   </data>
 	<data name="contract_open_sts" xml:space="preserve">
     <value>Open</value>
   </data>
 	<data name="contract_option_sts" xml:space="preserve">
-    <value>Option</value>
+    <value>Hoàn tất đặt cọc</value>
   </data>
 	<data name="contract_partial_sts" xml:space="preserve">
     <value>Partial</value>
@@ -1654,13 +1654,13 @@
     <value>Qualify</value>
   </data>
 	<data name="contract_signed_contract_sts" xml:space="preserve">
-    <value>Signed contract</value>
+    <value>Đã ký HĐMB</value>
   </data>
 	<data name="contract_signed_da_sts" xml:space="preserve">
     <value>Signed D.A</value>
   </data>
 	<data name="contract_terminated_sts" xml:space="preserve">
-    <value>Terminated</value>
+    <value>Đã thanh lý</value>
   </data>
 	<data name="contract_units_handover_sts" xml:space="preserve">
     <value>Units handover</value>
@@ -2009,5 +2009,11 @@
   </data>
 	<data name="nhap_subject" xml:space="preserve">
     <value>Nhập subject</value>
+  </data>
+	<data name="title_thong_tin_phieu_dat_coc" xml:space="preserve">
+    <value>Thông Tin Phiếu Đặt Cọc</value>
+  </data>
+	<data name="title_giao_dich_va_thanh_toan" xml:space="preserve">
+    <value>Giao Dịch Và Thanh Toán</value>
   </data>
 </root>

@@ -210,7 +210,7 @@ namespace CustomerApp.Models
                 }
             }
         }
-
+        
         // thông tin đặt cọc
 
         public int bsd_reservationformstatus { get; set; } // trạng thái pđc

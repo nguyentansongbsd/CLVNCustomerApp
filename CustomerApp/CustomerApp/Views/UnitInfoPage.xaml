@@ -207,15 +207,11 @@
                                 </telerikPrimitives:RadExpander.Header>
                                 <telerikPrimitives:RadExpander.Content>
                                     <StackLayout BackgroundColor="#eeeeee" Spacing="1">
-                                        <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="17,15">
-                                            <Label Text="{x:Static lang:Language.so_can_ho}" FontSize="15" TextColor="#333333" />
-                                            <Label Text="{Binding UnitInfo.bsd_units}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="15" TextColor="#333333" />
-                                        </StackLayout>
-
-                                        <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="17,15">
+                                        <!--task 594 yeu cau xoa-->
+                                        <!--<StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="17,15">
                                             <Label Text="{x:Static lang:Language.ma_can_ho}" FontSize="15" TextColor="#333333" />
                                             <Label Text="{Binding UnitInfo.productnumber}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="15" TextColor="#333333" />
-                                        </StackLayout>
+                                        </StackLayout>-->
 
                                         <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="17,15">
                                             <Label Text="{x:Static lang:Language.toa_nha_khu}" FontSize="15" TextColor="#333333" />
@@ -225,6 +221,11 @@
                                         <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="17,15">
                                             <Label Text="{x:Static lang:Language.tang}" FontSize="15" TextColor="#333333" />
                                             <Label Text="{Binding UnitInfo.bsd_floor_name}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="15" TextColor="#333333" />
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="17,15">
+                                            <Label Text="{x:Static lang:Language.so_can_ho}" FontSize="15" TextColor="#333333" />
+                                            <Label Text="{Binding UnitInfo.bsd_units}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="15" TextColor="#333333" />
                                         </StackLayout>
 
                                         <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="17,15">
@@ -246,11 +247,16 @@
                                             <Label Text="{x:Static lang:Language.phi_dat_coc}" FontSize="15" TextColor="#333333" />
                                             <Label Text="{Binding UnitInfo.bsd_depositamount_format,StringFormat='{0} đ'}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="15" TextColor="#333333" />
                                         </StackLayout>
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="17,15">
+                                            <Label Text="{x:Static lang:Language.gia_tri_qsdd_m}" FontSize="15" TextColor="#333333" />
+                                            <Label Text="{Binding UnitInfo.bsd_landvalueofunit_format,StringFormat='{0} đ'}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="15" TextColor="#333333" />
+                                        </StackLayout>
                                     </StackLayout>
                                 </telerikPrimitives:RadExpander.Content>
                             </telerikPrimitives:RadExpander>
 
-                            <telerikPrimitives:RadExpander IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
+                            <!--task 599 yêu cầu xóa-->
+                            <!--<telerikPrimitives:RadExpander IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>
                                     <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
                                         <Label Text="{x:Static lang:Language.thong_tin_gia_ban}" TextColor="#333333" FontSize="15" FontAttributes="Bold" Padding="10"/>
@@ -262,6 +268,7 @@
                                             <Label Text="{x:Static lang:Language.gia_tri_qsdd_m}" FontSize="15" TextColor="#333333" />
                                             <Label Text="{Binding UnitInfo.bsd_landvalueofunit_format,StringFormat='{0} đ'}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="15" TextColor="#333333" />
                                         </StackLayout>
+                                        task 599 yêu cầu xóa
                                         <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="17,15">
                                             <Label Text="{x:Static lang:Language.tong_gia_tri_qsdd}" FontSize="15" TextColor="#333333" />
                                             <Label Text="{Binding UnitInfo.bsd_landvalue_format,StringFormat='{0} đ'}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="15" TextColor="#333333" />
@@ -276,7 +283,7 @@
                                         </StackLayout>
                                     </StackLayout>
                                 </telerikPrimitives:RadExpander.Content>
-                            </telerikPrimitives:RadExpander>
+                            </telerikPrimitives:RadExpander>-->
 
                             <telerikPrimitives:RadExpander IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>

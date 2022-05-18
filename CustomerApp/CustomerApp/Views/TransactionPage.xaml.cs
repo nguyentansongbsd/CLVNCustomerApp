@@ -27,20 +27,21 @@ namespace CustomerApp.Views
         }
         public async void Init()
         {
-            VisualStateManager.GoToState(radBorderDatCoc, "InActive");
-            VisualStateManager.GoToState(radBorderContract, "Active");
-            VisualStateManager.GoToState(lblDatCoc, "InActive");
-            VisualStateManager.GoToState(lblContract, "Active");
-            if (ContractContentview == null)
+            VisualStateManager.GoToState(radBorderDatCoc, "Active");
+            VisualStateManager.GoToState(radBorderContract, "InActive");
+            VisualStateManager.GoToState(lblDatCoc, "Active");
+            VisualStateManager.GoToState(lblContract, "InActive");
+            if (DatCocContentView == null)
             {
                 LoadingHelper.Show();
-                ContractContentview = new ContractContentview();
+                DatCocContentView = new DatCocContentView();
             }
-            ContractContentview.OnCompleted = (IsSuccess) =>
+            DatCocContentView.OnCompleted = (IsSuccess) =>
             {
-                TransactionContentView.Children.Add(ContractContentview);
+                TransactionContentView.Children.Add(DatCocContentView);
                 LoadingHelper.Hide();
             };
+            DatCocContentView.IsVisible = true;
         }
 
         protected override async void OnAppearing()

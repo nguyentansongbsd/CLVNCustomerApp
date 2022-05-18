@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CustomerApp.Views.TransactionPage"
-             Title="{Static lang:Language.giao_dich}"
+             Title="{Static lang:Language.title_giao_dich_va_thanh_toan}"
              xmlns:lang="clr-namespace:CustomerApp.Resources" 
              xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives">
     <ContentPage.Resources>
@@ -58,17 +58,17 @@
         <AbsoluteLayout>
             <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" RowDefinitions="Auto,*">
                 <Grid Grid.Row="0" ColumnDefinitions="*,*" ColumnSpacing="0" VerticalOptions="Center" >
-                    <telerikPrimitives:RadBorder x:Name="radBorderContract" Grid.Column="0" Style="{StaticResource radBorder}">
-                        <telerikPrimitives:RadBorder.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Contract_Tapped"/>
-                        </telerikPrimitives:RadBorder.GestureRecognizers>
-                        <Label x:Name="lblContract" Text="{x:Static lang:Language.hop_dong}" Style="{StaticResource labelTap}"/>
-                    </telerikPrimitives:RadBorder>
-                    <telerikPrimitives:RadBorder x:Name="radBorderDatCoc" Grid.Column="1" Style="{StaticResource radBorder}">
+                    <telerikPrimitives:RadBorder x:Name="radBorderDatCoc" Grid.Column="0" Style="{StaticResource radBorder}">
                         <telerikPrimitives:RadBorder.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="DatCoc_Tapped"/>
                         </telerikPrimitives:RadBorder.GestureRecognizers>
                         <Label x:Name="lblDatCoc" Text="{x:Static lang:Language.dat_coc}" Style="{StaticResource labelTap}"/>
+                    </telerikPrimitives:RadBorder>
+                    <telerikPrimitives:RadBorder x:Name="radBorderContract" Grid.Column="1" Style="{StaticResource radBorder}">
+                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Contract_Tapped"/>
+                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                        <Label x:Name="lblContract" Text="{x:Static lang:Language.hop_dong}" Style="{StaticResource labelTap}"/>
                     </telerikPrimitives:RadBorder>
                 </Grid>
 

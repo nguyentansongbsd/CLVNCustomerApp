@@ -32,9 +32,9 @@ namespace CustomerApp.Models
             get
             {
                 if (bsd_method == 100000001)
-                    return "Amount";
+                    return "Tổng tiền"; //Amount
                 else if (bsd_method == 100000000)
-                    return "Percent";
+                    return "Phần trăm"; //Percent
                 else
                     return null;
             }
@@ -44,7 +44,7 @@ namespace CustomerApp.Models
             get
             {
                 if (bsd_method == 100000001)
-                    return StringFormatHelper.FormatCurrency(bsd_amount) + " đ";
+                    return StringFormatHelper.FormatCurrency(bsd_amount);
                 else if (bsd_method == 100000000)
                     return StringFormatHelper.FormatPercent(bsd_percentage) + " %";
                 else

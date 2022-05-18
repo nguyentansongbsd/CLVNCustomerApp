@@ -29,14 +29,14 @@ namespace CustomerApp
             InitializeComponent();
             CultureInfo cultureInfo = new CultureInfo(UserLogged.Language);
             Language.Culture = cultureInfo;
-            MainPage = new AppShell();
-            if (test == false)
-            {
-                Shell.Current.Navigation.PushAsync(new LoginPage(), false);
-            }
+            MainPage = new LoginPage();
+            //if (test == false)
+            //{
+            //    Shell.Current.Navigation.PushAsync(new LoginPage(), false);
+            //}
 
 
-            MainPage = new BlankPage();
+            //MainPage = new BlankPage();
             DependencyService.Register<INotificationService, NotificationService>();
         }
 
