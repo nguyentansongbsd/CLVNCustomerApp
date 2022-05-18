@@ -23,7 +23,7 @@
                     <controls:EntryField Title="{x:Static lang:Language.mo_ta}" Text="{Binding Content}"/>-->
 
                     <controls:FormLabel Text="{x:Static lang:Language.ho_ten}" FontSize="15" Margin="0,10,0,0"/>
-                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_ho_ten}" Text="{Binding Contact.bsd_fullname}" FontSize="15" />
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_ho_ten}" Text="{Binding Contact.bsd_fullname}" FontSize="15" FontAttributes="Bold" />
 
                     <controls:FormLabel Text="{x:Static lang:Language.email}" FontSize="15" Margin="0,10,0,0"/>
                     <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_email}" Text="{Binding Contact.emailaddress1}" FontSize="15" />

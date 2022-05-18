@@ -60,11 +60,11 @@ namespace CustomerApp.Views
                 MailAddress from = new MailAddress("phupx@bsdinsight.com", "BSD");
                 MailAddress to = new MailAddress("hanph@bsdinsight.com", "CSKH Customer BSD"); //songnt@bsdinsight.com
                 string contentEmail = $"Phản hồi từ khách hàng {viewModel.Contact.bsd_fullname}" +
-                    $"\n-Email: {viewModel.Contact.emailaddress1}" +
-                    $"\n-Số điện thoại: {viewModel.Contact.mobilephone}" +
-                    $"\n-Tiêu đề phản hồi: {viewModel.Subject}" +
-                    $"\n-Nội dung:" +
-                    $"\n {viewModel.Content}";
+                    $"\n- Email: {viewModel.Contact.emailaddress1}" +
+                    $"\n- Số điện thoại: {viewModel.Contact.mobilephone}" +
+                    $"\n- Tiêu đề phản hồi: {viewModel.Subject}\n" +
+                    $"- Nội dung: " +
+                    $"\n{viewModel.Content}";
                 MailMessage mail = new MailMessage()
                 {
                     From = from,
