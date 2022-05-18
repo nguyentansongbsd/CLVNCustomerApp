@@ -130,7 +130,7 @@
                             </StackLayout>
                         </ScrollView>
 
-                        <ffimageloading:CachedImage Source="bottom_banner1.jpeg" Margin="0,14,0,0" Aspect="AspectFill" LoadingPlaceholder="image_placeholder.jpg"/>
+                        <ffimageloading:CachedImage Source="Banner5.jpeg" Margin="0,14,0,0" Aspect="AspectFill" LoadingPlaceholder="image_placeholder.jpg"/>
                     </StackLayout>
                 </ScrollView>
             </RefreshView>

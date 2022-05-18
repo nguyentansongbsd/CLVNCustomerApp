@@ -75,9 +75,12 @@ namespace CustomerApp
         {
             try
             {
-                var Token = (await firebaseClient
+                var Tokens = (await firebaseClient
                                   .Child("NotificationToken")
-                                  .OnceSingleAsync<TokenModel>()).Token;
+                                  .OnceAsync<TokenModel>()).Select(item => new TokenModel() {
+
+                                      Token = item.Object.Token
+                                  });
 
                 NotificaModel model = new NotificaModel()
                 {
@@ -93,89 +96,109 @@ namespace CustomerApp
 
                 await Task.WhenAll(
                     firebaseClient.Child("Notifications").PostAsync(model),
-                    DependencyService.Get<INotificationService>().SendNotification(model, Token)
+                    sendNoti(model,Tokens)
                     );
             }
             catch(Exception ex)
             {
 
             }
-            
+        }
+
+        private async Task sendNoti(NotificaModel model,IEnumerable<TokenModel> data)
+        {
+            foreach (var item in data)
+            {
+                await DependencyService.Get<INotificationService>().SendNotification(model, item.Token);
+            }
         }
 
         async void Button_Clicked_1(System.Object sender, System.EventArgs e)
         {
-            string[] options = new string[] { Language.thu_vien, Language.chup_hinh };
-            string asw = await DisplayActionSheet(Language.tuy_chon, Language.huy, null, options);
-            if (asw == Language.thu_vien)
+            var a = firebaseClient.Child("ATC").PostAsync(new CollectionData()
             {
-                LoadingHelper.Show();
-                await CrossMedia.Current.Initialize();
-                PermissionStatus photostatus = await PermissionHelper.RequestPhotosPermission();
-                if (photostatus == PermissionStatus.Granted)
-                {
-                    try
-                    {
-                        var pickerFile = await FilePicker.PickAsync(new PickOptions()
-                        {
-                            FileTypes = FilePickerFileType.Images,
-                            PickerTitle = "Chọn File",
-                        });
-                        if (pickerFile != null)
-                        {
-                            LoadingHelper.Show();
-                            FileName = pickerFile.FileName;
-                            this.Stream = await pickerFile.OpenReadAsync();
+                Id = Guid.NewGuid(),
+                ImageSource = "song.jng",
+                SharePointType = SharePointType.Image,
+                MediaSourceId = null,
+                Name = "song",
+                Index = 0,
+                Thumnail = "song"
+            });
+            //string[] options = new string[] { Language.thu_vien, Language.chup_hinh };
+            //string asw = await DisplayActionSheet(Language.tuy_chon, Language.huy, null, options);
+            //if (asw == Language.thu_vien)
+            //{
+            //    LoadingHelper.Show();
+            //    await CrossMedia.Current.Initialize();
+            //    PermissionStatus photostatus = await PermissionHelper.RequestPhotosPermission();
+            //    if (photostatus == PermissionStatus.Granted)
+            //    {
+            //        try
+            //        {
+            //            var pickerFile = await FilePicker.PickAsync(new PickOptions()
+            //            {
+            //                FileTypes = FilePickerFileType.Images,
+            //                PickerTitle = "Chọn File",
+            //            });
+            //            if (pickerFile != null)
+            //            {
+            //                LoadingHelper.Show();
+            //                FileName = pickerFile.FileName;
+            //                this.Stream = await pickerFile.OpenReadAsync();
 
-                            var isSuccess = await storageHelper.UploadFile(this.Stream,Project.bsd_projectcode,"images", pickerFile.FileName);
-                            if (!string.IsNullOrWhiteSpace(isSuccess))
-                            {
+            //                var isSuccess = await storageHelper.UploadFile(this.Stream,Project.bsd_projectcode,"images", pickerFile.FileName);
+            //                if (!string.IsNullOrWhiteSpace(isSuccess))
+            //                {
 
-                                var a = firebaseClient.Child(Project.bsd_projectcode).PostAsync(new CollectionData() {
-                                    Id = Guid.NewGuid(),
-                                    ImageSource = pickerFile.FileName,
-                                    SharePointType = SharePointType.Image,
-                                    MediaSourceId = null
-                                });
-                                ToastMessageHelper.ShortMessage(Language.noti_thanh_cong);
-                            }
-                            LoadingHelper.Hide();
-                        }
-                        else
-                        {
+            //                    var a = firebaseClient.Child("ATC").PostAsync(new CollectionData() {
+            //                        Id = Guid.NewGuid(),
+            //                        ImageSource = pickerFile.FileName,
+            //                        SharePointType = SharePointType.Image,
+            //                        MediaSourceId = null,
+            //                        Name ="song",
+            //                        Index=0,
+            //                        Thumnail="song"
+            //                    });
+            //                    ToastMessageHelper.ShortMessage(Language.noti_thanh_cong);
+            //                }
+            //                LoadingHelper.Hide();
+            //            }
+            //            else
+            //            {
 
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ToastMessageHelper.LongMessage(ex.Message);
-                        LoadingHelper.Hide();
-                    }
-                }
-                LoadingHelper.Hide();
-            }
-            else if (asw == Language.chup_hinh)
-            {
-                LoadingHelper.Show();
-                await CrossMedia.Current.Initialize();
-                PermissionStatus camerastatus = await PermissionHelper.RequestCameraPermission();
-                if (camerastatus == PermissionStatus.Granted)
-                {
-                    string fileName = $"{Guid.NewGuid()}.jpg";
-                    var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-                    {
-                        Name = fileName,
-                        SaveToAlbum = false,
-                        PhotoSize = PhotoSize.MaxWidthHeight,
-                        MaxWidthHeight = 600
-                    });
-                    if (file != null)
-                    {
-                        
-                    }
-                }
-                LoadingHelper.Hide();
-            }
+            //            }
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            ToastMessageHelper.LongMessage(ex.Message);
+            //            LoadingHelper.Hide();
+            //        }
+            //    }
+            //    LoadingHelper.Hide();
+            //}
+            //else if (asw == Language.chup_hinh)
+            //{
+            //    LoadingHelper.Show();
+            //    await CrossMedia.Current.Initialize();
+            //    PermissionStatus camerastatus = await PermissionHelper.RequestCameraPermission();
+            //    if (camerastatus == PermissionStatus.Granted)
+            //    {
+            //        string fileName = $"{Guid.NewGuid()}.jpg";
+            //        var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+            //        {
+            //            Name = fileName,
+            //            SaveToAlbum = false,
+            //            PhotoSize = PhotoSize.MaxWidthHeight,
+            //            MaxWidthHeight = 600
+            //        });
+            //        if (file != null)
+            //        {
+
+            //        }
+            //    }
+            //    LoadingHelper.Hide();
+            //}
         }
     }
 }

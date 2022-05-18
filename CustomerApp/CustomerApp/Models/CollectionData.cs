@@ -9,6 +9,8 @@ namespace CustomerApp.Models
         public Guid Id { get; set; }
         public string MediaSourceId { get; set; }
         public string ImageSource { get; set; }
+        public string Name { get; set; }
+        public string Thumnail { get; set; }
         public string ImageSourceBase64 { get; set; }
         public SharePointType SharePointType { get; set; }
         public int Index { get; set; }

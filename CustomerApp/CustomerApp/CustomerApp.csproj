@@ -20,6 +20,7 @@
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.0.7" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.10" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Telerik.UI.for.Xamarin" />
