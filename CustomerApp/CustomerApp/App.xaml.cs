@@ -36,7 +36,6 @@ namespace CustomerApp
                 Shell.Current.Navigation.PushAsync(new LoginPage(), false);
             }
 
-
             //MainPage = new BlankPage();
             DependencyService.Register<INotificationService, NotificationService>();
         }

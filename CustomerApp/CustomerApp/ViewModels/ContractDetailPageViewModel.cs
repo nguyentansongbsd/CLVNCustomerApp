@@ -169,6 +169,7 @@ namespace CustomerApp.ViewModels
               <entity name='bsd_coowner'>
                 <attribute name='bsd_coownerid' />
                 <attribute name='bsd_name' />
+                <attribute name='bsd_relationship' />
                 <order attribute='bsd_name' descending='true' />
                 <link-entity name='account' from='accountid' to='bsd_customer' visible='false' link-type='outer' alias='a_1324f6d5b214e911a97f000d3aa04914'>
                   <attribute name='bsd_name' alias='account_name' />
@@ -177,7 +178,7 @@ namespace CustomerApp.ViewModels
                   <attribute name='bsd_fullname' alias='contact_name' />
                 </link-entity>
                  <filter type='and'>
-                      <condition attribute='bsd_optionentry' operator='eq' uitype='quote' value='{ContractId}' />
+                      <condition attribute='bsd_optionentry' operator='eq' value='{ContractId}' />
                   </filter>
               </entity>
             </fetch>";
@@ -319,6 +320,10 @@ namespace CustomerApp.ViewModels
                 <attribute name='bsd_amountofthisphase' />
                 <attribute name='bsd_amountwaspaid' />
                 <attribute name='bsd_depositamount' />
+                <attribute name='bsd_ordernumber' />
+                <attribute name='bsd_amountpercent' />
+                <attribute name='bsd_managementamount' />
+                <attribute name='bsd_maintenanceamount' />
                 <order attribute='bsd_ordernumber' descending='false' />
                 <filter type='and'>
                     <condition attribute='statecode' operator='eq' value='0' />

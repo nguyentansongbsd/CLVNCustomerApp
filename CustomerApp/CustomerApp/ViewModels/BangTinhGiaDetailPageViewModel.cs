@@ -459,7 +459,7 @@ namespace CustomerApp.ViewModels
                   <attribute name='bsd_fullname' alias='contact_name' />
                 </link-entity>
                  <filter type='and'>
-                      <condition attribute='bsd_reservation' operator='eq' uitype='quote' value='{ReservationId}' />
+                      <condition attribute='bsd_reservation' operator='eq' value='{ReservationId}' />
                   </filter>
               </entity>
             </fetch>";

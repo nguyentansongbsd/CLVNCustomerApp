@@ -193,9 +193,9 @@ namespace CustomerApp.Models
             get
             {
                 if (bsd_contracttype == 100000000)
-                    return "Long Term Lease";
+                    return "Cho thuê dài hạn"; // Long Term Lease
                 else if (bsd_contracttype == 100000001)
-                    return "Purchase";
+                    return "Mua bán";//Purchase
                 else
                     return "";
             }

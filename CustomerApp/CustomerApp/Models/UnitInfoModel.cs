@@ -43,7 +43,7 @@ namespace CustomerApp.Models
 
         // thong tin dien tich
         public decimal bsd_areavariance { get; set; } // Biên độ diện tích cho phép
-        public string bsd_areavariance_format { get => StringFormatHelper.FormatCurrency(bsd_areavariance); }
+        public string bsd_areavariance_format { get => StringFormatHelper.FormatPercent(bsd_areavariance); }
         public decimal bsd_constructionarea { get; set; } // diện tích xây dựng
         public string bsd_constructionarea_format { get => StringFormatHelper.FormatPercent(bsd_constructionarea); }
         public decimal bsd_netsaleablearea { get; set; } // diện tích sử dụng 
