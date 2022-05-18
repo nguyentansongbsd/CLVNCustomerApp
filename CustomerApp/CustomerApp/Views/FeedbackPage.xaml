@@ -32,10 +32,10 @@
                     <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_so_dien_thoai}" Text="{Binding Contact.mobilephone}" FontSize="15" />
 
                     <controls:FormLabel Text="{x:Static lang:Language.subject}" FontSize="15" Margin="0,10,0,0"/>
-                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_subject}" Text="{Binding Subject}" FontSize="15" />
+                    <controls:MainEntry x:Name="entrySubject" Placeholder="{x:Static lang:Language.nhap_subject}" Text="{Binding Subject}" FontSize="15"/>
 
                     <controls:FormLabel Text="{x:Static lang:Language.mo_ta}" FontSize="15" Margin="0,10,0,0"/>
-                    <controls:MainEditor Placeholder="{x:Static lang:Language.nhap_mo_ta}" Text="{Binding Content}" FontSize="15" AutoSize="TextChanges" />
+                    <controls:MainEditor x:Name="entryContent" Placeholder="{x:Static lang:Language.nhap_mo_ta}" Text="{Binding Content}" FontSize="15" AutoSize="TextChanges" />
                 </StackLayout>
             </ScrollView>
         </AbsoluteLayout>
