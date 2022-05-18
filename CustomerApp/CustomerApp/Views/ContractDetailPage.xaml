@@ -164,9 +164,13 @@
                                         </BindableLayout.EmptyViewTemplate>
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
-                                                <telerikPrimitives:RadBorder BorderColor="#f3f3f3" BorderThickness="0,0,0,1">
-                                                    <Label Text="{Binding customer}" Padding="25,10" FontAttributes="Bold" TextColor="#1399D5" FontSize="15"/>
-                                                </telerikPrimitives:RadBorder>
+                                                <StackLayout>
+                                                    <Label Text="{Binding customer}" Padding="25,10,0,0" FontAttributes="Bold" TextColor="#1399D5" FontSize="15"/>
+                                                    <Grid ColumnDefinitions="Auto,*">
+                                                        <Label Text="{Binding Source={x:Static lang:Language.quan_he},StringFormat='{0}:'}" FontSize="15" TextColor="#444444" Grid.Column="0" Padding="25,0,0,10"/>
+                                                        <Label Text="{Binding relationship_format}" FontSize="15" TextColor="#444444" Grid.Column="1" Padding="0,0,25,10"/>
+                                                    </Grid>
+                                                </StackLayout>
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
                                     </StackLayout>
