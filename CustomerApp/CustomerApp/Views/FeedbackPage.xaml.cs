@@ -58,7 +58,7 @@ namespace CustomerApp.Views
                     }
                 };
                 MailAddress from = new MailAddress("phupx@bsdinsight.com","Feedback-" + viewModel.Contact.bsd_fullname);
-                MailAddress to = new MailAddress("songnt@bsdinsight.com", "Contact"); //songnt@bsdinsight.com
+                MailAddress to = new MailAddress("hanph@bsdinsight.com", "Contact"); //songnt@bsdinsight.com
                 MailMessage mail = new MailMessage()
                 {
                     From = from,
