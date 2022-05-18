@@ -1567,7 +1567,7 @@
     <value>Phương thức</value>
   </data>
 	<data name="theo_loai_unit" xml:space="preserve">
-    <value>Theo loại Unit</value>
+    <value>Theo loại sản phẩm</value>
   </data>
 	<data name="dac_biet" xml:space="preserve">
     <value>Đặc biệt</value>
@@ -1651,7 +1651,7 @@
     <value>Pink-book handover</value>
   </data>
 	<data name="contract_qualify_sts" xml:space="preserve">
-    <value>Qualify</value>
+    <value>Đủ điều kiện</value>
   </data>
 	<data name="contract_signed_contract_sts" xml:space="preserve">
     <value>Đã ký HĐMB</value>

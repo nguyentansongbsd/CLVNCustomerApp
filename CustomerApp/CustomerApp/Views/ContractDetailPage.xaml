@@ -37,11 +37,15 @@
                                 <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding Contract.statuscode_color}">
                                     <Label Grid.Column="0" Text="{Binding Contract.statuscode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
                                 </telerikPrimitives:RadBorder>
-                                <Label Grid.Column="1" Text="{Binding Contract.salesorder_name}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                                <Label Grid.Column="1" Text="{Binding Contract.unit_name}" TextColor="#1C78C2" FontAttributes="Bold" FontSize="16" VerticalOptions="Center" >
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UnitDetail_Tapped" CommandParameter="{Binding Contract.unit_id}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <Label Grid.Column="0" Text="{x:Binding Source={x:Static lang:Language.hop_dong},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
-                                <Label Grid.Column="1" Text="{Binding Contract.bsd_contractnumber}" TextColor="#444444" FontSize="15"/>
+                                <Label Grid.Column="1" Text="{Binding Contract.bsd_contractnumber}" TextColor="#4BA8F1" FontSize="15"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <Label Grid.Column="0" Text="Giá trị hợp đồng: " FontSize="15" TextColor="#444444"/>
@@ -172,7 +176,13 @@
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
                                                 <telerikPrimitives:RadBorder BorderColor="#f3f3f3" BorderThickness="0,0,0,1">
-                                                    <Label Text="{Binding customer}" Padding="25,10" FontAttributes="Bold" TextColor="#1399D5" FontSize="15"/>
+                                                    <StackLayout>
+                                                        <Label Text="{Binding customer}" Padding="25,10,0,0" FontAttributes="Bold" TextColor="#1399D5" FontSize="15"/>
+                                                        <Grid ColumnDefinitions="Auto,*">
+                                                            <Label Text="{Binding Source={x:Static lang:Language.quan_he},StringFormat='{0}:'}" FontSize="15" TextColor="#444444" Grid.Column="0" Padding="25,0,0,10"/>
+                                                            <Label Text="{Binding relationship_format}" FontSize="15" TextColor="#444444" Grid.Column="1" Padding="0,0,25,10"/>
+                                                        </Grid>
+                                                    </StackLayout>
                                                 </telerikPrimitives:RadBorder>
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
