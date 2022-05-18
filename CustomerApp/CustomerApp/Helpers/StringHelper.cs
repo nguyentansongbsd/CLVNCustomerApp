@@ -14,7 +14,7 @@ namespace CustomerApp.Helpers
                     return null;
                 else
                     //return String.Format("{0:0,0.00 đ}", input.Value);  co 2 số 0 sau dau chấm.
-                    return String.Format("{0:#,0 đ}", input.Value);
+                    return String.Format("{0:#,0}", input.Value);
             }
             return "";
         }

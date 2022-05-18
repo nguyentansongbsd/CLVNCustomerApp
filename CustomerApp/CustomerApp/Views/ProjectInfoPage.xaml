@@ -162,7 +162,7 @@
                             <telerikPrimitives:RadBorder.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="GiuCho_Tapped"/>
                             </telerikPrimitives:RadBorder.GestureRecognizers>
-                            <Label x:Name="lblGiuCho" Text="Tiến độ dự án"  Style="{StaticResource labelTap}" MaxLines="1" LineBreakMode="TailTruncation"/>
+                            <Label x:Name="lblGiuCho" Text="Tiến độ"  Style="{StaticResource labelTap}" MaxLines="1" LineBreakMode="TailTruncation"/>
                         </telerikPrimitives:RadBorder>
                         <telerikPrimitives:RadBorder x:Name="radborderPDF" Grid.Column="3" Style="{StaticResource radBorderTap}">
                             <telerikPrimitives:RadBorder.GestureRecognizers>

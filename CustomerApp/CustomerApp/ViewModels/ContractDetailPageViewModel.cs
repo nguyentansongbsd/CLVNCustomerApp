@@ -1,5 +1,6 @@
 ﻿using CustomerApp.Helper;
 using CustomerApp.Models;
+using CustomerApp.Settings;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,6 +26,9 @@ namespace CustomerApp.ViewModels
         public List<OptionSet> ListSpecialDiscount { get; set; }
         public List<OptionSet> ListPromotion { get; set; }
 
+        private string _contractName;
+        public string ContractName { get => _contractName; set { _contractName = value;OnPropertyChanged(nameof(ContractName)); } }
+
         public ContractDetailPageViewModel()
         {
             Contract = new ContractModel();
@@ -33,6 +37,7 @@ namespace CustomerApp.ViewModels
             ListDiscount = new List<OptionSet>();
             ListSpecialDiscount = new List<OptionSet>();
             ListPromotion = new List<OptionSet>();
+            ContractName = UserLogged.User;
         }
 
         public async Task LoadContract(Guid ContractId)

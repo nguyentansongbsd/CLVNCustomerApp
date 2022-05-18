@@ -11,11 +11,11 @@ namespace CustomerApp.Converters
             bool isRead = (bool)value;
             if (isRead)
             {
-                return "#F2F2F2"; 
+                return Color.White; 
             }
             else
             {
-                return Color.White;
+                return "#E6F2FF";
             }
         }
 
