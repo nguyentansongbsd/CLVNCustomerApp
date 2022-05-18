@@ -314,21 +314,6 @@
                                                              Text="{Binding Project.bsd_numberofmonthspaidmf}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.don_gia_phi_quan_ly_thang}"
                                                              Text="{Binding Project.bsd_managementamount_format,StringFormat='{0} đ'}"/>
-                                    </StackLayout>
-                                </controls:TitleSection.Content>
-                            </controls:TitleSection>
-
-                            <controls:TitleSection Text="{x:Static lang:Language.title_quy_trinh_ban}" IsExpanded="False">
-                                <controls:TitleSection.Content>
-                                    <StackLayout Spacing="1" BackgroundColor="#F1F1F1">
-                                        <controls:LabelField Title="{x:Static lang:Language.unit_cho_moi_nhan_vien}"
-                                                             Text="{Binding Project.bsd_unitspersalesman}"/>
-                                        <controls:LabelField Title="{x:Static lang:Language.giu_cho_cho_moi_unit}"
-                                                             Text="{Binding Project.bsd_queuesperunit}"/>
-                                        <controls:LabelField Title="{x:Static lang:Language.thoi_gian_giu_cho_dai_han}"
-                                                             Text="{Binding Project.bsd_longqueuingtime}"/>
-                                        <controls:LabelField Title="{x:Static lang:Language.thoi_gian_giu_cho_ngan_han}"
-                                                             Text="{Binding Project.bsd_shortqueingtime}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.tien_giu_cho}"
                                                              Text="{Binding Project.bsd_bookingfee_format,StringFormat='{0} đ'}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.tien_dat_coc}"
