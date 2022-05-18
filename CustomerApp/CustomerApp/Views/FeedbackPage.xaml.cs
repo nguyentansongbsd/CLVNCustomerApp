@@ -57,13 +57,19 @@ namespace CustomerApp.Views
                         Password = "kgakcewdhsqgxsfm"
                     }
                 };
-                MailAddress from = new MailAddress("phupx@bsdinsight.com","Feedback-" + viewModel.Contact.bsd_fullname);
-                MailAddress to = new MailAddress("hanph@bsdinsight.com", "Contact"); //songnt@bsdinsight.com
+                MailAddress from = new MailAddress("phupx@bsdinsight.com", "BSD");
+                MailAddress to = new MailAddress("hanph@bsdinsight.com", "CSKH Customer BSD"); //songnt@bsdinsight.com
+                string contentEmail = $"Phản hồi từ khách hàng {viewModel.Contact.bsd_fullname}" +
+                    $"\n- Email: {viewModel.Contact.emailaddress1}" +
+                    $"\n- Số điện thoại: {viewModel.Contact.mobilephone}" +
+                    $"\n- Tiêu đề phản hồi: {viewModel.Subject}\n" +
+                    $"- Nội dung: " +
+                    $"\n{viewModel.Content}";
                 MailMessage mail = new MailMessage()
                 {
                     From = from,
-                    Subject = viewModel.Subject,
-                    Body = viewModel.Content
+                    Subject = "Feedback Customer App - " + viewModel.Contact.bsd_fullname,
+                    Body = contentEmail
                 };
                 mail.To.Add(to);
                 client.SendCompleted += Client_SendCompleted;
@@ -73,16 +79,18 @@ namespace CustomerApp.Views
 
         private void Client_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            if(e.Error != null)
+            if (e.Error != null)
             {
                 ToastMessageHelper.ShortMessage("Gửi phản hồi thất bại. " + e.Error.Message);
                 LoadingHelper.Hide();
-            }    
+            }
             else
             {
                 ToastMessageHelper.ShortMessage("Gửi phản hồi thành công");
+                viewModel.Subject = null;
+                viewModel.Content = null;
                 LoadingHelper.Hide();
-            }    
+            }
         }
     }
 }
