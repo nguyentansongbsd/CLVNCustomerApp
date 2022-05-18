@@ -49,7 +49,7 @@
                         <!--tab thong tin-->
                         <StackLayout x:Name="TabThongTin" IsVisible="true" Margin="0,10,0,0" BackgroundColor="#f1f1f1f1" Spacing="1">
                             <controls:LabelField Title="{x:Static lang:Language.ho_ten}"
-                                                 Text="{Binding Contact.bsd_fullname}"/>
+                                                 Text="{Binding Contact.bsd_fullname}" FontAttributeText="Bold"/>
                             <controls:LabelField Title="{x:Static lang:Language.email}"
                                                  Text="{Binding Contact.emailaddress1}"/>
                             <controls:LabelField Title="{x:Static lang:Language.so_dien_thoai}"

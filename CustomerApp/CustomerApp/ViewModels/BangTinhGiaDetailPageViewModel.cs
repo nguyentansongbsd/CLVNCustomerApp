@@ -1,6 +1,7 @@
 ﻿using CustomerApp.Datas;
 using CustomerApp.Helper;
 using CustomerApp.Models;
+using CustomerApp.Settings;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -62,7 +63,7 @@ namespace CustomerApp.ViewModels
             CoownerList = new ObservableCollection<ReservationCoownerModel>();
             InstallmentList = new ObservableCollection<ReservationInstallmentDetailPageModel>();
             Reservation = new ReservationModel();
-            Customer = new OptionSet();
+            Customer = new OptionSet() { Val=Guid.NewGuid().ToString(),Label=UserLogged.User};
         }
 
         #region Chinh Sach

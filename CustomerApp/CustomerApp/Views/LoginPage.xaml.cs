@@ -217,14 +217,14 @@ namespace CustomerApp.Views
                         if (user.mobilephone != UserName && user.emailaddress1 != UserName)
                         {
                             LoadingHelper.Hide();
-                            ToastMessageHelper.ShortMessage(Language.ten_dang_nhap_khong_dung);
+                            ToastMessageHelper.ShortMessage("Thông tin đăng nhập không đúng");
                             return;
                         }
 
                         if (user.bsd_password != Password)
                         {
                             LoadingHelper.Hide();
-                            ToastMessageHelper.ShortMessage(Language.mat_khau_khong_dung);
+                            ToastMessageHelper.ShortMessage("Thông tin đăng nhập không đúng");
                             return;
                         }
 
@@ -246,7 +246,7 @@ namespace CustomerApp.Views
                     else
                     {
                         LoadingHelper.Hide();
-                        ToastMessageHelper.ShortMessage(Language.ten_dang_nhap_khong_dung);
+                        ToastMessageHelper.ShortMessage("Thông tin đăng nhập không đúng");
                     }
                 }
             }

@@ -117,7 +117,7 @@
                                                 </Grid>
                                                 <Grid ColumnDefinitions="Auto,*" Grid.Row="2">
                                                     <Label Text="Mã hợp đồng: " TextColor="#444444" FontSize="15" Grid.Column="0"/>
-                                                    <Label Text="{Binding bsd_optionno}" TextColor="#444444" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" />
+                                                    <Label Text="{Binding bsd_contractnumber}" TextColor="#444444" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" />
                                                 </Grid>
                                                 <Grid ColumnDefinitions="Auto,*" Grid.Row="3">
                                                     <Label Text="{x:Binding Source={x:Static lang:Language.tong_tien},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>

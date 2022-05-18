@@ -19,6 +19,10 @@ namespace CustomerApp.Controls
         // value
         public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(LabelField), null, BindingMode.TwoWay, propertyChanged: TextChange);
         public string Text { get => (string)GetValue(TextProperty); set => SetValue(TextProperty, value); }
+
+        public static readonly BindableProperty FontAttributeTextProperty = BindableProperty.Create(nameof(FontAttributeText), typeof(FontAttributes), typeof(LabelField), FontAttributes.None, BindingMode.TwoWay);
+        public FontAttributes FontAttributeText { get => (FontAttributes)GetValue(FontAttributeTextProperty); set => SetValue(FontAttributeTextProperty, value); }
+
         private static void TextChange(BindableObject bindable, object oldValue, object newValue)
         {
             LabelField control = (LabelField)bindable;

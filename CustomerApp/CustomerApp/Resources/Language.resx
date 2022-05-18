@@ -2002,13 +2002,13 @@
     <value>Phản Hồi</value>
   </data>
 	<data name="subject" xml:space="preserve">
-    <value>Subject</value>
+    <value>Tiêu đề</value>
   </data>
 	<data name="nhap_ho_ten" xml:space="preserve">
     <value>Nhập họ tên</value>
   </data>
 	<data name="nhap_subject" xml:space="preserve">
-    <value>Nhập subject</value>
+    <value>Nhập tiêu đề</value>
   </data>
 	<data name="title_thong_tin_phieu_dat_coc" xml:space="preserve">
     <value>Thông Tin Phiếu Đặt Cọc</value>
