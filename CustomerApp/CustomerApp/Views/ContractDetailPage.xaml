@@ -44,11 +44,18 @@
                                 <Label Grid.Column="1" Text="{Binding Contract.bsd_contractnumber}" TextColor="#444444" FontSize="15"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
-                                <Label Grid.Column="0" Text="{x:Binding Source={x:Static lang:Language.san_pham},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
-                                <Label Grid.Column="1" Text="{Binding Contract.unit_name}" TextColor="#4BA8F1" FontAttributes="Bold" FontSize="15">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UnitDetail_Tapped" CommandParameter="{Binding Contract.unit_id}"/>
-                                    </Label.GestureRecognizers>
+                                <Label Grid.Column="0" Text="Giá trị hợp đồng: " FontSize="15" TextColor="#444444"/>
+                                <Label Grid.Column="1" Text="{Binding Contract.bsd_totalamount_format, StringFormat='{0} đ'}" TextColor="Red" FontSize="15"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Label Grid.Column="0" Text="Đã thanh toán: " FontSize="15" TextColor="#444444"/>
+                                <Label Grid.Column="1" TextColor="Red" FontSize="15">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} đ /  {1} %">
+                                            <Binding Path="Contract.totalPain_Format" />
+                                            <Binding Path="Contract.totalpercent_Format" />
+                                        </MultiBinding>
+                                    </Label.Text>
                                 </Label>
                             </Grid>
                         </StackLayout>
@@ -164,13 +171,9 @@
                                         </BindableLayout.EmptyViewTemplate>
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout>
-                                                    <Label Text="{Binding customer}" Padding="25,10,0,0" FontAttributes="Bold" TextColor="#1399D5" FontSize="15"/>
-                                                    <Grid ColumnDefinitions="Auto,*">
-                                                        <Label Text="{Binding Source={x:Static lang:Language.quan_he},StringFormat='{0}:'}" FontSize="15" TextColor="#444444" Grid.Column="0" Padding="25,0,0,10"/>
-                                                        <Label Text="{Binding relationship_format}" FontSize="15" TextColor="#444444" Grid.Column="1" Padding="0,0,25,10"/>
-                                                    </Grid>
-                                                </StackLayout>
+                                                <telerikPrimitives:RadBorder BorderColor="#f3f3f3" BorderThickness="0,0,0,1">
+                                                    <Label Text="{Binding customer}" Padding="25,10" FontAttributes="Bold" TextColor="#1399D5" FontSize="15"/>
+                                                </telerikPrimitives:RadBorder>
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
                                     </StackLayout>

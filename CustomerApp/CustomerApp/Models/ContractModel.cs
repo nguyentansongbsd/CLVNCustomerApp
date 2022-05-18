@@ -20,6 +20,11 @@ namespace CustomerApp.Models
         public string unit_name { get; set; }
         public decimal totalamount { get; set; } // tổng tiền
         public string totalamount_format { get => StringFormatHelper.FormatCurrency(totalamount); }
+        public decimal bsd_totalpaidincludecoa { get; set; }
+        public string totalPain_Format { get => StringFormatHelper.FormatCurrency(bsd_totalpaidincludecoa); }
+        public decimal bsd_totalpercent { get; set; }
+        public string totalpercent_Format { get => StringFormatHelper.FormatCurrency(bsd_totalpercent); }
+
         public int statuscode { get; set; }
         
         public string statuscode_format { get { return statuscode != 0 ? Data.GetContractStatusCodeById(statuscode.ToString())?.Name : null; } }
