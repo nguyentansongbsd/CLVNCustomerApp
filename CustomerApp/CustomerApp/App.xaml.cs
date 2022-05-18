@@ -46,18 +46,18 @@ namespace CustomerApp
             CrossFirebasePushNotification.Current.OnTokenRefresh += async (s, p) =>
             {
                 UserLogged.DeviceToken = await DependencyService.Get<INotificationService>().SaveToken();
-                var Tokens = (await firebaseClient
-                                  .Child("NotificationToken")
-                                  .OnceAsync<TokenModel>()).Select(item => new TokenModel()
-                                  {
-                                      Token = item.Object.Token
-                                  }).ToList();
-                if (Tokens.Any(x => x.Token == UserLogged.DeviceToken) == false)
-                {
-                    TokenModel data = new TokenModel();
-                    data.Token = UserLogged.DeviceToken;
-                    var a = firebaseClient.Child("NotificationToken").PostAsync(data);
-                }
+                //var Tokens = (await firebaseClient
+                //                  .Child("NotificationToken")
+                //                  .OnceAsync<TokenModel>()).Select(item => new TokenModel()
+                //                  {
+                //                      Token = item.Object.Token
+                //                  }).ToList();
+                //if (Tokens.Any(x => x.Token == UserLogged.DeviceToken) == false)
+                //{
+                //    TokenModel data = new TokenModel();
+                //    data.Token = UserLogged.DeviceToken;
+                //    var a = firebaseClient.Child("NotificationToken").PostAsync(data);
+                //}
             };
             CrossFirebasePushNotification.Current.OnNotificationOpened += Current_OnNotificationOpened;
         }

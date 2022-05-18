@@ -260,20 +260,20 @@ namespace CustomerApp.Views
         private async Task SaveToken()
         {
             string token = await DependencyService.Get<INotificationService>().SaveToken();
-            var Tokens = (await firebaseClient
-                                  .Child("NotificationToken")
-                                  .OnceAsync<TokenModel>()).Select(item => new TokenModel()
-                                  {
-                                      Token = item.Object.Token
-                                  }).ToList();
-            if (Tokens.Any(x=>x.Token == token) == false)
-            {
-                UserLogged.DeviceToken = token;
-                TokenModel data = new TokenModel();
-                data.Token = token;
-                var a = firebaseClient.Child("NotificationToken").PostAsync(data);
-            }
-            
+            //var Tokens = (await firebaseClient
+            //                      .Child("NotificationToken")
+            //                      .OnceAsync<TokenModel>()).Select(item => new TokenModel()
+            //                      {
+            //                          Token = item.Object.Token
+            //                      }).ToList();
+            //if (Tokens.Any(x => x.Token == token) == false)
+            //{
+            //    UserLogged.DeviceToken = token;
+            //    TokenModel data = new TokenModel();
+            //    data.Token = token;
+            //    var a = firebaseClient.Child("NotificationToken").PostAsync(data);
+            //}
+
             System.Diagnostics.Debug.Write(token);
         }
 
