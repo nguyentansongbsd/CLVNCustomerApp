@@ -73,11 +73,11 @@
                 <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf788;" Size="18"/>
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="{x:Static lang:Language.phan_hoi}" ContentTemplate="{DataTemplate views:CasesPage}">
+        <!--<ShellContent Title="{x:Static lang:Language.phan_hoi}" ContentTemplate="{DataTemplate views:CasesPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf086;" Size="18"/>
             </ShellContent.Icon>
-        </ShellContent>
+        </ShellContent>-->
         <ShellContent Title="{x:Static lang:Language.title_phan_hoi}" ContentTemplate="{DataTemplate views:FeedbackPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf086;" Size="18"/>
@@ -116,9 +116,6 @@
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf2f5;" Size="18"/>
         </MenuItem.IconImageSource>
     </MenuItem>
-    <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate views:LoginPage}" />
-    </TabBar>
     <Shell.FlyoutFooter>
         <Label Text="{Binding VerApp}" TextColor="#444444" FontSize="15" Padding="20,16,10,16"/>
     </Shell.FlyoutFooter>

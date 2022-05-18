@@ -6,7 +6,7 @@ namespace CustomerApp.Config
 {
     public class OrgConfig
     {
-        public const string VerApp = "CLVN Customer - Ver 1.0";
+        public const string VerApp = "BSD Customer - Ver 1.0";
         //public const string VerApp = "PL.CRM - Version 2.0";
 
         public const string ApiUrl = "https://testsolution.api.crm5.dynamics.com/api/data/v9.1";

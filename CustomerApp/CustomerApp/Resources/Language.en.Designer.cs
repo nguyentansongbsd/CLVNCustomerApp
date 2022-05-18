@@ -3688,5 +3688,41 @@ namespace CustomerApp.Resources {
                 return ResourceManager.GetString("giao_dich_va_thanh_toan", resourceCulture);
             }
         }
+        
+        internal static string phong_thuy {
+            get {
+                return ResourceManager.GetString("phong_thuy", resourceCulture);
+            }
+        }
+        
+        internal static string mat_bang_tang {
+            get {
+                return ResourceManager.GetString("mat_bang_tang", resourceCulture);
+            }
+        }
+        
+        internal static string title_phan_hoi {
+            get {
+                return ResourceManager.GetString("title_phan_hoi", resourceCulture);
+            }
+        }
+        
+        internal static string subject {
+            get {
+                return ResourceManager.GetString("subject", resourceCulture);
+            }
+        }
+        
+        internal static string nhap_ho_ten {
+            get {
+                return ResourceManager.GetString("nhap_ho_ten", resourceCulture);
+            }
+        }
+        
+        internal static string nhap_subject {
+            get {
+                return ResourceManager.GetString("nhap_subject", resourceCulture);
+            }
+        }
     }
 }

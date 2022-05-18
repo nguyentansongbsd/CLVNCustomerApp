@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "32584543994",
+    "project_id": "notificationclvn",
+    "storage_bucket": "notificationclvn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32584543994:android:f4b70332f2a03425c2e343",
+        "android_client_info": {
+          "package_name": "com.bsdsolutions.customerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32584543994-7028ss1tlo770dqje4ukbp5nohkdhrr4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0Xb9OQjr_rD1vxHK_PsK-0OtJzy0jQyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32584543994-7028ss1tlo770dqje4ukbp5nohkdhrr4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

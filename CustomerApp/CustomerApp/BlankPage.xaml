@@ -3,9 +3,19 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:CustomerApp.Controls"
-    x:Class="CustomerApp.BlankPage">
+    x:Class="CustomerApp.BlankPage" BackgroundColor="White">
     <ContentPage.Content>
-        <!--<controls:DatePickerControl x:Name="DatePickerStart"  Placeholder="thoi gian" DisplayFormat="dd/MM/yyyy - HH:mm" SpinnerFormat="dd/MM/yyyy HH:mm" />-->
-        <Label Text="tessssst"/>
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Label Text="Du an"/>
+                <controls:LookUp x:Name="lookupDuAn" Placeholder="du an" Margin="0,0,0,5" BottomModal="{Reference LookupModal}" NameDisplay="bsd_name" SelectedItem="{Binding Project}" ItemsSource="{Binding Projects}"/>
+
+                <Button Text="Chon hinh anh" Clicked="Button_Clicked_1"/>
+                
+                <Button Text="test notification" Clicked="Button_Clicked" />
+            </StackLayout>
+            <controls:BottomModal x:Name="LookupModal"/>
+        </AbsoluteLayout>
+
     </ContentPage.Content>
 </ContentPage>

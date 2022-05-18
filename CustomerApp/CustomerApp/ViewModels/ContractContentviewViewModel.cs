@@ -25,6 +25,7 @@ namespace CustomerApp.ViewModels
                                     <attribute name='bsd_project' alias='project_id'/>
                                     <attribute name='salesorderid' />
                                     <attribute name='ordernumber' />
+                                    <attribute name='bsd_optionno' />
                                     <order attribute='bsd_project' descending='true' />
                                     <filter type='and'>
                                         <condition attribute = 'customerid' operator= 'eq' value = '{UserLogged.Id}' />  

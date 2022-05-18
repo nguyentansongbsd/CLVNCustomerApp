@@ -72,7 +72,7 @@
                                         <Grid.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ListCollection_Tapped" CommandParameter="{Binding .}"/>
                                         </Grid.GestureRecognizers>
-                                        <ffimageloading:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" LoadingPlaceholder="image_placeholder.jpg" DownsampleWidth="500"/>
+                                        <ffimageloading:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" LoadingPlaceholder="placeholder_image.png" DownsampleWidth="500"/>
                                         <Label Text="&#xf144;" IsVisible="{Binding MediaSourceId,Converter={StaticResource nullToHideConverter}}" TextColor="#F1F1F1" FontSize="35" FontFamily="FontAwesomeRegular" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     </Grid>
                                 </DataTemplate>
@@ -385,7 +385,7 @@
                                     <DataTemplate>
                                         <Grid Padding="2,2,0,0" BackgroundColor="White">
                                             <Grid>
-                                                <ffimageloading:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" LoadingPlaceholder="image_placeholder.jpg" DownsampleWidth="300"/>
+                                                <ffimageloading:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" LoadingPlaceholder="placeholder_image.png" HeightRequest="100" DownsampleWidth="300"/>
                                                 <Label Text="&#xf144;" IsVisible="{Binding MediaSourceId,Converter={StaticResource nullToHideConverter}}" TextColor="#F1F1F1" FontSize="35" FontFamily="FontAwesomeRegular" VerticalOptions="Center" HorizontalOptions="Center"/>
                                                 <Grid.GestureRecognizers>
                                                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ListCollection_Tapped" CommandParameter="{Binding .}"/>

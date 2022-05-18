@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:CustomerApp.Controls"
+    xmlns:converter="clr-namespace:CustomerApp.Converters"
+    x:Class="CustomerApp.Views.NotificationPage">
+    <Shell.TitleView>
+        <StackLayout Padding="14,4">
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="CenterAndExpand">
+                <Label Grid.Column="0" Text="Thông báo" FontAttributes="Bold" FontSize="18" TextColor="White" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="1" Text="&#xf560;" Padding="6" FontFamily="FontAwesomeSolid" FontSize="14" TextColor="White" VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="IsReadAllNoti_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:NotiBackgroundConverter x:Key="NotiBackgroundConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ListView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" ItemsSource="{Binding Notifications}" ItemTapped="ListView_ItemTapped" HasUnevenRows="True" SelectionMode="None" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="#eeeeee" Padding="0,1" >
+                                <StackLayout Padding="12,8" BackgroundColor="{Binding IsRead,Converter={x:StaticResource NotiBackgroundConverter}}" Spacing="3">
+                                    <Label Text="{Binding Title}" TextColor="{x:StaticResource NavigationPrimary}" FontSize="16"/>
+                                    <Label Text="{Binding Body}" FontSize="15" TextColor="#333333"/>
+                                    <Label Text="{Binding CreatedDate,StringFormat='{0:dd/MM/yyyy - hh:mm tt}'}" HorizontalTextAlignment="End" FontSize="13" TextColor="#666666"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout HeightRequest="20"/>
+                </ListView.Footer>
+            </ListView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

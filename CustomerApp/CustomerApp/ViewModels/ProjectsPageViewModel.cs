@@ -25,6 +25,7 @@ namespace CustomerApp.ViewModels
                                     <filter type='or'>
                                       <condition attribute='bsd_projectcode' operator='like' value='%25{Keyword}%25' />
                                       <condition attribute='bsd_name' operator='like' value='%25{Keyword}%25' />
+                                      <condition attribute='statuscode' operator='eq' value='861450002' />
                                     </filter>
                                   </entity>
                             </fetch>";

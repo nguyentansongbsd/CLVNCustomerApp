@@ -60,6 +60,11 @@ namespace CustomerApp.Settings
             get => AppSettings.GetValueOrDefault(nameof(Email), string.Empty);
             set => AppSettings.AddOrUpdateValue(nameof(Email), value);
         }
+        public static string Phone
+        {
+            get => AppSettings.GetValueOrDefault(nameof(Phone), string.Empty);
+            set => AppSettings.AddOrUpdateValue(nameof(Phone), value);
+        }
         public static bool IsLogged
         {
             get => AppSettings.GetValueOrDefault(nameof(IsLogged), false);
@@ -100,6 +105,12 @@ namespace CustomerApp.Settings
         {
             get => AppSettings.GetValueOrDefault(nameof(ListPdf), string.Empty);
             set => AppSettings.AddOrUpdateValue(nameof(ListPdf), value);
+        }
+
+        public static string DeviceToken
+        {
+            get => AppSettings.GetValueOrDefault(nameof(DeviceToken), string.Empty); 
+            set => AppSettings.AddOrUpdateValue(nameof(DeviceToken), value);
         }
     }
 }
