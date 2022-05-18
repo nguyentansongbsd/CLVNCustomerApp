@@ -31,7 +31,7 @@ namespace CustomerApp.Views
 
         private async void IsReadAllNoti_Tapped(object sender, EventArgs e)
         {
-            var accept = await DisplayAlert("", "Bạn có muốn đánh dấu tất cả thông báo là đã đọc không?", "Yes","No");
+            var accept = await DisplayAlert("", "Bạn có muốn đánh dấu tất cả thông báo là đã đọc không?", Language.dong_y,Language.huy);
             if (accept)
             {
                 LoadingHelper.Show();
