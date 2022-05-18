@@ -75,9 +75,12 @@ namespace CustomerApp
         {
             try
             {
-                var Token = (await firebaseClient
+                var Tokens = (await firebaseClient
                                   .Child("NotificationToken")
-                                  .OnceSingleAsync<TokenModel>()).Token;
+                                  .OnceAsync<TokenModel>()).Select(item => new TokenModel() {
+
+                                      Token = item.Object.Token
+                                  });
 
                 NotificaModel model = new NotificaModel()
                 {
@@ -93,14 +96,21 @@ namespace CustomerApp
 
                 await Task.WhenAll(
                     firebaseClient.Child("Notifications").PostAsync(model),
-                    DependencyService.Get<INotificationService>().SendNotification(model, Token)
+                    sendNoti(model,Tokens)
                     );
             }
             catch(Exception ex)
             {
 
             }
-            
+        }
+
+        private async Task sendNoti(NotificaModel model,IEnumerable<TokenModel> data)
+        {
+            foreach (var item in data)
+            {
+                await DependencyService.Get<INotificationService>().SendNotification(model, item.Token);
+            }
         }
 
         async void Button_Clicked_1(System.Object sender, System.EventArgs e)
