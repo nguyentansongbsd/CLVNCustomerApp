@@ -67,7 +67,7 @@ namespace CustomerApp.ViewModels
 
         public DashboardPageViewModel()
         {
-            TopBanners = new List<string>() { "image1.jpeg", "iamge2.jpeg", "image3.jpeg", "image4.webp" };
+            TopBanners = new List<string>() {"Banner2.jpg", "Banner1.jpeg", "Banner3.jpeg", "Banner4.png" };
 
             
 

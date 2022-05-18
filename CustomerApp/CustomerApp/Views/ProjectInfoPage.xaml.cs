@@ -83,12 +83,13 @@ namespace CustomerApp.Views
                 viewModel.LoadThongKeGiuCho(),
                 viewModel.LoadThongKeHopDong(),
                 viewModel.LoadThongKeBangTinhGia(),
-                viewModel.LoadPhasesLanch(),
-                viewModel.LoadCollection()
+                viewModel.LoadPhasesLanch()
+                
             );
-
+            
             if (viewModel.Project != null)
             {
+                await viewModel.LoadCollection();
                 viewModel.ProjectType = Data.GetProjectTypeById(viewModel.Project.bsd_projecttype);
                 viewModel.PropertyUsageType = Data.GetPropertyUsageTypeById(viewModel.Project.bsd_propertyusagetype.ToString());
                 //if (viewModel.Project.bsd_handoverconditionminimum.HasValue)
@@ -399,9 +400,10 @@ namespace CustomerApp.Views
         {
             LoadingHelper.Show();
             string fileName = (string)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            string file = await storageHelper.GetFile(fileName);
+            
             try
             {
+                string file = await storageHelper.GetFile(fileName);
                 await DependencyService.Get<IPdfService>().View(file, "File Pdf");
             }
             catch(Exception ex)

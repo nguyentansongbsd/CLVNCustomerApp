@@ -16,6 +16,7 @@ using Firebase.Database;
 using System.Threading.Tasks;
 using Firebase.Database.Query;
 using CustomerApp.ViewModels;
+using System.Linq;
 
 namespace CustomerApp
 {
@@ -29,12 +30,11 @@ namespace CustomerApp
             InitializeComponent();
             CultureInfo cultureInfo = new CultureInfo(UserLogged.Language);
             Language.Culture = cultureInfo;
-            MainPage = new LoginPage();
-            //if (test == false)
-            //{
-            //    Shell.Current.Navigation.PushAsync(new LoginPage(), false);
-            //}
-
+            MainPage = new AppShell();
+            if (test == false)
+            {
+                Shell.Current.Navigation.PushAsync(new LoginPage(), false);
+            }
 
             //MainPage = new BlankPage();
             DependencyService.Register<INotificationService, NotificationService>();
@@ -45,9 +45,18 @@ namespace CustomerApp
             CrossFirebasePushNotification.Current.OnTokenRefresh += async (s, p) =>
             {
                 UserLogged.DeviceToken = await DependencyService.Get<INotificationService>().SaveToken();
-                TokenModel data = new TokenModel();
-                data.Token = UserLogged.DeviceToken;
-                var a = firebaseClient.Child("NotificationToken").PutAsync(data);
+                //var Tokens = (await firebaseClient
+                //                  .Child("NotificationToken")
+                //                  .OnceAsync<TokenModel>()).Select(item => new TokenModel()
+                //                  {
+                //                      Token = item.Object.Token
+                //                  }).ToList();
+                //if (Tokens.Any(x => x.Token == UserLogged.DeviceToken) == false)
+                //{
+                //    TokenModel data = new TokenModel();
+                //    data.Token = UserLogged.DeviceToken;
+                //    var a = firebaseClient.Child("NotificationToken").PostAsync(data);
+                //}
             };
             CrossFirebasePushNotification.Current.OnNotificationOpened += Current_OnNotificationOpened;
         }

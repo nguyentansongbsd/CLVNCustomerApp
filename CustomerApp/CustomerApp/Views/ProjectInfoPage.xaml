@@ -391,7 +391,7 @@
                                                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ListCollection_Tapped" CommandParameter="{Binding .}"/>
                                                 </Grid.GestureRecognizers>
                                             </Grid>
-
+                                            <Label Text="{Binding Name}" BackgroundColor="#80000000" TextColor="#ffffff" VerticalOptions="End" FontAttributes="Bold" FontSize="15" MaxLines="1" LineBreakMode="TailTruncation" Padding="3"/>
                                         </Grid>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
@@ -419,7 +419,7 @@
                     </Grid>
                 </StackLayout>
             </ScrollView>
-            <StackLayout x:Name="stButton"  AbsoluteLayout.LayoutBounds="0,1,1,70" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" Padding="0,10,20,20">
+            <StackLayout x:Name="stButton" IsVisible="false" AbsoluteLayout.LayoutBounds="0,1,1,70" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" Padding="0,10,20,20">
                 <controls:ExtendedFrame x:Name="frAddFilePdf" IsVisible="false" Padding="0" BackgroundColor="{x:StaticResource NavigationPrimary}" HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="End">
                     <Button Text="&#xf067;" FontFamily="FontAwesomeSolid" FontSize="24" BackgroundColor="{x:StaticResource NavigationPrimary}" Padding="0" HeightRequest="40" WidthRequest="40" CornerRadius="20" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Clicked="AddFilePdf_Clicked"/>
                 </controls:ExtendedFrame>
