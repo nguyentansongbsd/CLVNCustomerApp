@@ -104,7 +104,7 @@
                                 <StackLayout Margin="15" Spacing="10">
                                     <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,*">
                                         <controls:ExtendedFrame Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Padding="5" CornerRadius="50" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,0,5,0">
-                                            <ffimageloading:CachedImage Source="{Binding Project.bsd_logo, Converter={StaticResource Base64ToImagesource}}" LoadingPlaceholder="user.png" DownsampleWidth="100">
+                                            <ffimageloading:CachedImage Source="{Binding Project.bsd_logo, Converter={StaticResource Base64ToImagesource}}" HeightRequest="40" WidthRequest="40" LoadingPlaceholder="placeholder_image.png" DownsampleWidth="100">
                                                 <ffimageloading:CachedImage.Transformations>
                                                     <ffimagetransformations:CircleTransformation/>
                                                 </ffimageloading:CachedImage.Transformations>
@@ -168,7 +168,7 @@
                             <telerikPrimitives:RadBorder.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="PDF_Tapped"/>
                             </telerikPrimitives:RadBorder.GestureRecognizers>
-                            <Label x:Name="lblPDF" Text="{x:Static lang:Language.mat_bang_tang}"  Style="{StaticResource labelTap}" LineBreakMode="TailTruncation"/>
+                            <Label x:Name="lblPDF" Text="Mặt bằng"  Style="{StaticResource labelTap}" LineBreakMode="TailTruncation"/>
                         </telerikPrimitives:RadBorder>
                     </Grid>
                     <!--Content-->

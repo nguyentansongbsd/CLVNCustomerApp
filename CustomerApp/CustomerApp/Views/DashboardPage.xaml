@@ -57,12 +57,12 @@
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <telerikPrimitives:RadBorder BorderColor="LightGray" BorderThickness="1" CornerRadius="5" BackgroundColor="White" WidthRequest="360">
-                                            <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,*" RowSpacing="3" BackgroundColor ="White" Padding="10,8" >
+                                            <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,*" RowSpacing="3" ColumnSpacing="8" BackgroundColor ="White" Padding="10,8" >
                                                 <Grid.GestureRecognizers>
                                                     <TapGestureRecognizer Tapped="ProjectDetail_Tapped" CommandParameter="{Binding bsd_projectid}" />
                                                 </Grid.GestureRecognizers>
-                                                <controls:ExtendedFrame Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Start" BorderColor="LightGray" Padding="3" CornerRadius="5">
-                                                    <ffimageloading:CachedImage  Source="{Binding logo, Converter={StaticResource Base64ToImagesource}}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40" LoadingPlaceholder="placeholder_image.png" />
+                                                <controls:ExtendedFrame Grid.Column="0" Grid.RowSpan="3" VerticalOptions="Start" BorderColor="LightGray" Padding="3" CornerRadius="5">
+                                                    <ffimageloading:CachedImage  Source="{Binding logo, Converter={StaticResource Base64ToImagesource}}" Aspect="AspectFill" HeightRequest="64" WidthRequest="64" LoadingPlaceholder="placeholder_image.png" />
                                                 </controls:ExtendedFrame>
 
                                                 <Label Grid.Row="0" Grid.Column="1" Text="{Binding bsd_name}" MaxLines="1" LineBreakMode="TailTruncation" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
@@ -72,7 +72,7 @@
                                                     <Label Grid.Column="1" Text="{Binding projectType}" TextColor="#444444" FontSize="15"/>
                                                 </Grid>
 
-                                                <Label Grid.Row="2" Grid.ColumnSpan="2" FontSize="15" TextColor="#444444" MaxLines="1" LineBreakMode="TailTruncation">
+                                                <Label Grid.Row="2" Grid.Column="1" FontSize="15" TextColor="#444444" MaxLines="1" LineBreakMode="TailTruncation">
                                                     <Label.FormattedText>
                                                         <FormattedString>
                                                             <Span Text="&#xf3c5;" FontFamily="FontAwesomeSolid" FontSize="15" TextColor="#790311"/>
