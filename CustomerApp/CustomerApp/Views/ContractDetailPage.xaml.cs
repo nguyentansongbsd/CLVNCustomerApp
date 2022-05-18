@@ -30,7 +30,10 @@ namespace CustomerApp.Views
 
         public async void Init()
         {
-            await viewModel.LoadContract(this.ContractId);
+            await Task.WhenAll(
+                viewModel.LoadContract(ContractId),
+                viewModel.LoadCoOwners(ContractId)
+                );
             if (viewModel.Contract.salesorderid != Guid.Empty)
             {
                 OnCompleted?.Invoke(true);
