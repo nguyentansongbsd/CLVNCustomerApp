@@ -176,10 +176,10 @@ namespace CustomerApp.ViewModels
                 <attribute name='bsd_name' />
                 <attribute name='bsd_relationship' />
                 <order attribute='bsd_name' descending='true' />
-                <link-entity name='account' from='accountid' to='bsd_customer' visible='false' link-type='outer' alias='a_1324f6d5b214e911a97f000d3aa04914'>
+                <link-entity name='account' from='accountid' to='bsd_customer' visible='false' link-type='outer'>
                   <attribute name='bsd_name' alias='account_name' />
                 </link-entity>
-                <link-entity name='contact' from='contactid' to='bsd_customer' visible='false' link-type='outer' alias='a_6b0d05eeb214e911a97f000d3aa04914'>
+                <link-entity name='contact' from='contactid' to='bsd_customer' visible='false' link-type='outer'>
                   <attribute name='bsd_fullname' alias='contact_name' />
                 </link-entity>
                  <filter type='and'>
