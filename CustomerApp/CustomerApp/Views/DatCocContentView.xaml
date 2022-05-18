@@ -21,7 +21,7 @@
                                         <telerikPrimitives:RadBorder Grid.Column="0" CornerRadius="4" BorderColor="Transparent" Padding="5" BackgroundColor="{Binding statuscode_color}">
                                             <Label Text="{Binding statuscode_format}" TextColor="White" FontSize="13" FontAttributes="Bold"/>
                                         </telerikPrimitives:RadBorder>
-                                        <Label Grid.Column="1" Text="{Binding name}" FontSize="15" TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold" VerticalOptions="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding bsd_unitno_name}" FontSize="15" TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold" VerticalOptions="Center"/>
                                     </Grid>
                                     <!--task 604 yêu cầu xóa-->
                                     <!--<Grid ColumnDefinitions="Auto,*">

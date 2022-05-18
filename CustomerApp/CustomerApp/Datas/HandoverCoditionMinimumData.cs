@@ -16,11 +16,11 @@ namespace CustomerApp.Datas
         {
             return new List<OptionSet>()
             {
-                new OptionSet("100000000","Bare-shell"),
-                new OptionSet("100000001","Basic Finished"),
-                new OptionSet("100000002","Fully Finished"),
-                new OptionSet("100000003","Fully Finished the outside and Bare-shell the inside"),
-                new OptionSet("100000004","Add On Option"),
+                new OptionSet("100000000","Bàn giao thô"),//"Bare-shell"
+                new OptionSet("100000001","Bàn giao hoàn thiện cơ bản"),//"Basic Finished"
+                new OptionSet("100000002","Bàn giao hoàn thiện"),//"Fully Finished"
+                new OptionSet("100000003","Bàn giao hoàn thiện mặt ngoài và thô bên trong"),//"Fully Finished the outside and Bare-shell the inside"
+                new OptionSet("100000004","Gói bàn giao bổ sung"),//"Add On Option"
             };
         }
     }
