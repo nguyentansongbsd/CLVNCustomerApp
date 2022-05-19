@@ -31,6 +31,7 @@ namespace CustomerApp.ViewModels
                                       Title = item.Object.Title,
                                       Body = item.Object.Body,
                                       ProjectId = item.Object.ProjectId,
+                                      NotificationType = item.Object.NotificationType,
                                       IsRead = item.Object.IsRead,
                                       CreatedDate = item.Object.CreatedDate,
                                   }).OrderByDescending(x=>x.CreatedDate);

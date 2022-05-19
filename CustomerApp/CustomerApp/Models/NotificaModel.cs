@@ -11,6 +11,7 @@ namespace CustomerApp.Models
         public string Title { get; set; }
         public string Body { get; set; }
         public bool IsRead { get; set; }
+        public NotificationType NotificationType { get; set; }
         public DateTime CreatedDate { get; set; }
         public Guid ProjectId { get; set; }
 

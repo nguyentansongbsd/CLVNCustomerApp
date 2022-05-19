@@ -265,22 +265,22 @@ namespace CustomerApp.Views
 
         private void ChiTietDatCoc_Tapped(object sender, EventArgs e)
         {
-            //LoadingHelper.Show();
-            //var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            //BangTinhGiaDetailPage bangTinhGiaDetail = new BangTinhGiaDetailPage(itemId);
-            //bangTinhGiaDetail.OnCompleted = async (isSuccess) =>
-            //{
-            //    if (isSuccess)
-            //    {
-            //        await Navigation.PushAsync(bangTinhGiaDetail);
-            //        LoadingHelper.Hide();
-            //    }
-            //    else
-            //    {
-            //        LoadingHelper.Hide();
-            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
-            //    }
-            //};
+            LoadingHelper.Show();
+            var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            BangTinhGiaDetailPage bangTinhGiaDetail = new BangTinhGiaDetailPage(itemId);
+            bangTinhGiaDetail.OnCompleted = async (isSuccess) =>
+            {
+                if (isSuccess)
+                {
+                    await Navigation.PushAsync(bangTinhGiaDetail);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.noti_khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
         }
 
         private async void ShowMoreBangTinhGia_Clicked(object sender, EventArgs e)
@@ -293,22 +293,22 @@ namespace CustomerApp.Views
 
         private void ItemHopDong_Tapped(object sender, EventArgs e)
         {
-            //LoadingHelper.Show();
-            //var itemId = (Guid)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            //ContractDetailPage contractDetail = new ContractDetailPage(itemId);
-            //contractDetail.OnCompleted = async (isSuccess) =>
-            //{
-            //    if (isSuccess)
-            //    {
-            //        await Navigation.PushAsync(contractDetail);
-            //        LoadingHelper.Hide();
-            //    }
-            //    else
-            //    {
-            //        LoadingHelper.Hide();
-            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
-            //    }
-            //};
+            LoadingHelper.Show();
+            var itemId = (Guid)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            ContractDetailPage contractDetail = new ContractDetailPage(itemId);
+            contractDetail.OnCompleted = async (isSuccess) =>
+            {
+                if (isSuccess)
+                {
+                    await Navigation.PushAsync(contractDetail);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.noti_khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
         }
 
         private async void Meida_Tapped(object sender, EventArgs e)

@@ -2,6 +2,8 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
     xmlns:controls="clr-namespace:CustomerApp.Controls"
     xmlns:converter="clr-namespace:CustomerApp.Converters"
     x:Class="CustomerApp.Views.NotificationPage">
@@ -20,6 +22,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:NotiBackgroundConverter x:Key="NotiBackgroundConverter"/>
+            <converter:NotificationTypeConverter x:Key="NotificationTypeConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -29,11 +32,12 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout BackgroundColor="#eeeeee" Padding="0,1" >
-                                <StackLayout Padding="12,8" BackgroundColor="{Binding IsRead,Converter={x:StaticResource NotiBackgroundConverter}}" Spacing="3">
-                                    <Label Text="{Binding Title}" TextColor="{x:StaticResource NavigationPrimary}" FontSize="16"/>
-                                    <Label Text="{Binding Body}" FontSize="15" TextColor="#333333"/>
-                                    <Label Text="{Binding CreatedDate,StringFormat='{0:dd/MM/yyyy - hh:mm tt}'}" HorizontalTextAlignment="End" FontSize="13" TextColor="#666666"/>
-                                </StackLayout>
+                                <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10" Padding="12,8" BackgroundColor="{Binding IsRead,Converter={x:StaticResource NotiBackgroundConverter}}" RowSpacing="3">
+                                    <ffimageLoading:CachedImage Grid.RowSpan="2" Grid.Column="0" Source="{Binding NotificationType,Converter={x:StaticResource NotificationTypeConverter}}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40" VerticalOptions="Center"/>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" TextColor="{x:StaticResource NavigationPrimary}" FontSize="16"/>
+                                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Body}" FontSize="15" TextColor="#333333"/>
+                                    <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding CreatedDate,StringFormat='{0:dd/MM/yyyy - hh:mm tt}'}" HorizontalTextAlignment="End" FontSize="13" TextColor="#666666"/>
+                                </Grid>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
