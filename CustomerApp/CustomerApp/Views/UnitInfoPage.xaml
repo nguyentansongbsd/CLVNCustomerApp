@@ -461,23 +461,25 @@
                                                             <telerikPrimitives:RadBorder Grid.Column="0" CornerRadius="4" BorderColor="Transparent" Padding="5" BackgroundColor="{Binding statuscode_color}">
                                                                 <Label Text="{Binding statuscode_format}" TextColor="White" FontSize="13" FontAttributes="Bold"/>
                                                             </telerikPrimitives:RadBorder>
-                                                            <Label Grid.Column="1" Text="{Binding name}" FontSize="15" TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold" VerticalOptions="Center"/>
+                                                            <Label Grid.Column="1" Text="{Binding bsd_unitno_name}" FontSize="15" TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold" VerticalOptions="Center"/>
                                                         </Grid>
-                                                        <Grid ColumnDefinitions="Auto,*">
+                                                        <!--task 604 yêu cầu xóa-->
+                                                        <!--<Grid ColumnDefinitions="Auto,*">
                                                             <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.khach_hang},StringFormat='{0}: '}" FontSize="15" TextColor="#333333"/>
                                                             <Label Grid.Column="1" Text="{Binding purchaser}" FontSize="15" TextColor="#333333"/>
-                                                        </Grid>
+                                                        </Grid>-->
                                                         <Grid ColumnDefinitions="Auto,*">
                                                             <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.du_an},StringFormat='{0}: '}" FontSize="15" TextColor="#333333"/>
                                                             <Label Grid.Column="1" Text="{Binding bsd_project_name}" FontSize="15" TextColor="#333333"/>
                                                         </Grid>
-                                                        <Grid ColumnDefinitions="Auto,*">
+                                                        <!--task 604 yêu cầu xóa-->
+                                                        <!--<Grid ColumnDefinitions="Auto,*">
                                                             <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.san_pham},StringFormat='{0}: '}" FontSize="15" TextColor="#333333"/>
                                                             <Label Grid.Column="1" Text="{Binding bsd_unitno_name}" FontSize="15" TextColor="#333333"/>
-                                                        </Grid>
+                                                        </Grid>-->
                                                         <Grid ColumnDefinitions="Auto,*">
                                                             <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.tong_tien},StringFormat='{0}: '}" FontSize="15" TextColor="#333333"/>
-                                                            <Label Grid.Column="1" Text="{Binding totalamount_format}" FontSize="15" TextColor="#333333"/>
+                                                            <Label Grid.Column="1" Text="{Binding totalamount_format, StringFormat='{0} đ'}" FontSize="15" TextColor="Red" FontAttributes="Bold"/>
                                                         </Grid>
                                                     </StackLayout>
                                                 </DataTemplate>
@@ -512,23 +514,24 @@
                                                             <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statuscode_color}" VerticalOptions="StartAndExpand">
                                                                 <Label Grid.Column="0" Text="{Binding statuscode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
                                                             </telerikPrimitives:RadBorder>
-                                                            <Label Grid.Column="1" Text="{Binding ordernumber}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" MaxLines="1" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                                                            <Label Grid.Column="1" Text="{Binding unit_name}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" MaxLines="1" VerticalOptions="Center" LineBreakMode="TailTruncation" />
                                                         </Grid>
-                                                        <Grid ColumnDefinitions="Auto,*" Grid.Row="1">
-                                                            <Label Text="{Binding Source={x:Static lang:Language.khach_hang},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
+                                                        <!--task 604 yêu cầu xóa-->
+                                                        <!--<Grid ColumnDefinitions="Auto,*" Grid.Row="1">
+                                                            <Label Text="{x:Binding Source={x:Static lang:Language.khach_hang},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
                                                             <Label Text="{Binding customer_name}" TextColor="#444444" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" />
-                                                        </Grid>
+                                                        </Grid>-->
                                                         <Grid ColumnDefinitions="Auto,*" Grid.Row="2">
-                                                            <Label Text="{Binding Source={x:Static lang:Language.du_an},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
+                                                            <Label Text="{x:Binding Source={x:Static lang:Language.du_an},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
                                                             <Label Text="{Binding project_name}" TextColor="#444444" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" />
                                                         </Grid>
                                                         <Grid ColumnDefinitions="Auto,*" Grid.Row="3">
-                                                            <Label Text="{Binding Source={x:Static lang:Language.san_pham},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
-                                                            <Label Text="{Binding unit_name}" TextColor="#444444" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" />
+                                                            <Label Text="Mã hợp đồng: " TextColor="#444444" FontSize="15" Grid.Column="0"/>
+                                                            <Label Text="{Binding bsd_contractnumber}" TextColor="#444444" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" />
                                                         </Grid>
                                                         <Grid ColumnDefinitions="Auto,*" Grid.Row="4">
-                                                            <Label Text="{Binding Source={x:Static lang:Language.tong_tien},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
-                                                            <Label Text="{Binding totalamount_format}" TextColor="#444444" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" />
+                                                            <Label Text="{x:Binding Source={x:Static lang:Language.tong_tien},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
+                                                            <Label Text="{Binding totalamount_format, StringFormat='{0} đ'}" TextColor="Red" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" FontAttributes="Bold"/>
                                                         </Grid>
                                                     </Grid>
                                                 </DataTemplate>

@@ -2,11 +2,16 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:controls="clr-namespace:CustomerApp.Controls"
+    xmlns:converters="clr-namespace:CustomerApp.Converters"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
     xmlns:lang="clr-namespace:CustomerApp.Resources"
     Title="{x:Static lang:Language.du_an}"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="CustomerApp.Views.ProjectsPage">
+    <ContentPage.Resources>
+        <converters:Base64ToImageSourceConverter x:Key="Base64ToImagesource"/>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout>
             <Grid RowDefinitions="Auto,*" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
@@ -17,20 +22,24 @@
                     <controls:BsdListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout BackgroundColor ="White" Padding="15,10" Margin="0,1" Spacing="5">
-                                    <Label Text="{Binding bsd_name}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                                <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" BackgroundColor ="White" Padding="15,10" Margin="0,1">
+                                    <controls:ExtendedFrame Grid.Column="0" Grid.RowSpan="3" VerticalOptions="Start" BorderColor="LightGray" Padding="3" CornerRadius="5">
+                                        <ffimageloading:CachedImage  Source="{Binding logo, Converter={StaticResource Base64ToImagesource}}" Aspect="AspectFill" HeightRequest="66" WidthRequest="66" LoadingPlaceholder="placeholder_image.png" />
+                                    </controls:ExtendedFrame>
 
-                                    <Grid ColumnDefinitions="Auto,*">
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding bsd_name}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+
+                                    <Grid Grid.Column="1" Grid.Row="1" ColumnDefinitions="Auto,*">
                                         <Label Grid.Column="0" Text="Mã dự án: " FontSize="15" TextColor="#444444"/>
                                         <Label Grid.Column="1" Text="{Binding bsd_projectcode}" TextColor="#444444" FontSize="15"/>
                                     </Grid>
 
-                                    <Grid ColumnDefinitions="Auto,*">
+                                    <Grid Grid.Column="1" Grid.Row="2" ColumnDefinitions="Auto,*">
                                         <Label Grid.Column="0" Text="Loại: " FontSize="15" TextColor="#444444"/>
                                         <Label Grid.Column="1" Text="{Binding projectType}" TextColor="#444444" FontSize="15"/>
                                     </Grid>
 
-                                    <Label FontSize="15" TextColor="#444444">
+                                    <Label Grid.ColumnSpan="2" Grid.Row="3" FontSize="15" TextColor="#444444">
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span Text="&#xf3c5;" FontFamily="FontAwesomeSolid" FontSize="15" TextColor="#790311"/>
@@ -39,7 +48,7 @@
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
-                                </StackLayout>
+                                </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </controls:BsdListView.ItemTemplate>

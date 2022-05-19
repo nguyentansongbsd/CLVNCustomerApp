@@ -21,11 +21,14 @@ namespace CustomerApp.ViewModels
                                     <attribute name ='statuscode' />
                                     <attribute name ='bsd_address' />
                                     <attribute name ='bsd_projecttype' />
+                                    <attribute name='bsd_projectslogo'/>
                                     <order attribute='bsd_name' descending='false' />
                                     <filter type='or'>
                                       <condition attribute='bsd_projectcode' operator='like' value='%25{Keyword}%25' />
                                       <condition attribute='bsd_name' operator='like' value='%25{Keyword}%25' />
-                                      <condition attribute='statuscode' operator='eq' value='861450002' />
+                                    </filter>
+                                    <filter type='and'>
+                                        <condition attribute='statuscode' operator='eq' value='861450002' />
                                     </filter>
                                   </entity>
                             </fetch>";
