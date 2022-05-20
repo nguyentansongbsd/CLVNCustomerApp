@@ -60,6 +60,8 @@
                                                  Text="{Binding Gender.Label}"/>
                             <controls:LabelField Title="{x:Static lang:Language.dia_chi}"
                                                  Text="{Binding Contact.bsd_contactaddress}"/>
+                            <controls:LabelField Title="Địa chỉ TT"
+                                                 Text="{Binding Contact.bsd_permanentaddress1}"/>
                         </StackLayout>
                         <StackLayout x:Name="TabPhongThuy" Margin="0,10,0,0" IsVisible="false">
                             <controls:LabelTitleSection Text="{x:Static lang:Language.title_thong_tin_gia_chu}"/>
@@ -142,6 +144,38 @@
                     </Grid>
                 </StackLayout>
             </ScrollView>
+
+            <StackLayout Padding="10,6" AbsoluteLayout.LayoutBounds="0,1,1,54" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional">
+                <Button Text="Cập nhật Email/Số điện thoại" Clicked="UpdateEmail_Phone_Clicked" HeightRequest="40" TextColor="White" BackgroundColor="{x:StaticResource NavigationPrimary}" CornerRadius="5"/>
+            </StackLayout>
+
+            <ContentView x:Name="UpdateEmail_Phone" IsVisible="false" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#90000000" Padding="20">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CloseContentUpdateEmail_Phone_Tapped"/>
+                </ContentView.GestureRecognizers>
+                <telerikPrimitives:RadBorder VerticalOptions="CenterAndExpand" CornerRadius="10" BackgroundColor="White" Padding="10">
+                    <telerikPrimitives:RadBorder.GestureRecognizers><TapGestureRecognizer/></telerikPrimitives:RadBorder.GestureRecognizers>
+                    <Grid Grid.Row="0" Margin="0" RowDefinitions="Auto,*">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto" Grid.Row="0" Grid.Column="0">
+                            <Label Grid.Column="0" Text="Cập nhật Email/Số điện thoại" TextColor="#666666" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="&#xf057;" FontFamily="FontAwesomeSolid" VerticalOptions="Center" FontSize="17" Padding="2" TextColor="#666666">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CloseContentUpdateEmail_Phone_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <StackLayout Grid.Row="1" Padding="10,0">
+                            <controls:FormLabel Text="{x:Static lang:Language.email}" />
+                            <controls:MainEntry Text="{Binding Email}"  Placeholder="{x:Static lang:Language.nhap_email}"/>
+                            <controls:FormLabel Text="{x:Static lang:Language.so_dien_thoai}" />
+                            <controls:MainEntry Text="{Binding Phone}" Placeholder="{x:Static lang:Language.nhap_so_dien_thoai}"/>
+
+                            <Button Text="{x:Static lang:Language.btn_luu}" Clicked="ChangeEmailPhone_Clicked" Margin="0,10,0,0" TextColor="White" HeightRequest="40" BackgroundColor="{x:StaticResource NavigationPrimary}"/>
+                        </StackLayout>
+                    </Grid>
+                </telerikPrimitives:RadBorder>
+            </ContentView>
+
             <!--<controls:FloatingButtonGroup x:Name="floatingButtonGroup" ItemsSource="{Binding BindingContext.ButtonCommandList,Source={x:Reference this}}"/>-->
             <!--<Grid x:Name="LookUpImage" IsVisible="false" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
                 <controls:PinchZoomImage>

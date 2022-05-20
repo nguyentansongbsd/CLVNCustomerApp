@@ -60,6 +60,11 @@ namespace CustomerApp.Settings
             get => AppSettings.GetValueOrDefault(nameof(Email), string.Empty);
             set => AppSettings.AddOrUpdateValue(nameof(Email), value);
         }
+        public static string Email_Phone
+        {
+            get => AppSettings.GetValueOrDefault(nameof(Email_Phone), string.Empty);
+            set => AppSettings.AddOrUpdateValue(nameof(Email_Phone), value);
+        }
         public static string Phone
         {
             get => AppSettings.GetValueOrDefault(nameof(Phone), string.Empty);

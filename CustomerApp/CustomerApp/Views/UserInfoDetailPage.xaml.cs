@@ -1,5 +1,6 @@
 ﻿using CustomerApp.Helper;
 using CustomerApp.Models;
+using CustomerApp.Resources;
 using CustomerApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -99,6 +100,53 @@ namespace CustomerApp.Views
             //    VisualStateManager.GoToState(lbPhongThuy, "Normal");
             //    TabPhongThuy.IsVisible = false;
             //}
+        }
+
+        private void UpdateEmail_Phone_Clicked(object sender, EventArgs e)
+        {
+            UpdateEmail_Phone.IsVisible = true;
+        }
+
+        private void CloseContentUpdateEmail_Phone_Tapped(object sender, EventArgs e)
+        {
+            UpdateEmail_Phone.IsVisible = false;
+        }
+
+        private async void ChangeEmailPhone_Clicked(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(viewModel.Email) && string.IsNullOrWhiteSpace(viewModel.Phone))
+            {
+                ToastMessageHelper.ShortMessage("Vui lòng nhập email / số điện thoại");
+                return;
+            }
+
+            if (viewModel.Email == viewModel.Contact.emailaddress1)
+            {
+                ToastMessageHelper.ShortMessage("Bạn đang nhập email cũ");
+                return;
+            }
+
+            if (viewModel.Phone == viewModel.Contact.mobilephone)
+            {
+                ToastMessageHelper.ShortMessage("Bạn đang nhập số điện thoại cũ");
+                return;
+            }
+
+            LoadingHelper.Show();
+            bool IsSuccess = await viewModel.CreateTask();
+            if (IsSuccess)
+            {
+                ToastMessageHelper.ShortMessage(Language.noti_thanh_cong);
+                UpdateEmail_Phone.IsVisible = false;
+                viewModel.Email = null;
+                viewModel.Phone = null;
+                LoadingHelper.Hide();
+            }
+            else
+            {
+                LoadingHelper.Hide();
+                ToastMessageHelper.ShortMessage(Language.noti_that_bai);
+            }
         }
     }
 }
