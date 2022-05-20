@@ -49,6 +49,12 @@ namespace CustomerApp.ViewModels
 
         private LoyaltyModel _loyalty;
         public LoyaltyModel Loyalty { get => _loyalty; set { _loyalty = value; OnPropertyChanged(nameof(Loyalty)); } }
+
+        private string _email;
+        public string Email { get => _email; set { _email = value;OnPropertyChanged(nameof(Email)); } }
+        private string _phone;
+        public string Phone { get => _phone; set { _phone = value; OnPropertyChanged(nameof(Phone)); } }
+
         public UserInfoDetailPageViewModel()
         {
             PhongThuy = new PhongThuyModel();
@@ -74,6 +80,7 @@ namespace CustomerApp.ViewModels
                                     <attribute name='bsd_postalcode' />
                                     <attribute name='bsd_housenumberstreet' />
                                     <attribute name='bsd_contactaddress' />
+                                    <attribute name='bsd_permanentaddress1' />
                                     <order attribute='createdon' descending='true' />
                                     <filter type='and'>
                                       <condition attribute='contactid' operator='eq' value='{UserLogged.Id}'/>
@@ -97,8 +104,13 @@ namespace CustomerApp.ViewModels
                                 </fetch>";
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<ContactModel>>("contacts", fetchXml);
             if (result == null || result.value.Any() == false) return;
+            var data = result.value.SingleOrDefault();
 
-            Contact = result.value.SingleOrDefault();
+            if (data.mobilephone.StartsWith("84"))
+            {
+                data.mobilephone = data.mobilephone.Replace("84", "");
+            }
+            Contact = data;
             Gender = Data.GetGenderById(Contact.gendercode);
             AddressContact = new AddressModel
             {
@@ -284,6 +296,55 @@ namespace CustomerApp.ViewModels
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<LoyaltyModel>>("contacts", fetchXml);
             if (result == null && result.value == null) return;
             this.Loyalty = (result.value as List<LoyaltyModel>).SingleOrDefault();
+        }
+
+        public async Task<bool> CreateTask()
+        {
+            var content = await getContent();
+            string path = "/tasks";
+            CrmApiResponse result = await CrmHelper.PostData(path, content);
+
+            if (result.IsSuccess)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private async Task<object> getContent()
+        {
+            IDictionary<string, object> data = new Dictionary<string, object>();
+            data["activityid"] = Guid.NewGuid();
+            data["subject"] = "Cập nhật Email/Số điện thoại";
+            data["bsd_email"] = this.Email;
+            data["bsd_phone"] = this.Phone;
+            data["bsd_system"] = true;
+            data["bsd_type"] = "100000002";
+
+            data["regardingobjectid_contact_task@odata.bind"] = "/contacts(" + UserLogged.Id + ")";
+
+            if (!string.IsNullOrWhiteSpace(Email) && string.IsNullOrWhiteSpace(Phone) && Email != Contact.emailaddress1)
+            {
+                data["bsd_typeupdate"] = "100000000";
+            }
+            else if(!string.IsNullOrWhiteSpace(Phone) && string.IsNullOrWhiteSpace(Email) && Phone != Contact.mobilephone)
+            {
+                data["bsd_typeupdate"] = "100000001";
+            }
+            else if(!string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Phone) && Email != Contact.emailaddress1 && Phone != Contact.mobilephone)
+            {
+                data["bsd_typeupdate"] = "100000002";
+            }
+
+            if (UserLogged.ManagerId != Guid.Empty)
+            {
+                data["ownerid@odata.bind"] = "/systemusers(" + UserLogged.ManagerId + ")";
+            }
+
+            return data;
         }
     }
 }

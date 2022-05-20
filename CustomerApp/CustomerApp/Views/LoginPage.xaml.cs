@@ -47,7 +47,7 @@ namespace CustomerApp.Views
             if (UserLogged.IsLogged && UserLogged.IsSaveInforUser)
             {
                 checkboxRememberAcc.IsChecked = true;
-                UserName = UserLogged.Email;
+                UserName = UserLogged.Email_Phone;
                 Password = UserLogged.Password;
                 SetGridUserName();
                 SetGridPassword();
@@ -237,6 +237,7 @@ namespace CustomerApp.Views
                         UserLogged.IsSaveInforUser = checkboxRememberAcc.IsChecked;
                         UserLogged.IsLogged = true;
                         UserLogged.Avartar = user.entityimage;
+                        UserLogged.Email_Phone = UserName;
                         await SaveToken();
 
                         Application.Current.MainPage = new AppShell();
@@ -290,7 +291,7 @@ namespace CustomerApp.Views
                     <attribute name='mobilephone'/>
                     <order attribute='fullname' descending='false' />
                     <filter type='or'>
-                      <condition attribute='mobilephone' operator='eq' value='{UserName}' />
+                      <condition attribute='mobilephone' operator='like' value='%25{UserName}%25' />
                       <condition attribute='emailaddress1' operator='eq' value='{UserName}' />
                     </filter>
                   </entity>

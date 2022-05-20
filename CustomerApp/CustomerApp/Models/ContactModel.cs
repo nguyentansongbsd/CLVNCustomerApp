@@ -34,5 +34,6 @@ namespace CustomerApp.Models
         public string district_name_en { get; set; }
         public string bsd_contactaddress { get; set; }
         public string bsd_housenumberstreet { get; set; }
+        public string bsd_permanentaddress1 { get; set; }
     }
 }

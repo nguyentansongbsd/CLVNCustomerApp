@@ -136,7 +136,7 @@ namespace CustomerApp.Views
         private async void ShowMore_Tapped(object sender, EventArgs e)
         {
             LoadingHelper.Show();
-            await Navigation.PushAsync(new TransactionPage());
+            await Navigation.PushAsync(new TransactionPage(true));
             LoadingHelper.Hide();
         }
 

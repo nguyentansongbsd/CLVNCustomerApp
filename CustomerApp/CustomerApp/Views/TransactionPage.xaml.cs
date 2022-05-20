@@ -17,31 +17,61 @@ namespace CustomerApp.Views
         public static bool? NeedToRefreshDatCoc = null;
         private ContractContentview ContractContentview;
         private DatCocContentView DatCocContentView;
+        private bool IsFromDashboard { get; set; }
         public TransactionPage()
         {
             LoadingHelper.Show();
             InitializeComponent();
-            NeedToRefreshContract = false;
-            NeedToRefreshDatCoc = false;
+            Init();
+        }
+        public TransactionPage(bool? isFromDashboard = null)
+        {
+            LoadingHelper.Show();
+            InitializeComponent();
+            if (isFromDashboard.HasValue)
+                IsFromDashboard = isFromDashboard.Value;
             Init();
         }
         public async void Init()
         {
-            VisualStateManager.GoToState(radBorderDatCoc, "Active");
-            VisualStateManager.GoToState(radBorderContract, "InActive");
-            VisualStateManager.GoToState(lblDatCoc, "Active");
-            VisualStateManager.GoToState(lblContract, "InActive");
-            if (DatCocContentView == null)
+            NeedToRefreshContract = false;
+            NeedToRefreshDatCoc = false;
+            if (IsFromDashboard == false)
             {
-                LoadingHelper.Show();
-                DatCocContentView = new DatCocContentView();
+                VisualStateManager.GoToState(radBorderDatCoc, "Active");
+                VisualStateManager.GoToState(radBorderContract, "InActive");
+                VisualStateManager.GoToState(lblDatCoc, "Active");
+                VisualStateManager.GoToState(lblContract, "InActive");
+                if (DatCocContentView == null)
+                {
+                    LoadingHelper.Show();
+                    DatCocContentView = new DatCocContentView();
+                }
+                DatCocContentView.OnCompleted = (IsSuccess) =>
+                {
+                    TransactionContentView.Children.Add(DatCocContentView);
+                    LoadingHelper.Hide();
+                };
+                DatCocContentView.IsVisible = true;
             }
-            DatCocContentView.OnCompleted = (IsSuccess) =>
+            else
             {
-                TransactionContentView.Children.Add(DatCocContentView);
-                LoadingHelper.Hide();
-            };
-            DatCocContentView.IsVisible = true;
+                VisualStateManager.GoToState(radBorderDatCoc, "InActive");
+                VisualStateManager.GoToState(radBorderContract, "Active");
+                VisualStateManager.GoToState(lblDatCoc, "InActive");
+                VisualStateManager.GoToState(lblContract, "Active");
+                if (ContractContentview == null)
+                {
+                    LoadingHelper.Show();
+                    ContractContentview = new ContractContentview();
+                }
+                ContractContentview.OnCompleted = (IsSuccess) =>
+                {
+                    TransactionContentView.Children.Add(ContractContentview);
+                    LoadingHelper.Hide();
+                };
+                ContractContentview.IsVisible = true;
+            }
         }
 
         protected override async void OnAppearing()
