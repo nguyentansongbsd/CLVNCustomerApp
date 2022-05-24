@@ -1,13 +1,8 @@
 ﻿using CustomerApp.Helper;
 using CustomerApp.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,6 +17,7 @@ namespace CustomerApp.Views
             InitializeComponent();
             Init();
         }
+
         private async void Init()
         {
             LoadingHelper.Show();
@@ -29,19 +25,47 @@ namespace CustomerApp.Views
             await viewModel.LoadContact();
             LoadingHelper.Hide();
         }
+
+        private void Phone_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            if (e.NewTextValue == null) return;
+            if (e.NewTextValue != null && e.NewTextValue.Contains(",") || e.NewTextValue.Contains("."))
+            {
+                viewModel.Contact.mobilephone = e.NewTextValue.Replace(",", "").Replace(".", "");
+            }
+        }
+
         private async void SendEmail_Clicked(object sender, EventArgs e)
         {
-            LoadingHelper.Show();
-            if (string.IsNullOrWhiteSpace(viewModel.Subject))
+            if (string.IsNullOrWhiteSpace(viewModel.Contact.emailaddress1) || string.IsNullOrWhiteSpace(viewModel.Contact.mobilephone))
             {
-                ToastMessageHelper.ShortMessage("Vui lòng nhập subject");
-                return;
-            }    
-                if (string.IsNullOrWhiteSpace(viewModel.Subject))
-            {
-                ToastMessageHelper.ShortMessage("Vui lòng nhập description");
+                ToastMessageHelper.ShortMessage("Vui lòng nhập email hoặc số điện thoại");
                 return;
             }
+
+            if (!string.IsNullOrWhiteSpace(viewModel.Contact.emailaddress1) && !Helpers.Validations.IsValidEmail(viewModel.Contact.emailaddress1))
+            {
+                ToastMessageHelper.ShortMessage("Email không đúng định dạng");
+                return;
+            }
+
+            if (viewModel.Contact.mobilephone.Length != 10)
+            {
+                ToastMessageHelper.ShortMessage("Số điện thoại không hợp lệ (Gồm 10 ký tự)");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(viewModel.Subject))
+            {
+                ToastMessageHelper.ShortMessage("Vui lòng nhập tiêu đề");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(viewModel.Content))
+            {
+                ToastMessageHelper.ShortMessage("Vui lòng nhập mô tả");
+                return;
+            }
+            LoadingHelper.Show();
             if (viewModel.Contact != null)
             {
                 SmtpClient client = new SmtpClient()

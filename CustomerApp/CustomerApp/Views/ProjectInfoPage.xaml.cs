@@ -366,15 +366,21 @@ namespace CustomerApp.Views
             var item = (CollectionData)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
             if (item.SharePointType == SharePointType.Image)
             {
-                var img = viewModel.Photos.SingleOrDefault(x => x.URL == item.ImageSource);
-                var index = viewModel.Photos.IndexOf(img);
-
-                new PhotoBrowser()
+                viewModel.Photos = new List<Photo>();
+                List<CollectionData> newlist = new List<CollectionData>();
+                foreach (var data in viewModel.AllCollections)
                 {
-                    Photos = viewModel.Photos,
-                    StartIndex = index,
-                    EnableGrid = true
-                }.Show();
+                    if (item.GroupId == data.ParentId)
+                    {
+                        string file = data.ImageSource;
+                        string link = $"https://firebasestorage.googleapis.com/v0/b/smsappcrm.appspot.com/o/{viewModel.Project.bsd_projectcode}%2Fimages%2F{file}?alt=media";
+                        newlist.Add(new CollectionData { ImageSource = link, Name = item.Name, GroupName = item.GroupName, GroupId = item.GroupId, SharePointType = item.SharePointType });
+                        viewModel.Photos.Add(new Photo { URL = link });
+                    }
+                }
+                ImageCollection.ItemsSource = newlist;
+                lblNameTienDo.Text = item.GroupName;
+                ContentImages.IsVisible = true;
             }
             else if (item.SharePointType == SharePointType.Video)
             {
@@ -453,6 +459,25 @@ namespace CustomerApp.Views
             {
 
             }
+        }
+        
+        private void CloseContentImages_Tapped(object sender, EventArgs e)
+        {
+            ContentImages.IsVisible = false;
+        }
+
+        private void Image_Tapped(object sender, EventArgs e)
+        {
+            var item = (CollectionData)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            var img = viewModel.Photos.SingleOrDefault(x => x.URL == item.ImageSource);
+            var index = viewModel.Photos.IndexOf(img);
+
+            new PhotoBrowser()
+            {
+                Photos = viewModel.Photos,
+                StartIndex = index,
+                EnableGrid = true
+            }.Show();
         }
     }
 }

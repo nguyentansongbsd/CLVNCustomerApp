@@ -1561,7 +1561,7 @@
     <value>Khuyến Mãi</value>
   </data>
 	<data name="phan_tram_giam" xml:space="preserve">
-    <value>Phần trăm giảm</value>
+    <value>Phần trăm</value>
   </data>
 	<data name="phuong_thuc" xml:space="preserve">
     <value>Phương thức</value>
@@ -1690,10 +1690,10 @@
     <value>Đồng Sở Hữu</value>
   </data>
 	<data name="ttdc_vbtt" xml:space="preserve">
-    <value>TTĐC/VBTT</value>
+    <value>TTĐC / VBTT</value>
   </data>
 	<data name="ngay_ttdc_vbtt" xml:space="preserve">
-    <value>Ngày TTĐC/VBTT</value>
+    <value>Ngày TTĐC / VBTT</value>
   </data>
 	<data name="so_hop_dong" xml:space="preserve">
     <value>Số hợp đồng</value>

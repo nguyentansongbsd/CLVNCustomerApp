@@ -1,6 +1,7 @@
 ﻿using CustomerApp.Helper;
 using CustomerApp.Models;
 using CustomerApp.Resources;
+using CustomerApp.Settings;
 using CustomerApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -112,25 +113,54 @@ namespace CustomerApp.Views
             UpdateEmail_Phone.IsVisible = false;
         }
 
+        private void Phone_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            if (viewModel.Phone == null) return;
+            if (viewModel.Phone.Contains(",") || viewModel.Phone.Contains("."))
+            {
+                viewModel.Phone = viewModel.Phone.Replace(",", "").Replace(".", "");
+            }
+        }
+
         private async void ChangeEmailPhone_Clicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(viewModel.Email) && string.IsNullOrWhiteSpace(viewModel.Phone))
+            try
             {
-                ToastMessageHelper.ShortMessage("Vui lòng nhập email / số điện thoại");
-                return;
+                if (string.IsNullOrWhiteSpace(viewModel.Email) && string.IsNullOrWhiteSpace(viewModel.Phone))
+                {
+                    ToastMessageHelper.ShortMessage("Vui lòng nhập email hoặc số điện thoại");
+                    return;
+                }
+
+                if (!string.IsNullOrWhiteSpace(viewModel.Email) && viewModel.Email.Trim() == viewModel.Contact.emailaddress1.Trim())
+                {
+                    ToastMessageHelper.ShortMessage("Bạn đang dùng email này");
+                    return;
+                }
+
+                if (!string.IsNullOrWhiteSpace(viewModel.Email) && !Helpers.Validations.IsValidEmail(viewModel.Email))
+                {
+                    ToastMessageHelper.ShortMessage("Email không đúng định dạng");
+                    return;
+                }
+
+                if (!string.IsNullOrWhiteSpace(viewModel.Phone) && viewModel.Phone.Trim() == viewModel.Contact.mobilephone.Trim())
+                {
+                    ToastMessageHelper.ShortMessage("Bạn đang dùng số điện thoại này");
+                    return;
+                }
+
+                if (!string.IsNullOrWhiteSpace(viewModel.Phone) && viewModel.Phone.Length != 10)
+                {
+                    ToastMessageHelper.ShortMessage("Số điện thoại không hợp lệ (Gồm 10 ký tự)");
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
 
-            if (viewModel.Email == viewModel.Contact.emailaddress1)
-            {
-                ToastMessageHelper.ShortMessage("Bạn đang nhập email cũ");
-                return;
-            }
-
-            if (viewModel.Phone == viewModel.Contact.mobilephone)
-            {
-                ToastMessageHelper.ShortMessage("Bạn đang nhập số điện thoại cũ");
-                return;
-            }
 
             LoadingHelper.Show();
             bool IsSuccess = await viewModel.CreateTask();

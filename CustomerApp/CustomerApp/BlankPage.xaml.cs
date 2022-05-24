@@ -82,22 +82,23 @@ namespace CustomerApp
                                       Token = item.Object.Token
                                   });
 
+                string fileName = FileName.Split('.')[0];
+
                 NotificaModel model = new NotificaModel()
                 {
                     Id = Guid.NewGuid(),
                     Title = "Tiến độ dự án",
-                    Body = $"Thư viện ảnh về tiến độ dự án có tiêu đề \"{FileName}\" đã được thêm vào.",
+                    Body = $"Tiến độ dự án về \"Thi công phần hoàn thiện\" của dự án \"Feliz En Vista\" đã được cập nhật thêm hình ảnh/ video \"{fileName}\" mới.",
                     ProjectId = Guid.Parse(this.Project.bsd_projectid),
+                    NotificationType = NotificationType.ConstructionProgess,
                     CreatedDate = DateTime.Now,
                     IsRead = false
                 };
 
+                var a = await firebaseClient.Child("Notifications").PostAsync(model);
+                model.Key = a.Key;
 
-
-                await Task.WhenAll(
-                    firebaseClient.Child("Notifications").PostAsync(model),
-                    sendNoti(model,Tokens)
-                    );
+                await sendNoti(model, Tokens);
             }
             catch(Exception ex)
             {
@@ -115,68 +116,73 @@ namespace CustomerApp
 
         async void Button_Clicked_1(System.Object sender, System.EventArgs e)
         {
-            var a = firebaseClient.Child("ATC").PostAsync(new CollectionData()
-            {
-                Id = Guid.NewGuid(),
-                ImageSource = "song.jng",
-                SharePointType = SharePointType.Image,
-                MediaSourceId = null,
-                Name = "song",
-                Index = 0,
-                Thumnail = "song"
-            });
-            //string[] options = new string[] { Language.thu_vien, Language.chup_hinh };
-            //string asw = await DisplayActionSheet(Language.tuy_chon, Language.huy, null, options);
-            //if (asw == Language.thu_vien)
+            //var a = firebaseClient.Child("ATC").PostAsync(new CollectionData()
             //{
-            //    LoadingHelper.Show();
-            //    await CrossMedia.Current.Initialize();
-            //    PermissionStatus photostatus = await PermissionHelper.RequestPhotosPermission();
-            //    if (photostatus == PermissionStatus.Granted)
-            //    {
-            //        try
-            //        {
-            //            var pickerFile = await FilePicker.PickAsync(new PickOptions()
-            //            {
-            //                FileTypes = FilePickerFileType.Images,
-            //                PickerTitle = "Chọn File",
-            //            });
-            //            if (pickerFile != null)
-            //            {
-            //                LoadingHelper.Show();
-            //                FileName = pickerFile.FileName;
-            //                this.Stream = await pickerFile.OpenReadAsync();
+            //    Id = Guid.NewGuid(),
+            //    ImageSource = "song.jng",
+            //    SharePointType = SharePointType.Image,
+            //    MediaSourceId = null,
+            //    Name = "song",
+            //    Index = 0,
+            //    Thumnail = "song"
+            //});
+            string[] options = new string[] { Language.thu_vien, Language.chup_hinh };
+            string asw = await DisplayActionSheet(Language.tuy_chon, Language.huy, null, options);
+            if (asw == Language.thu_vien)
+            {
+                LoadingHelper.Show();
+                await CrossMedia.Current.Initialize();
+                PermissionStatus photostatus = await PermissionHelper.RequestPhotosPermission();
+                if (photostatus == PermissionStatus.Granted)
+                {
+                    try
+                    {
+                        var pickerFile = await FilePicker.PickAsync(new PickOptions()
+                        {
+                            FileTypes = FilePickerFileType.Images,
+                            PickerTitle = "Chọn File",
+                        });
+                        if (pickerFile != null)
+                        {
+                            LoadingHelper.Show();
+                            FileName = pickerFile.FileName;
+                            this.Stream = await pickerFile.OpenReadAsync();
 
-            //                var isSuccess = await storageHelper.UploadFile(this.Stream,Project.bsd_projectcode,"images", pickerFile.FileName);
-            //                if (!string.IsNullOrWhiteSpace(isSuccess))
-            //                {
+                            var isSuccess = await storageHelper.UploadFile(this.Stream, Project.bsd_projectcode, "images", pickerFile.FileName);
+                            if (!string.IsNullOrWhiteSpace(isSuccess))
+                            {
+                                string fileName = FileName.Split('.')[0];
+                                var a = firebaseClient.Child(this.Project.bsd_projectcode).PostAsync(new CollectionData()
+                                {
+                                    Id = Guid.NewGuid(),
+                                    ImageSource = pickerFile.FileName,
+                                    SharePointType = SharePointType.Image,
+                                    MediaSourceId = null,
+                                    Name = fileName,
+                                    Index = 0,
+                                    Thumnail = "",
+                                    GroupName = "",
+                                    GroupId = "",
+                                    ParentId = "3",
+                                    IsGroup = false
+                                });
+                                ToastMessageHelper.ShortMessage(Language.noti_thanh_cong);
+                            }
+                            LoadingHelper.Hide();
+                        }
+                        else
+                        {
 
-            //                    var a = firebaseClient.Child("ATC").PostAsync(new CollectionData() {
-            //                        Id = Guid.NewGuid(),
-            //                        ImageSource = pickerFile.FileName,
-            //                        SharePointType = SharePointType.Image,
-            //                        MediaSourceId = null,
-            //                        Name ="song",
-            //                        Index=0,
-            //                        Thumnail="song"
-            //                    });
-            //                    ToastMessageHelper.ShortMessage(Language.noti_thanh_cong);
-            //                }
-            //                LoadingHelper.Hide();
-            //            }
-            //            else
-            //            {
-
-            //            }
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            ToastMessageHelper.LongMessage(ex.Message);
-            //            LoadingHelper.Hide();
-            //        }
-            //    }
-            //    LoadingHelper.Hide();
-            //}
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ToastMessageHelper.LongMessage(ex.Message);
+                        LoadingHelper.Hide();
+                    }
+                }
+                LoadingHelper.Hide();
+            }
             //else if (asw == Language.chup_hinh)
             //{
             //    LoadingHelper.Show();

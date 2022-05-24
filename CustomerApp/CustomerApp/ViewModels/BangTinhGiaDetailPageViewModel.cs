@@ -33,7 +33,7 @@ namespace CustomerApp.ViewModels
         private StatusCodeModel _quoteStatus;
         public StatusCodeModel QuoteStatus { get => _quoteStatus; set { _quoteStatus = value; OnPropertyChanged(nameof(QuoteStatus)); } }
 
-        public ObservableCollection<OptionSet> ListDiscount { get; set; } = new ObservableCollection<OptionSet>();
+        public ObservableCollection<DiscountModel> ListDiscount { get; set; } = new ObservableCollection<DiscountModel>();
         public ObservableCollection<OptionSet> ListDiscountPaymentScheme { get; set; } = new ObservableCollection<OptionSet>();
         public ObservableCollection<OptionSet> ListDiscountInternel { get; set; } = new ObservableCollection<OptionSet>();
         public ObservableCollection<OptionSet> ListDiscountExchange { get; set; } = new ObservableCollection<OptionSet>();
@@ -333,8 +333,11 @@ namespace CustomerApp.ViewModels
 
             string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='true'>
                                 <entity name='bsd_discount'>
-                                    <attribute name='bsd_discountid' alias='Val'/>
-                                    <attribute name='bsd_name' alias='Label'/>
+                                    <attribute name='bsd_discountid'/>
+                                    <attribute name='bsd_discountnumber' />
+                                    <attribute name='bsd_method' />
+                                    <attribute name='bsd_amount' />
+                                    <attribute name='bsd_percentage' />
                                     <order attribute='bsd_name' descending='false' />
                                     <filter type='and'>
                                       <condition attribute='bsd_discountid' operator='in'>
@@ -344,7 +347,7 @@ namespace CustomerApp.ViewModels
                                 </entity>
                             </fetch>";
 
-            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<OptionSet>>("bsd_discounts", fetchXml);
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<DiscountModel>>("bsd_discounts", fetchXml);
             if (result == null || result.value.Count == 0) return;
             foreach (var item in result.value)
             {
@@ -727,6 +730,7 @@ namespace CustomerApp.ViewModels
                                     <attribute name='bsd_name' />
                                     <attribute name='bsd_percentdiscount' />
                                     <attribute name='statuscode' />
+                                    <attribute name='bsd_totalamount' />
                                     <order attribute='bsd_name' descending='false' />
                                     <filter type='and'>
                                       <condition attribute='bsd_discountspecialid' operator='eq' value='{discountspecialItem_id}' />
@@ -761,13 +765,9 @@ namespace CustomerApp.ViewModels
                                     <attribute name='bsd_isconditionsapplied' />
                                     <attribute name='bsd_conditionsapply' />
                                     <order attribute='bsd_discountnumber' descending='false' />
-                                    <link-entity name='bsd_bsd_discounttype_bsd_discount' from='bsd_discountid' to='bsd_discountid' visible='false' intersect='true'>
-                                      <link-entity name='bsd_discounttype' from='bsd_discounttypeid' to='bsd_discounttypeid' alias='ac'>
-                                        <filter type='and'>
-                                          <condition attribute='bsd_discounttypeid' operator='eq' value='{discount_id}' />
-                                        </filter>
-                                      </link-entity>
-                                    </link-entity>
+                                    <filter type='and'>
+                                      <condition attribute='bsd_discountid' operator='eq' value='{discount_id}'/>
+                                    </filter>
                                   </entity>
                                 </fetch>";
 

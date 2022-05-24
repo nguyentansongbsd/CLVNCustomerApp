@@ -23,6 +23,7 @@ namespace CustomerApp.ViewModels
             new FirebaseOptions { AuthTokenAsyncFactory = () => Task.FromResult("kLHIPuBhEIrL6s3J6NuHpQI13H7M0kHjBRLmGEPF") });
 
         public ObservableCollection<CollectionData> Collections { get; set; } = new ObservableCollection<CollectionData>();
+        public List<CollectionData> AllCollections { get; set; } = new List<CollectionData>();
 
         public List<Photo> Photos { get; set; }
         private bool _showCollections = false;
@@ -122,6 +123,8 @@ namespace CustomerApp.ViewModels
 
         private List<CollectionData> _listCollection;
         public List<CollectionData> ListCollection { get => _listCollection; set { _listCollection = value; OnPropertyChanged(nameof(ListCollection)); } }
+
+        public int numGroup = 0;
 
         public ProjectInfoPageViewModel()
         {
@@ -569,21 +572,35 @@ namespace CustomerApp.ViewModels
                                       Index = item.Object.Index,
                                       Name = item.Object.Name,
                                       Thumnail = item.Object.Thumnail,
-                                  });
+                                      GroupName = item.Object.GroupName,
+                                      GroupId = item.Object.GroupId,
+                                      ParentId = item.Object.ParentId,
+                                      IsGroup = item.Object.IsGroup
+                                  }).ToList() ;
+                    this.AllCollections = Items;
+
+                    int numGroup = 0;
                     foreach (var item in Items)
                     {
                         string file = item.ImageSource;
                         string link = $"https://firebasestorage.googleapis.com/v0/b/smsappcrm.appspot.com/o/{Project.bsd_projectcode}%2Fimages%2F{file}?alt=media";
-                        if (item.SharePointType == SharePointType.Image)
+
+                        if (item.SharePointType == SharePointType.Image && item.IsGroup == true)
                         {
-                            Photos.Add(new Photo { URL = link });
-                            list.Add(new CollectionData { ImageSource = link, Name = item.Name, SharePointType = item.SharePointType });
+                            list.Add(new CollectionData { ImageSource = link,Name = item.Name, GroupName = item.GroupName, GroupId = item.GroupId, SharePointType = item.SharePointType });
+                            numGroup++;
                         }
-                        else
+                    }
+
+                    foreach (var item in Items)
+                    {
+                        if (item.SharePointType == SharePointType.Video)
                         {
+                            string file = item.ImageSource;
+                            string link = $"https://firebasestorage.googleapis.com/v0/b/smsappcrm.appspot.com/o/{Project.bsd_projectcode}%2Fimages%2F{file}?alt=media";
                             string thumbail = item.Thumnail;
                             string linkThumnail = $"https://firebasestorage.googleapis.com/v0/b/smsappcrm.appspot.com/o/{Project.bsd_projectcode}%2Fimages%2F{thumbail}?alt=media";
-                            list.Add(new CollectionData { ImageSource = linkThumnail, Name = item.Name, MediaSourceId = link, SharePointType = SharePointType.Video });
+                            list.Add(new CollectionData { ImageSource = linkThumnail, GroupName = item.Name, MediaSourceId = link, SharePointType = SharePointType.Video });
                         }
                     }
                 }
@@ -593,11 +610,11 @@ namespace CustomerApp.ViewModels
                     Photos.Add(new Photo { URL = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/du-an-cham-tien-do-1564765702.jpg?alt=media&token=7e8be40e-9756-4d0e-8a1b-bb81d99941ea" });
                     Photos.Add(new Photo { URL = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/mat-bang-an-binh-golden-town.jpg?alt=media&token=843e5477-0819-4726-9de2-60df1a7baa73" });
 
-                    list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/an-binh-golden-town-2.jpg?alt=media&token=17e47607-c761-4d49-a628-6efbc23fe356", Name = "Aug 2021", SharePointType = SharePointType.Image });
-                    list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/du-an-cham-tien-do-1564765702.jpg?alt=media&token=7e8be40e-9756-4d0e-8a1b-bb81d99941ea", Name = "Sep 2021", SharePointType = SharePointType.Image });
-                    list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/mat-bang-an-binh-golden-town.jpg?alt=media&token=843e5477-0819-4726-9de2-60df1a7baa73", Name = "Oct 2021", SharePointType = SharePointType.Image });
-                    list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Screenshot%20(98).png?alt=media&token=b45c5601-fbe7-410a-ae1c-aa8592beb923", Name = "The Story Behind A Masterprice", MediaSourceId = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Feliz%20en%20Vista%20-%20The%20Story%20Behind%20A%20Masterpiece.mp4?alt=media&token=01068c7e-bae9-40c8-b5f5-0ff34ee8e0fb", SharePointType = SharePointType.Video });
-                    list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Screenshot%20(100).png?alt=media&token=4c64dbdc-2b2e-4ba0-8f3c-baf541a40f68", Name = "Gioi Thieu Du An", MediaSourceId = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20d%E1%BB%B1%20%C3%A1n%20%C4%91%E1%BB%89nh%20cao%20Feliz%20en%20Vista%20c%E1%BB%A7a%20CapitaLand%20-%20Crafting%20Tomorrow%E2%80%99s%20Beauty.mp4?alt=media&token=d9a4d8c1-f454-4661-9806-ecce3d26810c", SharePointType = SharePointType.Video });
+                    list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/an-binh-golden-town-2.jpg?alt=media&token=17e47607-c761-4d49-a628-6efbc23fe356", GroupName = "Aug 2021", SharePointType = SharePointType.Image });
+                    list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/du-an-cham-tien-do-1564765702.jpg?alt=media&token=7e8be40e-9756-4d0e-8a1b-bb81d99941ea", GroupName = "Sep 2021", SharePointType = SharePointType.Image });
+                    list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/mat-bang-an-binh-golden-town.jpg?alt=media&token=843e5477-0819-4726-9de2-60df1a7baa73", GroupName = "Oct 2021", SharePointType = SharePointType.Image });
+                    list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Screenshot%20(98).png?alt=media&token=b45c5601-fbe7-410a-ae1c-aa8592beb923", GroupName = "The Story Behind A Masterprice", MediaSourceId = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Feliz%20en%20Vista%20-%20The%20Story%20Behind%20A%20Masterpiece.mp4?alt=media&token=01068c7e-bae9-40c8-b5f5-0ff34ee8e0fb", SharePointType = SharePointType.Video });
+                    list.Add(new CollectionData { ImageSource = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Screenshot%20(100).png?alt=media&token=4c64dbdc-2b2e-4ba0-8f3c-baf541a40f68", GroupName = "Gioi Thieu Du An", MediaSourceId = "https://firebasestorage.googleapis.com/v0/b/customerapp-71c85.appspot.com/o/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20d%E1%BB%B1%20%C3%A1n%20%C4%91%E1%BB%89nh%20cao%20Feliz%20en%20Vista%20c%E1%BB%A7a%20CapitaLand%20-%20Crafting%20Tomorrow%E2%80%99s%20Beauty.mp4?alt=media&token=d9a4d8c1-f454-4661-9806-ecce3d26810c", SharePointType = SharePointType.Video });
                 }
                 
             }

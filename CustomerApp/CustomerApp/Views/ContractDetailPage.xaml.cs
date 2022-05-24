@@ -24,7 +24,7 @@ namespace CustomerApp.Views
             InitializeComponent();
             ContractId = id;
             BindingContext = viewModel = new ContractDetailPageViewModel();
-            Tab_Tapped(1);
+            Tab_Tapped(3);
             Init();
         }
 
@@ -36,6 +36,7 @@ namespace CustomerApp.Views
                 );
             if (viewModel.Contract.salesorderid != Guid.Empty)
             {
+                LoadChinhSach();
                 OnCompleted?.Invoke(true);
             }
             else
@@ -59,10 +60,11 @@ namespace CustomerApp.Views
             if (viewModel.Contract.handovercondition_id == Guid.Empty)
             {
                 LoadingHelper.Show();
-                await viewModel.LoadHandoverCondition(this.ContractId);
-                SetUpDiscount(viewModel.Contract.bsd_discounts);
-                SutUpPromotions();
-                SutUpSpecialDiscount();
+                await Task.WhenAll(viewModel.LoadHandoverCondition(this.ContractId),
+                    viewModel.LoadDiscounts(),
+                    viewModel.LoadSpecialDiscount(this.ContractId),
+                    viewModel.LoadPromotions(this.ContractId));
+                
                 LoadingHelper.Hide();
             }
         }
@@ -165,75 +167,75 @@ namespace CustomerApp.Views
 
         private async void SetUpDiscount(string ids)
         {
-            if (!string.IsNullOrEmpty(ids))
-            {
-                scrolltDiscount.IsVisible = true;
-                if (viewModel.Contract.discountlist_id != Guid.Empty)
-                {
-                    await viewModel.LoadDiscounts();
+            //if (!string.IsNullOrEmpty(ids))
+            //{
+            //    scrolltDiscount.IsVisible = true;
+            //    if (viewModel.Contract.discountlist_id != Guid.Empty)
+            //    {
+                    
 
-                    var list_id = ids.Split(',');
+            //        var list_id = ids.Split(',');
 
-                    foreach (var id in list_id)
-                    {
-                        OptionSet item = viewModel.ListDiscount.Single(x => x.Val == id);
-                        if (item != null && !string.IsNullOrEmpty(item.Val))
-                        {
-                            stackLayoutDiscount.Children.Add(SetUpItemBorder(item.Label));
-                        }
-                    }
-                }
-            }
-            else
-            {
-                scrolltDiscount.IsVisible = false;
-            }
+            //        foreach (var id in list_id)
+            //        {
+            //            OptionSet item = viewModel.ListDiscount.Single(x => x.Val == id);
+            //            if (item != null && !string.IsNullOrEmpty(item.Val))
+            //            {
+            //                stackLayoutDiscount.Children.Add(SetUpItemBorder(item.Label));
+            //            }
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    scrolltDiscount.IsVisible = false;
+            //}
         }
 
         private async void SutUpSpecialDiscount()
         {
-            if (viewModel.Contract.salesorderid != Guid.Empty)
-            {
-                await viewModel.LoadSpecialDiscount(this.ContractId);
-                if (viewModel.ListSpecialDiscount != null && viewModel.ListSpecialDiscount.Count > 0)
-                {
-                    stackLayoutSpecialDiscount.IsVisible = true;
-                    foreach (var item in viewModel.ListSpecialDiscount)
-                    {
-                        if (!string.IsNullOrEmpty(item.Label))
-                        {
-                            stackLayoutSpecialDiscount.Children.Add(SetUpItem(item.Label));
-                        }
-                    }
-                }
-                else
-                {
-                    stackLayoutSpecialDiscount.IsVisible = false;
-                }
-            }
+            //if (viewModel.Contract.salesorderid != Guid.Empty)
+            //{
+            //    await viewModel.LoadSpecialDiscount(this.ContractId);
+            //    if (viewModel.ListSpecialDiscount != null && viewModel.ListSpecialDiscount.Count > 0)
+            //    {
+            //        stackLayoutSpecialDiscount.IsVisible = true;
+            //        foreach (var item in viewModel.ListSpecialDiscount)
+            //        {
+            //            if (!string.IsNullOrEmpty(item.Label))
+            //            {
+            //                stackLayoutSpecialDiscount.Children.Add(SetUpItem(item.Label));
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        stackLayoutSpecialDiscount.IsVisible = false;
+            //    }
+            //}
         }
 
         private async void SutUpPromotions()
         {
-            if (viewModel.Contract.salesorderid != Guid.Empty)
-            {
-                await viewModel.LoadPromotions(this.ContractId);
-                if (viewModel.ListPromotion != null && viewModel.ListPromotion.Count > 0)
-                {
-                    stackLayoutPromotions.IsVisible = true;
-                    foreach (var item in viewModel.ListPromotion)
-                    {
-                        if (!string.IsNullOrEmpty(item.Label))
-                        {
-                            stackLayoutPromotions.Children.Add(SetUpItem(item.Label));
-                        }
-                    }
-                }
-                else
-                {
-                    stackLayoutPromotions.IsVisible = false;
-                }
-            }
+            //if (viewModel.Contract.salesorderid != Guid.Empty)
+            //{
+            //    await viewModel.LoadPromotions(this.ContractId);
+            //    if (viewModel.ListPromotion != null && viewModel.ListPromotion.Count > 0)
+            //    {
+            //        stackLayoutPromotions.IsVisible = true;
+            //        foreach (var item in viewModel.ListPromotion)
+            //        {
+            //            if (!string.IsNullOrEmpty(item.Label))
+            //            {
+            //                stackLayoutPromotions.Children.Add(SetUpItem(item.Label));
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        stackLayoutPromotions.IsVisible = false;
+            //    }
+            //}
         }
 
         private RadBorder SetUpItemBorder(string content)
@@ -285,6 +287,95 @@ namespace CustomerApp.Views
                     ToastMessageHelper.ShortMessage(Language.noti_khong_tim_thay_thong_tin_vui_long_thu_lai);
                 }
             };
+        }
+
+        private async void stackLayoutPromotions_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            var item = ((TapGestureRecognizer)((Label)sender).GestureRecognizers[0]).CommandParameter as OptionSet;
+            if (item != null && item.Val != string.Empty)
+            {
+                if (viewModel.PromotionItem == null)
+                {
+                    await viewModel.LoadPromotionItem(item.Val);
+                }
+                else if (viewModel.PromotionItem.bsd_promotionid.ToString() != item.Val)
+                {
+                    await viewModel.LoadPromotionItem(item.Val);
+                }
+            }
+            if (viewModel.PromotionItem != null)
+                ContentPromotion.IsVisible = true;
+            LoadingHelper.Hide();
+        }
+
+        private void CloseContentPromotion_Tapped(object sender, EventArgs e)
+        {
+            ContentPromotion.IsVisible = false;
+        }
+
+        private void ContentSpecialDiscount_Tapped(object sender, EventArgs e)
+        {
+            ContentSpecialDiscount.IsVisible = false;
+        }
+
+        private async void stackLayoutSpecialDiscount_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            var item = ((TapGestureRecognizer)((Label)sender).GestureRecognizers[0]).CommandParameter as OptionSet;
+            if (item != null && item.Val != string.Empty)
+            {
+                if (viewModel.DiscountSpecialItem == null)
+                {
+                    await viewModel.LoadDiscountSpecialItem(item.Val);
+                }
+                else if (viewModel.DiscountSpecialItem.bsd_discountspecialid.ToString() != item.Val)
+                {
+                    await viewModel.LoadDiscountSpecialItem(item.Val);
+                }
+            }
+            if (viewModel.DiscountSpecialItem != null)
+                ContentSpecialDiscount.IsVisible = true;
+            LoadingHelper.Hide();
+        }
+
+        private void CloseContentDiscount_Tapped(object sender, EventArgs e)
+        {
+            ContentDiscount.IsVisible = false;
+        }
+
+        private async void Discount_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            var item = (Guid)((sender as Label).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            await viewModel.LoadDiscountItem(item);
+            if (viewModel.Discount != null)
+            {
+                ContentDiscount.IsVisible = true;
+                LoadingHelper.Hide();
+            }
+            else
+            {
+                LoadingHelper.Hide();
+                ToastMessageHelper.ShortMessage("Không tìm thấy thông tin chiết khấu");
+            }
+        }
+
+        private void ContentHandoverCondition_Tapped(object sender, EventArgs e)
+        {
+            ContentHandoverCondition.IsVisible = false;
+        }
+
+        private async void HandoverConditionItem_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            if (viewModel.HandoverConditionItem == null && viewModel.Contract.handovercondition_id != Guid.Empty)
+            {
+                await viewModel.LoadHandoverConditionItem(viewModel.Contract.handovercondition_id);
+            }
+            if (viewModel.HandoverConditionItem != null)
+                ContentHandoverCondition.IsVisible = true;
+            LoadingHelper.Hide();
         }
     }
 }

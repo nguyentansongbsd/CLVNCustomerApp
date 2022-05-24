@@ -23,6 +23,7 @@
         <ResourceDictionary>
             <converter:NotiBackgroundConverter x:Key="NotiBackgroundConverter"/>
             <converter:NotificationTypeConverter x:Key="NotificationTypeConverter"/>
+            <converter:DatetimeConverter x:Key="DatetimeConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -36,7 +37,7 @@
                                     <ffimageLoading:CachedImage Grid.RowSpan="2" Grid.Column="0" Source="{Binding NotificationType,Converter={x:StaticResource NotificationTypeConverter}}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40" VerticalOptions="Center"/>
                                     <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" TextColor="{x:StaticResource NavigationPrimary}" FontSize="16"/>
                                     <Label Grid.Row="1" Grid.Column="1" Text="{Binding Body}" FontSize="15" TextColor="#333333"/>
-                                    <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding CreatedDate,StringFormat='{0:dd/MM/yyyy - hh:mm tt}'}" HorizontalTextAlignment="End" FontSize="13" TextColor="#666666"/>
+                                    <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding CreatedDate,Converter={x:StaticResource DatetimeConverter}}" HorizontalTextAlignment="End" FontSize="13" TextColor="#666666"/>
                                 </Grid>
                             </StackLayout>
                         </ViewCell>

@@ -336,6 +336,10 @@ namespace CustomerApp.Models
         public string bsd_freightamount_format { get => StringFormatHelper.FormatCurrency(bsd_freightamount); }
         public decimal bsd_totalamount { get; set; } // tổng tiền
         public string bsd_totalamount_format { get => StringFormatHelper.FormatCurrency(bsd_totalamount); }
+
+        public decimal bsd_totalamountpaidinstallment { get; set; }
+        public string bsd_totalamountpaidinstallment_format { get => StringFormatHelper.FormatCurrency(bsd_totalamountpaidinstallment); }
+
         public int bsd_numberofmonthspaidmf { get; set; } // số tháng đóng phí
         public decimal bsd_managementfee { get; set; } // phí quản lý
         public string bsd_managementfee_format { get => StringFormatHelper.FormatCurrency(bsd_managementfee); }

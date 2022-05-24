@@ -51,7 +51,7 @@ namespace CustomerApp.ViewModels
 
         public async Task UpdateStatus(string key, NotificaModel data)
         {
-            await firebaseClient.Child("Notifications").Child(key).PutAsync(new NotificaModel() { Id = data.Id, Title = data.Title,Body = data.Body,ProjectId = data.ProjectId,IsRead= true,CreatedDate=data.CreatedDate });
+            await firebaseClient.Child("Notifications").Child(key).PutAsync(new NotificaModel() { Id = data.Id, Title = data.Title,Body = data.Body,ProjectId = data.ProjectId,IsRead= true,NotificationType = data.NotificationType,CreatedDate=data.CreatedDate });
         }
     }
 }

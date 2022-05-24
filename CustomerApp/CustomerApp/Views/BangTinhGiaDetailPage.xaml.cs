@@ -85,8 +85,26 @@ namespace CustomerApp.Views
             }
         }
 
-        //tab chinh sach
+        private void UnitDetail_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            var unitId = (Guid)((sender as Label).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            UnitInfoPage unit = new UnitInfoPage(unitId);
+            unit.OnCompleted = async (isSuccess) => {
+                if (isSuccess)
+                {
+                    await Navigation.PushAsync(unit);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.noti_khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
+        }
 
+        //tab chinh sach
         private async Task LoadDataChinhSach(Guid id)
         {
             if (id != Guid.Empty)
@@ -682,13 +700,18 @@ namespace CustomerApp.Views
         private async void Discount_Tapped(object sender, EventArgs e)
         {
             LoadingHelper.Show();
-            if (viewModel.Discount == null && viewModel.Reservation.bsd_discounttypeid != Guid.Empty)
-            {
-                await viewModel.LoadDiscountItem(viewModel.Reservation.bsd_discounttypeid);
-            }
+            var item = (Guid)((sender as Label).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            await viewModel.LoadDiscountItem(item);
             if (viewModel.Discount != null)
+            {
                 ContentDiscount.IsVisible = true;
-            LoadingHelper.Hide();
+                LoadingHelper.Hide();
+            }
+            else
+            {
+                LoadingHelper.Hide();
+                ToastMessageHelper.ShortMessage("Không tìm thấy thông tin chiết khấu");
+            }
         }
     }
 }

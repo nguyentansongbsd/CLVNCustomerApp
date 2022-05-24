@@ -14,6 +14,10 @@ namespace CustomerApp.Models
         public string ImageSourceBase64 { get; set; }
         public SharePointType SharePointType { get; set; }
         public int Index { get; set; }
+        public string GroupId { get; set; }
+        public string GroupName { get; set; }
+        public string ParentId { get; set; }
+        public bool IsGroup { get; set; }
         public CollectionData()
         { }
     }

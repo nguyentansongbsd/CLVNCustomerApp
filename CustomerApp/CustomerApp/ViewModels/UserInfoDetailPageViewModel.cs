@@ -106,9 +106,9 @@ namespace CustomerApp.ViewModels
             if (result == null || result.value.Any() == false) return;
             var data = result.value.SingleOrDefault();
 
-            if (data.mobilephone.StartsWith("84"))
+            if (data.mobilephone.StartsWith("+84"))
             {
-                data.mobilephone = data.mobilephone.Replace("84", "");
+                data.mobilephone = data.mobilephone.Replace("+84", "").Replace(" ","");
             }
             Contact = data;
             Gender = Data.GetGenderById(Contact.gendercode);
@@ -317,33 +317,46 @@ namespace CustomerApp.ViewModels
         private async Task<object> getContent()
         {
             IDictionary<string, object> data = new Dictionary<string, object>();
-            data["activityid"] = Guid.NewGuid();
-            data["subject"] = "Cập nhật Email/Số điện thoại";
-            data["bsd_email"] = this.Email;
-            data["bsd_phone"] = this.Phone;
-            data["bsd_system"] = true;
-            data["bsd_type"] = "100000002";
-
-            data["regardingobjectid_contact_task@odata.bind"] = "/contacts(" + UserLogged.Id + ")";
-
-            if (!string.IsNullOrWhiteSpace(Email) && string.IsNullOrWhiteSpace(Phone) && Email != Contact.emailaddress1)
+            try
             {
-                data["bsd_typeupdate"] = "100000000";
-            }
-            else if(!string.IsNullOrWhiteSpace(Phone) && string.IsNullOrWhiteSpace(Email) && Phone != Contact.mobilephone)
-            {
-                data["bsd_typeupdate"] = "100000001";
-            }
-            else if(!string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Phone) && Email != Contact.emailaddress1 && Phone != Contact.mobilephone)
-            {
-                data["bsd_typeupdate"] = "100000002";
-            }
+                //DateTime endtime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+                DateTime now = DateTime.Now;
 
-            if (UserLogged.ManagerId != Guid.Empty)
-            {
-                data["ownerid@odata.bind"] = "/systemusers(" + UserLogged.ManagerId + ")";
-            }
+                data["activityid"] = Guid.NewGuid();
+                data["subject"] = UserLogged.User + " - Cập nhật Email/Số điện thoại";
+                data["bsd_email"] = this.Email;
+                data["bsd_phone"] = !string.IsNullOrWhiteSpace(this.Phone) ? this.Phone.Trim() : null ;
+                data["bsd_system"] = true;
+                data["bsd_type"] = "100000002";
+                data["scheduledstart"] = now.ToUniversalTime();
+                data["scheduledend"] = now.AddHours(24).ToUniversalTime();
 
+                data["regardingobjectid_contact_task@odata.bind"] = "/contacts(" + UserLogged.Id + ")";
+
+                if (!string.IsNullOrWhiteSpace(Email) && string.IsNullOrWhiteSpace(Phone) && Email != Contact.emailaddress1)
+                {
+                    data["bsd_typeupdate"] = "100000000";
+                }
+                else if (!string.IsNullOrWhiteSpace(Phone) && string.IsNullOrWhiteSpace(Email) && Phone != Contact.mobilephone)
+                {
+                    data["bsd_typeupdate"] = "100000001";
+                }
+                else if (!string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Phone) && Email != Contact.emailaddress1 && Phone != Contact.mobilephone)
+                {
+                    data["bsd_typeupdate"] = "100000002";
+                }
+
+                if (UserLogged.ManagerId != Guid.Empty)
+                {
+                    data["ownerid@odata.bind"] = "/systemusers(" + UserLogged.ManagerId + ")";
+                }
+
+                
+            }
+            catch(Exception ex)
+            {
+
+            }
             return data;
         }
     }
