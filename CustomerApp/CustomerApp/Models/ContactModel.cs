@@ -1,12 +1,13 @@
 ﻿using CustomerApp.Datas;
 using CustomerApp.Helpers;
+using CustomerApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CustomerApp.Models
 {
-    public class ContactModel
+    public class ContactModel : BaseViewModel
     {
         // id
         public Guid contactid { get; set; }
@@ -19,7 +20,8 @@ namespace CustomerApp.Models
         //email
         public string emailaddress1 { get; set; }
         // sdt
-        public string mobilephone { get; set; }
+        private string _mobilephone;
+        public string mobilephone { get => _mobilephone; set { _mobilephone = value;OnPropertyChanged(nameof(mobilephone)); } }
         // ngày sinh
         public DateTime? birthdate { get; set; }
         // địa chỉ

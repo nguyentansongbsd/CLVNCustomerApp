@@ -5,13 +5,6 @@
              xmlns:lang="clr-namespace:CustomerApp.Resources" 
              xmlns:controls="clr-namespace:CustomerApp.Controls"
              Title="{x:Static lang:Language.title_phan_hoi}">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Clicked="SendEmail_Clicked">
-            <ToolbarItem.IconImageSource>
-                <FontImageSource Glyph="&#xf00c;" FontFamily="FontAwesomeSolid" Size="18" Color="White"/>
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <AbsoluteLayout>
             <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
@@ -29,15 +22,18 @@
                     <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_email}" Text="{Binding Contact.emailaddress1}" FontSize="15" />
 
                     <controls:FormLabel Text="{x:Static lang:Language.so_dien_thoai}" FontSize="15" Margin="0,10,0,0"/>
-                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_so_dien_thoai}" Text="{Binding Contact.mobilephone}" FontSize="15" />
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_so_dien_thoai}" Text="{Binding Contact.mobilephone}" FontSize="15" Keyboard="Numeric" TextChanged="Phone_TextChanged"/>
 
-                    <controls:FormLabel Text="{x:Static lang:Language.subject}" FontSize="15" Margin="0,10,0,0"/>
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.subject}" Margin="0,10,0,0"/>
                     <controls:MainEntry x:Name="entrySubject" Placeholder="{x:Static lang:Language.nhap_subject}" Text="{Binding Subject}" FontSize="15"/>
 
-                    <controls:FormLabel Text="{x:Static lang:Language.mo_ta}" FontSize="15" Margin="0,10,0,0"/>
-                    <controls:MainEditor x:Name="entryContent" Placeholder="{x:Static lang:Language.nhap_mo_ta}" Text="{Binding Content}" FontSize="15" AutoSize="TextChanges" />
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.mo_ta}" Margin="0,10,0,0"/>
+                    <controls:MainEditor x:Name="entryContent" Placeholder="{x:Static lang:Language.nhap_mo_ta}" Text="{Binding Content}" FontSize="15" HeightRequest="150"  AutoSize="TextChanges" />
                 </StackLayout>
             </ScrollView>
+            <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,60" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" Padding="10,4,10,16">
+                <Button Text="Gửi phản hồi" Clicked="SendEmail_Clicked" TextColor="White" FontSize="15" HeightRequest="40" CornerRadius="5" BackgroundColor="{x:StaticResource NavigationPrimary}"/>
+            </StackLayout>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

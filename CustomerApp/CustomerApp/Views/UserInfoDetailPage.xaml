@@ -145,7 +145,7 @@
                 </StackLayout>
             </ScrollView>
 
-            <StackLayout Padding="10,6" AbsoluteLayout.LayoutBounds="0,1,1,54" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional">
+            <StackLayout Padding="10,4,10,16" AbsoluteLayout.LayoutBounds="0,1,1,60" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional">
                 <Button Text="Cập nhật Email/Số điện thoại" Clicked="UpdateEmail_Phone_Clicked" HeightRequest="40" TextColor="White" BackgroundColor="{x:StaticResource NavigationPrimary}" CornerRadius="5"/>
             </StackLayout>
 
@@ -167,8 +167,8 @@
                         <StackLayout Grid.Row="1" Padding="10,0">
                             <controls:FormLabel Text="{x:Static lang:Language.email}" />
                             <controls:MainEntry Text="{Binding Email}"  Placeholder="{x:Static lang:Language.nhap_email}"/>
-                            <controls:FormLabel Text="{x:Static lang:Language.so_dien_thoai}" />
-                            <controls:MainEntry Text="{Binding Phone}" Placeholder="{x:Static lang:Language.nhap_so_dien_thoai}"/>
+                            <controls:FormLabel Text="{x:Static lang:Language.so_dien_thoai}"/>
+                            <controls:MainEntry Text="{Binding Phone}" Placeholder="{x:Static lang:Language.nhap_so_dien_thoai}" Keyboard="Numeric" TextChanged="Phone_TextChanged"/>
 
                             <Button Text="{x:Static lang:Language.btn_luu}" Clicked="ChangeEmailPhone_Clicked" Margin="0,10,0,0" TextColor="White" HeightRequest="40" BackgroundColor="{x:StaticResource NavigationPrimary}"/>
                         </StackLayout>

@@ -64,6 +64,15 @@ namespace CustomerApp.ViewModels
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<ContactModel>>("contacts", fetchXml);
             if (result == null || result.value.Any() == false) return;
 
+            var data = result.value.SingleOrDefault();
+            if (data.mobilephone.StartsWith("+84"))
+            {
+                data.mobilephone = data.mobilephone.Replace("+84", "").Replace(" ", "");
+            }
+            else if(data.mobilephone.StartsWith("84"))
+            {
+                data.mobilephone = data.mobilephone.Replace("84", "").Replace(" ", "");
+            }
             Contact = result.value.SingleOrDefault();
         }
     }

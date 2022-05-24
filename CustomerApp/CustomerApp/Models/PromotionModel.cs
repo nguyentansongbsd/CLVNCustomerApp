@@ -14,7 +14,7 @@ namespace CustomerApp.Models
 
         private decimal _bsd_values;
         public decimal bsd_values { get => _bsd_values; set { _bsd_values = value; OnPropertyChanged(nameof(bsd_values)); } }
-        public string bsd_values_format { get => StringFormatHelper.FormatCurrency(bsd_values); }
+        public string bsd_values_format { get => StringFormatHelper.FormatCurrency(bsd_values) + " đ"; }
 
         private string _bsd_description;
         public string bsd_description { get => _bsd_description; set { _bsd_description = value; OnPropertyChanged(nameof(bsd_description)); } }

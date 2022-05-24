@@ -64,7 +64,7 @@
         <AbsoluteLayout>
             <ScrollView Padding="0,0,0,60" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
                 <StackLayout >
-                    <Grid RowDefinitions="Auto,80">
+                    <Grid RowDefinitions="Auto,130">
                         <CarouselView x:Name="carouseView" ItemsSource="{Binding ListCollection}" Grid.Row="0" HeightRequest="200" IsVisible="{Binding ShowCollections}">
                             <CarouselView.ItemTemplate>
                                 <DataTemplate >
@@ -379,7 +379,7 @@
                                     <GridItemsLayout Orientation="Vertical"
                                     Span="3"
                                     VerticalItemSpacing="0.5"
-                                    HorizontalItemSpacing="0.5" />           
+                                    HorizontalItemSpacing="0.5" />
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
@@ -391,14 +391,13 @@
                                                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ListCollection_Tapped" CommandParameter="{Binding .}"/>
                                                 </Grid.GestureRecognizers>
                                             </Grid>
-                                            <Label Text="{Binding Name}" BackgroundColor="#80000000" TextColor="#ffffff" VerticalOptions="End" FontAttributes="Bold" FontSize="15" MaxLines="1" LineBreakMode="TailTruncation" Padding="3"/>
+                                            <Label Text="{Binding GroupName}" BackgroundColor="#80000000" TextColor="#ffffff" VerticalOptions="End" FontAttributes="Bold" FontSize="15" MaxLines="1" LineBreakMode="TailTruncation" Padding="3"/>
                                         </Grid>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
-
                         </StackLayout>
-                        
+
                         <StackLayout x:Name="stackPDF">
                             <StackLayout BindableLayout.ItemsSource="{Binding ListPDF}" Spacing="0">
                                 <BindableLayout.ItemTemplate>
@@ -471,6 +470,48 @@
                                 </telerikPrimitives:RadBorder>
                             </Grid>
                         </ScrollView>
+                    </Grid>
+                </telerikPrimitives:RadBorder>
+            </ContentView>
+
+            <ContentView x:Name="ContentImages" IsVisible="false" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#90000000" Padding="20">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CloseContentImages_Tapped"/>
+                </ContentView.GestureRecognizers>
+                <telerikPrimitives:RadBorder VerticalOptions="CenterAndExpand" CornerRadius="10" BackgroundColor="White" Padding="10">
+                    <telerikPrimitives:RadBorder.GestureRecognizers>
+                        <TapGestureRecognizer/>
+                    </telerikPrimitives:RadBorder.GestureRecognizers>
+                    <Grid Grid.Row="0" Margin="0" RowDefinitions="Auto,*,Auto">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto" Grid.Row="0" Grid.Column="0">
+                            <Label x:Name="lblNameTienDo" Grid.Column="0" TextColor="#666666" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="&#xf057;" FontFamily="FontAwesomeSolid" VerticalOptions="Center" FontSize="17" Padding="2" TextColor="#666666">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CloseContentImages_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <CollectionView x:Name="ImageCollection" Grid.Row="1" SelectionMode="None" HeightRequest="500">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical"
+                                    Span="3"
+                                    VerticalItemSpacing="0.5"
+                                    HorizontalItemSpacing="0.5" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="2,2,0,0" BackgroundColor="White">
+                                        <Grid>
+                                            <ffimageloading:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" LoadingPlaceholder="placeholder_image.png" HeightRequest="100" DownsampleWidth="300"/>
+                                            <Label Text="&#xf144;" IsVisible="{Binding MediaSourceId,Converter={StaticResource nullToHideConverter}}" TextColor="#F1F1F1" FontSize="35" FontFamily="FontAwesomeRegular" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Image_Tapped" CommandParameter="{Binding .}"/>
+                                            </Grid.GestureRecognizers>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </Grid>
                 </telerikPrimitives:RadBorder>
             </ContentView>

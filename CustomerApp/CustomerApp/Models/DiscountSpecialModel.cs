@@ -1,4 +1,5 @@
 ﻿using CustomerApp.Helpers;
+using CustomerApp.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace CustomerApp.Models
         public Guid bsd_discountspecialid { get; set; }
         public string bsd_name { get; set; }
         public decimal bsd_percentdiscount { get; set; }
+        public decimal bsd_totalamount { get; set; }
+        public string totalamount_format { get { return StringFormatHelper.FormatPercent(bsd_totalamount) + " đ"; } }
         public string percentdiscount_format { get { return StringFormatHelper.FormatPercent(bsd_percentdiscount) + "%"; } }
         public string statuscode { get; set; }
         public string statuscode_format { get { return statuscode != string.Empty ? DiscountSpecialStatus.GetDiscountSpecialStatusById(statuscode)?.Name : null; } }
@@ -22,11 +25,11 @@ namespace CustomerApp.Models
         {
             return new List<StatusCodeModel>()
             {
-                new StatusCodeModel("1","Active","#06CF79"),
-                new StatusCodeModel("100000000","Approved","#03ACF5"),
-                new StatusCodeModel("100000001","Reject","#FDC206"),
-                new StatusCodeModel("100000002","Canceled","#03ACF5"),
-                new StatusCodeModel("2","Inactive","#FDC206"),
+                new StatusCodeModel("1","Nháp","#06CF79"),//Active
+                new StatusCodeModel("100000000","Duyệt","#03ACF5"),//Approved
+                new StatusCodeModel("100000001","Từ Chối","#FDC206"),//Reject
+                new StatusCodeModel("100000002",Language.huy,"#03ACF5"),//Canceled
+                new StatusCodeModel("2","Vô hiệu lực","#FDC206"),//Inactive
                 new StatusCodeModel("0","","#f1f1f1")
             };
         }

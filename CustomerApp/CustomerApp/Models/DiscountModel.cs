@@ -44,7 +44,7 @@ namespace CustomerApp.Models
             get
             {
                 if (bsd_method == 100000001)
-                    return StringFormatHelper.FormatCurrency(bsd_amount);
+                    return String.Format("{0} đ", StringFormatHelper.FormatCurrency(bsd_amount));
                 else if (bsd_method == 100000000)
                     return StringFormatHelper.FormatPercent(bsd_percentage) + " %";
                 else

@@ -38,6 +38,7 @@ namespace CustomerApp
 
             //MainPage = new BlankPage();
             DependencyService.Register<INotificationService, NotificationService>();
+            DependencyService.Register<IDatetimeService, DatetimeService>();
         }
 
         protected override void OnStart ()
