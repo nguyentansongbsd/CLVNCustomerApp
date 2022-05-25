@@ -141,12 +141,12 @@ namespace CustomerApp.Views
             {
                 viewModel.ActivityStatusCode = StatusCodeActivityData.GetStatusCodeById(viewModel.Meet.statecode.ToString());
                 LoadingHelper.Hide();
-                ToastMessageHelper.ShortMessage("Cuộc họp đã được hủy");
+                ToastMessageHelper.ShortMessage(Language.cuoc_hop_da_duoc_huy);
             }
             else
             {
                 LoadingHelper.Hide();
-                ToastMessageHelper.ShortMessage("Lỗi khi hủy cuộc họp. Vui lòng thử lại");
+                ToastMessageHelper.ShortMessage(Language.loi_khi_huy_cuoc_hop_vui_long_thu_lai);
             }
         }
     }

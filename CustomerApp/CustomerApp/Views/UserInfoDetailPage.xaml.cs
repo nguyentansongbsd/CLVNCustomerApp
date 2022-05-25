@@ -128,31 +128,31 @@ namespace CustomerApp.Views
             {
                 if (string.IsNullOrWhiteSpace(viewModel.Email) && string.IsNullOrWhiteSpace(viewModel.Phone))
                 {
-                    ToastMessageHelper.ShortMessage("Vui lòng nhập email hoặc số điện thoại");
+                    ToastMessageHelper.ShortMessage(Language.vui_long_nhap_email_hoac_so_dien_thoai);
                     return;
                 }
 
                 if (!string.IsNullOrWhiteSpace(viewModel.Email) && viewModel.Email.Trim() == viewModel.Contact.emailaddress1.Trim())
                 {
-                    ToastMessageHelper.ShortMessage("Bạn đang dùng email này");
+                    ToastMessageHelper.ShortMessage(Language.ban_dang_dung_email_nay);
                     return;
                 }
 
                 if (!string.IsNullOrWhiteSpace(viewModel.Email) && !Helpers.Validations.IsValidEmail(viewModel.Email))
                 {
-                    ToastMessageHelper.ShortMessage("Email không đúng định dạng");
+                    ToastMessageHelper.ShortMessage(Language.email_sai_dinh_dang);
                     return;
                 }
 
                 if (!string.IsNullOrWhiteSpace(viewModel.Phone) && viewModel.Phone.Trim() == viewModel.Contact.mobilephone.Trim())
                 {
-                    ToastMessageHelper.ShortMessage("Bạn đang dùng số điện thoại này");
+                    ToastMessageHelper.ShortMessage(Language.ban_dang_dung_so_dien_thoai_nay);
                     return;
                 }
 
                 if (!string.IsNullOrWhiteSpace(viewModel.Phone) && viewModel.Phone.Length != 10)
                 {
-                    ToastMessageHelper.ShortMessage("Số điện thoại không hợp lệ (Gồm 10 ký tự)");
+                    ToastMessageHelper.ShortMessage(Language.so_dien_thoai_khong_hop_le);
                     return;
                 }
             }

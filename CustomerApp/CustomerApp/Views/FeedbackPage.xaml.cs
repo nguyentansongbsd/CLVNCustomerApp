@@ -1,4 +1,5 @@
 ﻿using CustomerApp.Helper;
+using CustomerApp.Resources;
 using CustomerApp.ViewModels;
 using System;
 using System.Net;
@@ -39,30 +40,30 @@ namespace CustomerApp.Views
         {
             if (string.IsNullOrWhiteSpace(viewModel.Contact.emailaddress1) || string.IsNullOrWhiteSpace(viewModel.Contact.mobilephone))
             {
-                ToastMessageHelper.ShortMessage("Vui lòng nhập email hoặc số điện thoại");
+                ToastMessageHelper.ShortMessage(Language.vui_long_nhap_email_hoac_so_dien_thoai);
                 return;
             }
 
             if (!string.IsNullOrWhiteSpace(viewModel.Contact.emailaddress1) && !Helpers.Validations.IsValidEmail(viewModel.Contact.emailaddress1))
             {
-                ToastMessageHelper.ShortMessage("Email không đúng định dạng");
+                ToastMessageHelper.ShortMessage(Language.email_sai_dinh_dang);
                 return;
             }
 
             if (viewModel.Contact.mobilephone.Length != 10)
             {
-                ToastMessageHelper.ShortMessage("Số điện thoại không hợp lệ (Gồm 10 ký tự)");
+                ToastMessageHelper.ShortMessage(Language.so_dien_thoai_khong_hop_le);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(viewModel.Subject))
             {
-                ToastMessageHelper.ShortMessage("Vui lòng nhập tiêu đề");
+                ToastMessageHelper.ShortMessage(Language.vui_long_nhap_tieu_de);
                 return;
             }
             if (string.IsNullOrWhiteSpace(viewModel.Content))
             {
-                ToastMessageHelper.ShortMessage("Vui lòng nhập mô tả");
+                ToastMessageHelper.ShortMessage(Language.vui_long_nhap_mo_ta);
                 return;
             }
             LoadingHelper.Show();

@@ -1597,28 +1597,28 @@
 	<value>Contracts</value>
 	</data>
 	<data name="contract_1st_installment_sts" xml:space="preserve">
-    <value>TT Đủ Đợt 1</value>
+    <value>1st Installment</value>
   </data>
 	<data name="contract_acceptance_sts" xml:space="preserve">
     <value>Acceptance</value>
   </data>
 	<data name="contract_being_payment_sts" xml:space="preserve">
-    <value>Đang thanh toán</value>
+    <value>Being Payment</value>
   </data>
 	<data name="contract_canceled_sts" xml:space="preserve">
-    <value>Đã hủy</value>
+    <value>Canceled</value>
   </data>
 	<data name="contract_complete_payment_sts" xml:space="preserve">
-    <value>TT Hoàn tất</value>
+    <value>Complete Payment</value>
   </data>
 	<data name="contract_complete_sts" xml:space="preserve">
-    <value>Đã hoàn thành</value>
+    <value>Complete</value>
   </data>
 	<data name="contract_confirm_document_sts" xml:space="preserve">
     <value>Confirm document</value>
   </data>
 	<data name="contract_foreigner_SPA_type" xml:space="preserve">
-    <value>HĐMB nước ngoài</value>
+    <value>Foreigner SPA</value>
   </data>
 	<data name="contract_handover_sts" xml:space="preserve">
     <value>Quanlify - Units handover</value>
@@ -1627,19 +1627,19 @@
     <value>Invoiced</value>
   </data>
 	<data name="contract_in_progress_sts" xml:space="preserve">
-    <value>Đang xử lý</value>
+    <value>In Progress</value>
   </data>
 	<data name="contract_local_SPA_type" xml:space="preserve">
-    <value>HĐMB trong nước</value>
+    <value>Local SPA</value>
   </data>
 	<data name="contract_long_term_lease_type" xml:space="preserve">
-    <value>Cho thuê dài hạn</value>
+    <value>Long Term Lease</value>
   </data>
 	<data name="contract_open_sts" xml:space="preserve">
     <value>Open</value>
   </data>
 	<data name="contract_option_sts" xml:space="preserve">
-    <value>Hoàn tất đặt cọc</value>
+    <value>Option</value>
   </data>
 	<data name="contract_partial_sts" xml:space="preserve">
     <value>Partial</value>
@@ -1654,13 +1654,13 @@
     <value>Qualify</value>
   </data>
 	<data name="contract_signed_contract_sts" xml:space="preserve">
-    <value>Đã ký HĐMB</value>
+    <value>Signed Contract</value>
   </data>
 	<data name="contract_signed_da_sts" xml:space="preserve">
     <value>Signed D.A</value>
   </data>
 	<data name="contract_terminated_sts" xml:space="preserve">
-    <value>Đã thanh lý</value>
+    <value>Terminated</value>
   </data>
 	<data name="contract_units_handover_sts" xml:space="preserve">
     <value>Units handover</value>
@@ -1801,10 +1801,10 @@
     <value>Handover Condition is not suitable with Unit type. Please check again or choose another handover condition.</value>
   </data>
 	<data name="ban_co_chan_chan_muon_thay_doi_pttt" xml:space="preserve">
-    <value>Bạn có chắc chắn muốn thay đổi PTTT?</value>
+    <value>Are you sure you want to change the Payment scheme?</value>
   </data>
 	<data name="ban_dang_tich_chon_chieu_khau_theo_pttt_ban_co_chac_chan_muon_thay_doi_pttt_nay" xml:space="preserve">
-    <value>Bạn đang tích chọn chiết khấu theo PTTT, bạn có chắc chắn muốn thay đổi PTTT này?</value>
+    <value>You are choosing discount of Payment scheme, Are you sure you want to change the Payment scheme?</value>
   </data>
 	<data name="them_khuyen_mai_thanh_cong" xml:space="preserve">
     <value>Create promotion successed.</value>
@@ -1993,7 +1993,7 @@
     <value>Feng Shui</value>
   </data>
 <data name="mat_bang_tang" xml:space="preserve">
-    <value>Mặt Bằng Tầng</value>
+    <value>Unit Floor Plan</value>
   </data>
 	<data name="title_phan_hoi" xml:space="preserve">
     <value>Feedback</value>
@@ -2012,5 +2012,77 @@
   </data>
 <data name="title_giao_dich_va_thanh_toan" xml:space="preserve">
     <value>Transactions and Payment</value>
+  </data>
+	<data name="ma_hop_dong" xml:space="preserve">
+    <value>Contract number</value>
+  </data>
+	<data name="thong_tin_dang_nhap_khong_dung" xml:space="preserve">
+    <value>The login information is incorrect.</value>
+  </data>
+	<data name="thong_tin_tai_khoan" xml:space="preserve">
+    <value>Account information >></value>
+  </data>
+	<data name="ma_du_an" xml:space="preserve">
+    <value>Project code</value>
+  </data>
+	<data name="title_tien_do" xml:space="preserve">
+    <value>Construction Progress</value>
+  </data>
+	<data name="title_mat_bang" xml:space="preserve">
+    <value>Unit Floor Plan</value>
+  </data>
+	<data name="gia_tri_hop_dong" xml:space="preserve">
+    <value>Contract value</value>
+  </data>
+	<data name="title_thong_bao" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+	<data name="cap_nhat_email_so_dien_thoai" xml:space="preserve">
+    <value>Update Email/ Mobile phone</value>
+  </data>
+	<data name="dia_chi_thuong_tru" xml:space="preserve">
+    <value>Permanent address</value>
+  </data>
+	<data name="khong_tim_thay_thong_tin_chiet_khau" xml:space="preserve">
+    <value>Discount information not found.</value>
+  </data>
+	<data name="loi_khong_the_luu_du_lieu_vao_firebase" xml:space="preserve">
+    <value>Error. Data could not be written on Firebase.</value>
+  </data>
+	<data name="khong_tim_thay_thong_tin_hop_dong" xml:space="preserve">
+    <value>Contract information not found.</value>
+  </data>
+	<data name="vui_long_nhap_email_hoac_so_dien_thoai" xml:space="preserve">
+    <value>Please enter email or phone number.</value>
+  </data>
+	<data name="vui_long_nhap_chu_de" xml:space="preserve">
+    <value>Please enter subject.</value>
+  </data>
+	<data name="vui_long_nhap_mo_ta" xml:space="preserve">
+    <value>Please enter description.</value>
+  </data>
+	<data name="ban_dang_dung_email_nay" xml:space="preserve">
+    <value>You are using this email.</value>
+  </data>
+	<data name="ban_dang_dung_so_dien_thoai_nay" xml:space="preserve">
+    <value>You are using this number phone.</value>
+  </data>
+	<data name="email_sai_dinh_dang" xml:space="preserve">
+    <value>Invalid email format.</value>
+  </data>
+	<data name="so_dien_thoai_khong_hop_le" xml:space="preserve">
+    <value>Phone number is invalid (10 characters).</value>
+  </data>
+	<data name="khong_tai_duoc_video" xml:space="preserve">
+    <value>Video failed to load.</value>
+  </data>
+	<data name="ban_co_muon_danh_dau_tat_ca_thong_bao_la_da_doc_khong" xml:space="preserve">
+    <value>Do you want to mark all notifications as read?</value>
+  </data>
+	<data name="cuoc_hop_da_duoc_huy" xml:space="preserve">
+    <value>Meeting canceled.</value>
+  </data>
+	<data name="loi_khi_huy_cuoc_hop_vui_long_thu_lai" xml:space="preserve">
+    <value>Error. Please try again.</value>
   </data>
 </root>

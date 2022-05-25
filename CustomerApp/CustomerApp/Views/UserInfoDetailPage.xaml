@@ -60,7 +60,7 @@
                                                  Text="{Binding Gender.Label}"/>
                             <controls:LabelField Title="{x:Static lang:Language.dia_chi}"
                                                  Text="{Binding Contact.bsd_contactaddress}"/>
-                            <controls:LabelField Title="Địa chỉ TT"
+                            <controls:LabelField Title="{x:Static lang:Language.dia_chi_thuong_tru}"
                                                  Text="{Binding Contact.bsd_permanentaddress1}"/>
                         </StackLayout>
                         <StackLayout x:Name="TabPhongThuy" Margin="0,10,0,0" IsVisible="false">
@@ -146,7 +146,7 @@
             </ScrollView>
 
             <StackLayout Padding="10,4,10,16" AbsoluteLayout.LayoutBounds="0,1,1,60" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional">
-                <Button Text="Cập nhật Email/Số điện thoại" Clicked="UpdateEmail_Phone_Clicked" HeightRequest="40" TextColor="White" BackgroundColor="{x:StaticResource NavigationPrimary}" CornerRadius="5"/>
+                <Button Text="{x:Static lang:Language.cap_nhat_email_so_dien_thoai}" Clicked="UpdateEmail_Phone_Clicked" HeightRequest="40" TextColor="White" BackgroundColor="{x:StaticResource NavigationPrimary}" CornerRadius="5"/>
             </StackLayout>
 
             <ContentView x:Name="UpdateEmail_Phone" IsVisible="false" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#90000000" Padding="20">
@@ -157,7 +157,7 @@
                     <telerikPrimitives:RadBorder.GestureRecognizers><TapGestureRecognizer/></telerikPrimitives:RadBorder.GestureRecognizers>
                     <Grid Grid.Row="0" Margin="0" RowDefinitions="Auto,*">
                         <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto" Grid.Row="0" Grid.Column="0">
-                            <Label Grid.Column="0" Text="Cập nhật Email/Số điện thoại" TextColor="#666666" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <Label Grid.Column="0" Text="{x:Static lang:Language.cap_nhat_email_so_dien_thoai}" TextColor="#666666" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <Label Grid.Column="1" Text="&#xf057;" FontFamily="FontAwesomeSolid" VerticalOptions="Center" FontSize="17" Padding="2" TextColor="#666666">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CloseContentUpdateEmail_Phone_Tapped"/>

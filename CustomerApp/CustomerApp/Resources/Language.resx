@@ -2016,4 +2016,76 @@
 	<data name="title_giao_dich_va_thanh_toan" xml:space="preserve">
     <value>Giao Dịch Và Thanh Toán</value>
   </data>
+	<data name="ma_hop_dong" xml:space="preserve">
+    <value>Mã hợp đồng</value>
+  </data>
+	<data name="thong_tin_dang_nhap_khong_dung" xml:space="preserve">
+    <value>Thông tin đăng nhập không đúng.</value>
+  </data>
+	<data name="thong_tin_tai_khoan" xml:space="preserve">
+    <value>Thông tin tài khoản >></value>
+  </data>
+	<data name="ma_du_an" xml:space="preserve">
+    <value>Mã dự án</value>
+  </data>
+	<data name="title_tien_do" xml:space="preserve">
+    <value>Tiến Độ</value>
+  </data>
+	<data name="title_mat_bang" xml:space="preserve">
+    <value>Mặt Bằng</value>
+  </data>
+	<data name="gia_tri_hop_dong" xml:space="preserve">
+    <value>Giá trị hợp đồng</value>
+  </data>
+	<data name="title_thong_bao" xml:space="preserve">
+    <value>Thông Báo</value>
+  </data>
+	<data name="cap_nhat_email_so_dien_thoai" xml:space="preserve">
+    <value>Cập Nhật Email/ Số Điện Thoại</value>
+  </data>
+	<data name="dia_chi_thuong_tru" xml:space="preserve">
+    <value>Địa chỉ thường trú</value>
+  </data>
+	<data name="khong_tim_thay_thong_tin_chiet_khau" xml:space="preserve">
+    <value>Không tìm thấy thông tin chiết khấu.</value>
+  </data>
+	<data name="loi_khong_the_luu_du_lieu_vao_firebase" xml:space="preserve">
+    <value>Lỗi. Không thể lưu dữ liệu vào Firebase.</value>
+  </data>
+	<data name="khong_tim_thay_thong_tin_hop_dong" xml:space="preserve">
+    <value>Không tìm thấy thông tin hợp đồng.</value>
+  </data>
+	<data name="vui_long_nhap_email_hoac_so_dien_thoai" xml:space="preserve">
+    <value>Vui lòng nhập email hoặc số điện thoại.</value>
+  </data>
+	<data name="vui_long_nhap_chu_de" xml:space="preserve">
+    <value>Vui lòng nhập chủ đề.</value>
+  </data>
+	<data name="vui_long_nhap_mo_ta" xml:space="preserve">
+    <value>Vui lòng nhập mô tả.</value>
+  </data>
+	<data name="ban_dang_dung_email_nay" xml:space="preserve">
+    <value>Bạn đang dùng email này.</value>
+  </data>
+	<data name="ban_dang_dung_so_dien_thoai_nay" xml:space="preserve">
+    <value>Bạn đang dùng số điện thoại này.</value>
+  </data>
+	<data name="email_sai_dinh_dang" xml:space="preserve">
+    <value>Email sai định dạng.</value>
+  </data>
+	<data name="so_dien_thoai_khong_hop_le" xml:space="preserve">
+    <value>Số điện thoại không hợp lệ (Gồm 10 ký tự).</value>
+  </data>
+	<data name="khong_tai_duoc_video" xml:space="preserve">
+    <value>Không tải được video.</value>
+  </data>
+	<data name="ban_co_muon_danh_dau_tat_ca_thong_bao_la_da_doc_khong" xml:space="preserve">
+    <value>Bạn có muốn đánh dấu tất cả thông báo là đã đọc không?</value>
+  </data>
+	<data name="cuoc_hop_da_duoc_huy" xml:space="preserve">
+    <value>Cuộc họp đã được hủy.</value>
+  </data>
+	<data name="loi_khi_huy_cuoc_hop_vui_long_thu_lai" xml:space="preserve">
+    <value>Lỗi khi hủy cuộc họp. Vui lòng thử lại.</value>
+  </data>
 </root>
