@@ -16,6 +16,7 @@ namespace CustomerApp
         public Action<bool> OnCompleted;
         private string mediaSourceId { get; set; }
         private string folderId { get; set; }
+
         public ShowMedia(string FolderId, string MediaSourceId)
         {
             InitializeComponent();
@@ -24,9 +25,10 @@ namespace CustomerApp
             Init();
         }
 
-        private async void Init()
+        public async void Init()
         {
-            LoadingHelper.Show();
+            videoView.Source = mediaSourceId;
+            
             if (videoView != null)
             {
                 //var result = await CrmHelper.RetrieveImagesSharePoint<GrapDownLoadUrlModel>($"{folderId}/items/{mediaSourceId}/driveItem");
@@ -40,20 +42,46 @@ namespace CustomerApp
                 //{
                 //    OnCompleted?.Invoke(false);
                 //}
-                await Task.Delay(1000);
-                videoView.Source = mediaSourceId;
+                await Task.Delay(1);
                 OnCompleted?.Invoke(true);
             }
             else
+            {
                 OnCompleted?.Invoke(false);
-            LoadingHelper.Hide();
+            }
+                
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            if (videoView.CanSeek == false)
+            {
+                ToastMessageHelper.ShortMessage("Đang tải video. Vui lòng đợi");
+                return true;
+            }
+            LoadingHelper.Hide();
+            return base.OnBackButtonPressed();
+        }
+
         public void StopMedia()
         {
-            if (videoView != null)
+            try
             {
-                videoView.Stop();
+                if (videoView != null)
+                {
+                    videoView.Stop();
+                }
             }
+            catch (Exception ex)
+            {
+
+            }
+            
+        }
+
+        void videoView_MediaOpened(System.Object sender, System.EventArgs e)
+        {
+            LoadingHelper.Hide();
         }
     }
 }

@@ -125,8 +125,16 @@ namespace CustomerApp.Views
                 NeedToRefreshNumQueue = false;
                 LoadingHelper.Hide();
             }
-            if (showMedia != null)
-                showMedia.StopMedia();
+            try
+            {
+                if (showMedia != null)
+                    showMedia.StopMedia();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
         }
 
         private async void ThongKe_Tapped(object sender, EventArgs e)
@@ -362,10 +370,10 @@ namespace CustomerApp.Views
 
         private void ListCollection_Tapped(object sender, EventArgs e)
         {
-            LoadingHelper.Show();
             var item = (CollectionData)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
             if (item.SharePointType == SharePointType.Image)
             {
+                LoadingHelper.Show();
                 viewModel.Photos = new List<Photo>();
                 List<CollectionData> newlist = new List<CollectionData>();
                 foreach (var data in viewModel.AllCollections)
@@ -381,25 +389,33 @@ namespace CustomerApp.Views
                 ImageCollection.ItemsSource = newlist;
                 lblNameTienDo.Text = item.GroupName;
                 ContentImages.IsVisible = true;
+                LoadingHelper.Hide();
             }
             else if (item.SharePointType == SharePointType.Video)
             {
-                showMedia = new ShowMedia(item.MediaSourceId, item.MediaSourceId);
-                showMedia.OnCompleted = async (isSuccess) =>
+                try
                 {
-                    if (isSuccess)
+                    LoadingHelper.Show();
+                    showMedia = new ShowMedia(item.MediaSourceId, item.MediaSourceId);
+                    showMedia.OnCompleted = async (isSuccess) =>
                     {
-                        await Navigation.PushAsync(showMedia);
-                        LoadingHelper.Hide();
-                    }
-                    else
-                    {
-                        LoadingHelper.Hide();
-                        ToastMessageHelper.ShortMessage("Không lấy được video");
-                    }
-                };
+                        if (isSuccess)
+                        {
+                            await Navigation.PushAsync(showMedia);
+                        }
+                        else
+                        {
+                            LoadingHelper.Hide();
+                            ToastMessageHelper.ShortMessage("Không lấy được video");
+                        }
+                    };
+                }
+                catch(Exception ex)
+                {
+                    LoadingHelper.Hide();
+                }
             }
-            LoadingHelper.Hide();
+            
         }
 
         private async void File_Tapped(object sender, EventArgs e)
@@ -468,16 +484,24 @@ namespace CustomerApp.Views
 
         private void Image_Tapped(object sender, EventArgs e)
         {
-            var item = (CollectionData)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            var img = viewModel.Photos.SingleOrDefault(x => x.URL == item.ImageSource);
-            var index = viewModel.Photos.IndexOf(img);
-
-            new PhotoBrowser()
+            try
             {
-                Photos = viewModel.Photos,
-                StartIndex = index,
-                EnableGrid = true
-            }.Show();
+                var item = (CollectionData)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+                var img = viewModel.Photos.SingleOrDefault(x => x.URL == item.ImageSource);
+                var index = viewModel.Photos.IndexOf(img);
+
+                new PhotoBrowser()
+                {
+                    Photos = viewModel.Photos,
+                    StartIndex = index,
+                    EnableGrid = true
+                }.Show();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
         }
     }
 }
