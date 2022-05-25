@@ -1,5 +1,6 @@
 ﻿using CustomerApp.Helper;
 using CustomerApp.Models;
+using CustomerApp.Resources;
 using CustomerApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -70,7 +71,7 @@ namespace CustomerApp.Views
                 else
                 {
                     LoadingHelper.Hide();
-                    ToastMessageHelper.ShortMessage("Không tìm thấy thông tin hợp đồng");
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_hop_dong);
                 }
 
             };

@@ -6,11 +6,12 @@
     xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
     xmlns:controls="clr-namespace:CustomerApp.Controls"
     xmlns:converter="clr-namespace:CustomerApp.Converters"
+    xmlns:lang="clr-namespace:CustomerApp.Resources"
     x:Class="CustomerApp.Views.NotificationPage">
     <Shell.TitleView>
         <StackLayout Padding="14,4">
             <Grid ColumnDefinitions="*,Auto" VerticalOptions="CenterAndExpand">
-                <Label Grid.Column="0" Text="Thông báo" FontAttributes="Bold" FontSize="18" TextColor="White" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="0" Text="{x:Static lang:Language.title_thong_bao}" FontAttributes="Bold" FontSize="18" TextColor="White" VerticalTextAlignment="Center"/>
                 <Label Grid.Column="1" Text="&#xf560;" Padding="6" FontFamily="FontAwesomeSolid" FontSize="14" TextColor="White" VerticalTextAlignment="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="IsReadAllNoti_Tapped"/>

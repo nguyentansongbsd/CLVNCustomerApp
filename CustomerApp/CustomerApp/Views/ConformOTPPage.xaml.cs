@@ -69,7 +69,7 @@ namespace CustomerApp.Views
                 }
                 else
                 {
-                    ToastMessageHelper.LongMessage("Lỗi. Không thể lưu dữ liệu vào Firebase.");
+                    ToastMessageHelper.LongMessage(Language.loi_khong_the_luu_du_lieu_vao_firebase);
                     return false;
                 }
             }

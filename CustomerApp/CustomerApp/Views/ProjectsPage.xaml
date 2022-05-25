@@ -30,12 +30,12 @@
                                     <Label Grid.Column="1" Grid.Row="0" Text="{Binding bsd_name}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
 
                                     <Grid Grid.Column="1" Grid.Row="1" ColumnDefinitions="Auto,*">
-                                        <Label Grid.Column="0" Text="Mã dự án: " FontSize="15" TextColor="#444444"/>
+                                        <Label Grid.Column="0" Text="{x:Binding Source={x:Static lang:Language.ma_du_an},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
                                         <Label Grid.Column="1" Text="{Binding bsd_projectcode}" TextColor="#444444" FontSize="15"/>
                                     </Grid>
 
                                     <Grid Grid.Column="1" Grid.Row="2" ColumnDefinitions="Auto,*">
-                                        <Label Grid.Column="0" Text="Loại: " FontSize="15" TextColor="#444444"/>
+                                        <Label Grid.Column="0" Text="{x:Binding Source={x:Static lang:Language.loai},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
                                         <Label Grid.Column="1" Text="{Binding projectType}" TextColor="#444444" FontSize="15"/>
                                     </Grid>
 

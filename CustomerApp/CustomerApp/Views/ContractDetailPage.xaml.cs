@@ -357,7 +357,7 @@ namespace CustomerApp.Views
             else
             {
                 LoadingHelper.Hide();
-                ToastMessageHelper.ShortMessage("Không tìm thấy thông tin chiết khấu");
+                ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_chiet_khau);
             }
         }
 
