@@ -68,7 +68,7 @@
                                                 <Label Grid.Row="0" Grid.Column="1" Text="{Binding bsd_name}" MaxLines="1" LineBreakMode="TailTruncation" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
 
                                                 <Grid ColumnDefinitions="Auto,*" Grid.Row="1" Grid.Column="1">
-                                                    <Label Grid.Column="0" Text="Loại: " FontSize="15" TextColor="#444444"/>
+                                                    <Label Grid.Column="0" Text="{x:Binding Source={x:Static lang:Language.loai},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
                                                     <Label Grid.Column="1" Text="{Binding projectType}" TextColor="#444444" FontSize="15"/>
                                                 </Grid>
 
@@ -116,7 +116,7 @@
                                                     <Label Text="{Binding project_name}" TextColor="#444444" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" />
                                                 </Grid>
                                                 <Grid ColumnDefinitions="Auto,*" Grid.Row="2">
-                                                    <Label Text="Mã hợp đồng: " TextColor="#444444" FontSize="15" Grid.Column="0"/>
+                                                    <Label Text="{x:Binding Source={x:Static lang:Language.ma_hop_dong},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
                                                     <Label Text="{Binding bsd_contractnumber}" TextColor="#444444" FontSize="15" Grid.Column="1" LineBreakMode="TailTruncation" />
                                                 </Grid>
                                                 <Grid ColumnDefinitions="Auto,*" Grid.Row="3">

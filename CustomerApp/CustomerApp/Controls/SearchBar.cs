@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomerApp.Resources;
+using System;
 using Xamarin.Forms;
 
 namespace CustomerApp.Controls
@@ -7,7 +8,7 @@ namespace CustomerApp.Controls
     {
         public SearchBar()
         {
-            Placeholder = "Tìm kiếm";
+            Placeholder = Language.tim_kiem;
             FontSize = 15;
             TextColor = Color.FromHex("#444444");
             FontFamily = "Segoe";

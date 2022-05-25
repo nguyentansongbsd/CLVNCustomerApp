@@ -406,7 +406,7 @@ namespace CustomerApp.Views
                         else
                         {
                             LoadingHelper.Hide();
-                            ToastMessageHelper.ShortMessage("Không lấy được video");
+                            ToastMessageHelper.ShortMessage(Language.khong_tai_duoc_video);
                         }
                     };
                 }
