@@ -15,7 +15,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout>
-            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,40">
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,60">
                 <StackLayout Padding="0,30,0,0">
                     <controls:ExtendedFrame Padding="4" CornerRadius="44" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0">
                         <ffimageloading:CachedImage Source="{Binding Avatar,Converter={StaticResource Base64ToImageSource}}" LoadingPlaceholder="user.png" HeightRequest="80" WidthRequest="80" DownsampleWidth="500">
@@ -45,7 +45,7 @@
                             <Label x:Name="lbPhongThuy" Text="{x:Static lang:Language.phong_thuy}" Style="{StaticResource Lb_Tab}"/>
                         </telerikPrimitives:RadBorder>
                     </Grid>-->
-                    <Grid>
+                    <StackLayout>
                         <!--tab thong tin-->
                         <StackLayout x:Name="TabThongTin" IsVisible="true" Margin="0,10,0,0" BackgroundColor="#f1f1f1f1" Spacing="1">
                             <controls:LabelField Title="{x:Static lang:Language.ho_ten}"
@@ -111,7 +111,7 @@
                             </StackLayout>
                         </StackLayout>
                         <!--Loyalty-->
-                        <StackLayout x:Name="TabLoyalty" IsVisible="false">
+                        <StackLayout x:Name="TabLoyalty">
                             <controls:TitleSection Text="{x:Static lang:Language.loyalty}" IsExpanded="True">
                                 <controls:TitleSection.Content>
                                     <StackLayout BackgroundColor="#f1f1f1f1" Spacing="1">
@@ -120,7 +120,7 @@
                                         <controls:LabelField Title="{x:Static lang:Language.tong_tien_giao_dich}"
                                                  Text="{Binding Loyalty.bsd_totaltransaction}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.bac_thanh_vien}"
-                                                 Text="{Binding Loyalty.bsd_membershiptier_name}"/>
+                                                 Text="{Binding Loyalty.membershiptier_name}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.tong_diem_so_huu}"
                                                  Text="{Binding Loyalty.bsd_totalpointsofownership}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.tong_diem_bao_gom_dieu_kien}"
@@ -141,7 +141,7 @@
                                 </controls:TitleSection.Content>
                             </controls:TitleSection>
                         </StackLayout>
-                    </Grid>
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
 
