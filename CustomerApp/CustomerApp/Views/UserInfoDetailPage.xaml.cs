@@ -29,7 +29,9 @@ namespace CustomerApp.Views
             LoadingHelper.Show();
             this.BindingContext = viewModel = new UserInfoDetailPageViewModel();
             Tab_Tapped(1);
-            await viewModel.LoadContact();
+            await Task.WhenAll(
+                viewModel.LoadContact(),
+                viewModel.LoadLoyalty());
             if (viewModel.Contact.contactid != Guid.Empty)
                 OnCompleted?.Invoke(true);
             else
