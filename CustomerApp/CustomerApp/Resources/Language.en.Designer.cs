@@ -1372,6 +1372,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Video is loading. Please wait..
+        /// </summary>
+        internal static string dang_tai_video_vui_long_doi {
+            get {
+                return ResourceManager.GetString("dang_tai_video_vui_long_doi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In Progress.
         /// </summary>
         internal static string dang_xu_ly_case_sts {
