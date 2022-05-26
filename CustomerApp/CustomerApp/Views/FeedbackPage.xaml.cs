@@ -106,12 +106,12 @@ namespace CustomerApp.Views
         {
             if (e.Error != null)
             {
-                ToastMessageHelper.ShortMessage("Gửi phản hồi thất bại. " + e.Error.Message);
+                ToastMessageHelper.ShortMessage(Language.noti_gui_phan_hoi_that_bai + e.Error.Message);
                 LoadingHelper.Hide();
             }
             else
             {
-                ToastMessageHelper.ShortMessage("Gửi phản hồi thành công");
+                ToastMessageHelper.ShortMessage(Language.noti_gui_phan_hoi_thanh_cong);
                 viewModel.Subject = null;
                 viewModel.Content = null;
                 LoadingHelper.Hide();

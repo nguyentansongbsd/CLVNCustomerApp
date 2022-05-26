@@ -1,4 +1,5 @@
 ﻿using CustomerApp.Models;
+using CustomerApp.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,11 @@ namespace CustomerApp.Datas
         {
             return new List<OptionSet>()
             {
-                new OptionSet("100000000","Bàn giao thô"),//"Bare-shell"
-                new OptionSet("100000001","Bàn giao hoàn thiện cơ bản"),//"Basic Finished"
-                new OptionSet("100000002","Bàn giao hoàn thiện"),//"Fully Finished"
-                new OptionSet("100000003","Bàn giao hoàn thiện mặt ngoài và thô bên trong"),//"Fully Finished the outside and Bare-shell the inside"
-                new OptionSet("100000004","Gói bàn giao bổ sung"),//"Add On Option"
+                new OptionSet("100000000",Language.ban_giao_tho),//"Bare-shell"
+                new OptionSet("100000001",Language.ban_giao_hoan_thien_co_ban),//"Basic Finished"
+                new OptionSet("100000002",Language.ban_giao_hoan_thien),//"Fully Finished"
+                new OptionSet("100000003",Language.ban_giao_hoan_thien_mat_ngoai_va_tho_ben_trong),//"Fully Finished the outside and Bare-shell the inside"
+                new OptionSet("100000004",Language.goi_ban_giao_bo_sung),//"Add On Option"
             };
         }
     }

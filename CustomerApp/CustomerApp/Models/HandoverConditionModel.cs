@@ -80,9 +80,9 @@ namespace CustomerApp.Models
         {
             return new List<OptionSet>()
             {
-                new OptionSet("100000000","Đơn giá/ m2"),//"Price per sqm"
-                new OptionSet("100000001","Số tiền"),//"Amount"
-                new OptionSet("100000002","Phần trăm"),//"Percent (%)"
+                new OptionSet("100000000",Language.don_gia_m2),//"Price per sqm"
+                new OptionSet("100000001",Language.so_tien),//"Amount"
+                new OptionSet("100000002",Language.phan_tram)//"Percent (%)"
             };
         }
     }
