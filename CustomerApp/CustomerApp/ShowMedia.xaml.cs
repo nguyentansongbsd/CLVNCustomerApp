@@ -1,4 +1,5 @@
 ﻿using CustomerApp.Helper;
+using CustomerApp.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace CustomerApp
         {
             if (videoView.CanSeek == false)
             {
-                ToastMessageHelper.ShortMessage("Đang tải video. Vui lòng đợi");
+                ToastMessageHelper.ShortMessage(Language.dang_tai_video_vui_long_doi);
                 return true;
             }
             LoadingHelper.Hide();

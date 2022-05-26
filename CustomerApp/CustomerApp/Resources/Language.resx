@@ -2121,4 +2121,7 @@
   <data name="noti_gui_phan_hoi_thanh_cong" xml:space="preserve">
     <value>Gửi phản hồi thành công.</value>
   </data>
+  <data name="dang_tai_video_vui_long_doi" xml:space="preserve">
+    <value>Đang tải video. Vui lòng đợi.</value>
+  </data>
 </root>

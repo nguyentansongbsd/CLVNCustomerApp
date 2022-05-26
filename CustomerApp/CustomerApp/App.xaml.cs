@@ -24,21 +24,26 @@ namespace CustomerApp
     {
         FirebaseClient firebaseClient = new FirebaseClient("https://smsappcrm-default-rtdb.asia-southeast1.firebasedatabase.app/",
             new FirebaseOptions { AuthTokenAsyncFactory = () => Task.FromResult("kLHIPuBhEIrL6s3J6NuHpQI13H7M0kHjBRLmGEPF") });
-        bool test { get; set; }
         public App ()
         {
             InitializeComponent();
             CultureInfo cultureInfo = new CultureInfo(UserLogged.Language);
             Language.Culture = cultureInfo;
             MainPage = new AppShell();
-            if (test == false)
-            {
-                Shell.Current.Navigation.PushAsync(new LoginPage(), false);
-            }
+            Shell.Current.Navigation.PushAsync(new LoginPage(), false);
 
             //MainPage = new BlankPage();
             DependencyService.Register<INotificationService, NotificationService>();
-            DependencyService.Register<IDatetimeService, DatetimeService>();
+
+            if (UserLogged.Language == "vi")
+            {
+                DependencyService.Register<IDatetimeService, DatetimeService>();
+            }
+            else
+            {
+                DependencyService.Register<IDatetimeService, DatetimeENService>();
+            }
+            
         }
 
         protected override void OnStart ()

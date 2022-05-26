@@ -1381,6 +1381,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Đang tải video. Vui lòng đợi..
+        /// </summary>
+        internal static string dang_tai_video_vui_long_doi {
+            get {
+                return ResourceManager.GetString("dang_tai_video_vui_long_doi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đang xử lý.
         /// </summary>
         internal static string dang_xu_ly_case_sts {
