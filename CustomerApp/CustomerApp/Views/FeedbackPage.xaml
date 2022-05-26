@@ -32,7 +32,7 @@
                 </StackLayout>
             </ScrollView>
             <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,60" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" Padding="10,4,10,16">
-                <Button Text="Gửi phản hồi" Clicked="SendEmail_Clicked" TextColor="White" FontSize="15" HeightRequest="40" CornerRadius="5" BackgroundColor="{x:StaticResource NavigationPrimary}"/>
+                <Button Text="{x:Static lang:Language.gui_phan_hoi}" Clicked="SendEmail_Clicked" TextColor="White" FontSize="15" HeightRequest="40" CornerRadius="5" BackgroundColor="{x:StaticResource NavigationPrimary}"/>
             </StackLayout>
         </AbsoluteLayout>
     </ContentPage.Content>

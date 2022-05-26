@@ -38,7 +38,7 @@ namespace CustomerApp.Views
         public string VerApp { get => _verApp; set { _verApp = value; OnPropertyChanged(nameof(VerApp)); } }
 
         public string ImeiNum { get; set; }
-        public LoginPage()
+        public LoginPage(string username = null, string pass = null)
         {
             InitializeComponent();
             this.BindingContext = this;
@@ -49,6 +49,13 @@ namespace CustomerApp.Views
                 checkboxRememberAcc.IsChecked = true;
                 UserName = UserLogged.Email_Phone;
                 Password = UserLogged.Password;
+                SetGridUserName();
+                SetGridPassword();
+            }
+            else if (!string.IsNullOrWhiteSpace(username) || !string.IsNullOrWhiteSpace(pass))
+            {
+                UserName = username;
+                Password = pass;
                 SetGridUserName();
                 SetGridPassword();
             }
@@ -184,7 +191,7 @@ namespace CustomerApp.Views
                 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
             }
             Application.Current.MainPage = new AppShell();
-            Shell.Current.Navigation.PushAsync(new LoginPage(), false);
+            Shell.Current.Navigation.PushAsync(new LoginPage(UserName, Password), false);
             LoadingHelper.Hide();
         }
 
@@ -317,8 +324,8 @@ namespace CustomerApp.Views
                 LoadingHelper.Hide();
             }
             catch (Exception ex)
-            { 
-            
+            {
+
             }
         }
     }

@@ -1767,10 +1767,10 @@
 	<data name="chon_thoi_gian_ket_thuc" xml:space="preserve">
     <value>Chọn thời gian kết thúc</value>
   </data>
-  <data name="cong_viec_hom_nay" xml:space="preserve">
+	<data name="cong_viec_hom_nay" xml:space="preserve">
     <value>CÔNG VIỆC HÔM NAY</value>
   </data>
-  <data name="hom_nay_khong_co_cong_vec" xml:space="preserve">
+	<data name="hom_nay_khong_co_cong_vec" xml:space="preserve">
     <value>Hôm nay không có công việc</value>
   </data>
 	<data name="kh_ca_nhan" xml:space="preserve">
@@ -1989,7 +1989,7 @@
 	<data name="tong_tien_so_huu" xml:space="preserve">
     <value>Tổng tiền sở hữu</value>
   </data>
-  <data name="giao_dich_va_thanh_toan" xml:space="preserve">
+	<data name="giao_dich_va_thanh_toan" xml:space="preserve">
     <value>Giao dịch và Thanh toán</value>
   </data>
 	<data name="phong_thuy" xml:space="preserve">
@@ -2023,7 +2023,7 @@
     <value>Thông tin đăng nhập không đúng.</value>
   </data>
 	<data name="thong_tin_tai_khoan" xml:space="preserve">
-    <value>Thông tin tài khoản >></value>
+    <value>Thông tin tài khoản &gt;&gt;</value>
   </data>
 	<data name="ma_du_an" xml:space="preserve">
     <value>Mã dự án</value>
@@ -2087,5 +2087,38 @@
   </data>
 	<data name="loi_khi_huy_cuoc_hop_vui_long_thu_lai" xml:space="preserve">
     <value>Lỗi khi hủy cuộc họp. Vui lòng thử lại.</value>
+  </data>
+  <data name="don_gia_m2" xml:space="preserve">
+    <value>Đơn giá/ m2</value>
+  </data>
+  <data name="so_tien" xml:space="preserve">
+    <value>Số tiền</value>
+  </data>
+  <data name="phan_tram" xml:space="preserve">
+    <value>Phần trăm</value>
+  </data>
+  <data name="ban_giao_tho" xml:space="preserve">
+    <value>Bàn giao thô</value>
+  </data>
+  <data name="ban_giao_hoan_thien_co_ban" xml:space="preserve">
+    <value>Bàn giao hoàn thiện cơ bản</value>
+  </data>
+  <data name="ban_giao_hoan_thien" xml:space="preserve">
+    <value>Bàn giao hoàn thiện</value>
+  </data>
+  <data name="ban_giao_hoan_thien_mat_ngoai_va_tho_ben_trong" xml:space="preserve">
+    <value>Bàn giao hoàn thiện mặt ngoài và thô bên trong</value>
+  </data>
+  <data name="goi_ban_giao_bo_sung" xml:space="preserve">
+    <value>Gói bàn giao bổ sung</value>
+  </data>
+  <data name="gui_phan_hoi" xml:space="preserve">
+    <value>Gửi phản hồi</value>
+  </data>
+  <data name="noti_gui_phan_hoi_that_bai" xml:space="preserve">
+    <value>Gửi phản hồi thất bại.</value>
+  </data>
+  <data name="noti_gui_phan_hoi_thanh_cong" xml:space="preserve">
+    <value>Gửi phản hồi thành công.</value>
   </data>
 </root>
