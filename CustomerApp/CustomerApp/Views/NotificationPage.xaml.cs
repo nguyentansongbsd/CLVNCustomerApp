@@ -52,7 +52,7 @@ namespace CustomerApp.Views
         private async void ListView_ItemTapped(System.Object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
             var item = e.Item as NotificaModel;
-            if (item.ProjectId != null)
+            if (item.NotificationType == NotificationType.ConstructionProgess && item.ProjectId != null)
             {
                 LoadingHelper.Show();
                 ProjectInfoPage project = new ProjectInfoPage(item.ProjectId, null, true);
@@ -73,6 +73,11 @@ namespace CustomerApp.Views
                         ToastMessageHelper.ShortMessage(Language.noti_khong_tim_thay_thong_tin_vui_long_thu_lai);
                     }
                 };
+            }
+            else
+            {
+                LoadingHelper.Hide();
+                ToastMessageHelper.ShortMessage(Language.tinh_nang_dang_phat_trien);
             }
         }
 

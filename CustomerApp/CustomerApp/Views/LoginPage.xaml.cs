@@ -8,6 +8,7 @@ using CustomerApp.Helper;
 using CustomerApp.IServices;
 using CustomerApp.Models;
 using CustomerApp.Resources;
+using CustomerApp.Services;
 using CustomerApp.Settings;
 using CustomerApp.ViewModels;
 using Firebase.Database;
@@ -38,7 +39,7 @@ namespace CustomerApp.Views
         public string VerApp { get => _verApp; set { _verApp = value; OnPropertyChanged(nameof(VerApp)); } }
 
         public string ImeiNum { get; set; }
-        public LoginPage(string username = null, string pass = null)
+        public LoginPage(string username = null, string pass = null,bool isRememberMe = false)
         {
             InitializeComponent();
             this.BindingContext = this;
@@ -54,6 +55,7 @@ namespace CustomerApp.Views
             }
             else if (!string.IsNullOrWhiteSpace(username) || !string.IsNullOrWhiteSpace(pass))
             {
+                checkboxRememberAcc.IsChecked = isRememberMe;
                 UserName = username;
                 Password = pass;
                 SetGridUserName();
@@ -191,7 +193,7 @@ namespace CustomerApp.Views
                 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
             }
             Application.Current.MainPage = new AppShell();
-            Shell.Current.Navigation.PushAsync(new LoginPage(UserName, Password), false);
+            Shell.Current.Navigation.PushAsync(new LoginPage(UserName, Password,checkboxRememberAcc.IsChecked), false);
             LoadingHelper.Hide();
         }
 
@@ -246,6 +248,14 @@ namespace CustomerApp.Views
                         UserLogged.Avartar = user.entityimage;
                         UserLogged.Email_Phone = UserName;
                         await SaveToken();
+                        if (UserLogged.Language == "vi")
+                        {
+                            DependencyService.Register<IDatetimeService, DatetimeService>();
+                        }
+                        else
+                        {
+                            DependencyService.Register<IDatetimeService, DatetimeENService>();
+                        }
 
                         Application.Current.MainPage = new AppShell();
 

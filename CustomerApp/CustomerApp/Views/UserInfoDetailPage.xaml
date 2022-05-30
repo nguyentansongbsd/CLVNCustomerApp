@@ -48,19 +48,19 @@
                     <StackLayout>
                         <!--tab thong tin-->
                         <StackLayout x:Name="TabThongTin" IsVisible="true" Margin="0,10,0,0" BackgroundColor="#f1f1f1f1" Spacing="1">
-                            <controls:LabelField Title="{x:Static lang:Language.ho_ten}"
+                            <controls:LabelField Title="{x:Static lang:Language.ho_ten}" ColumnDefinitions="4*,6*"
                                                  Text="{Binding Contact.bsd_fullname}" FontAttributeText="Bold"/>
-                            <controls:LabelField Title="{x:Static lang:Language.email}"
+                            <controls:LabelField Title="{x:Static lang:Language.email}" ColumnDefinitions="4*,6*"
                                                  Text="{Binding Contact.emailaddress1}"/>
-                            <controls:LabelField Title="{x:Static lang:Language.so_dien_thoai}"
+                            <controls:LabelField Title="{x:Static lang:Language.so_dien_thoai}" ColumnDefinitions="4*,6*"
                                                  Text="{Binding Contact.mobilephone}"/>
-                            <controls:LabelField Title="{x:Static lang:Language.ngay_sinh}"
+                            <controls:LabelField Title="{x:Static lang:Language.ngay_sinh}" ColumnDefinitions="4*,6*"
                                                  Text="{Binding Contact.birthdate,StringFormat='{0:dd/MM/yyyy}'}"/>
-                            <controls:LabelField Title="{x:Static lang:Language.gioi_tinh}"
+                            <controls:LabelField Title="{x:Static lang:Language.gioi_tinh}" ColumnDefinitions="4*,6*"
                                                  Text="{Binding Gender.Label}"/>
-                            <controls:LabelField Title="{x:Static lang:Language.dia_chi}"
+                            <controls:LabelField Title="{x:Static lang:Language.dia_chi}" ColumnDefinitions="4*,6*"
                                                  Text="{Binding Contact.bsd_contactaddress}"/>
-                            <controls:LabelField Title="{x:Static lang:Language.dia_chi_thuong_tru}"
+                            <controls:LabelField Title="{x:Static lang:Language.dia_chi_thuong_tru}" ColumnDefinitions="4*,6*"
                                                  Text="{Binding Contact.bsd_permanentaddress1}"/>
                         </StackLayout>
                         <StackLayout x:Name="TabPhongThuy" Margin="0,10,0,0" IsVisible="false">
@@ -115,28 +115,16 @@
                             <controls:TitleSection Text="{x:Static lang:Language.loyalty}" IsExpanded="True">
                                 <controls:TitleSection.Content>
                                     <StackLayout BackgroundColor="#f1f1f1f1" Spacing="1">
-                                        <controls:LabelField Title="{x:Static lang:Language.da_giao_dich}"
-                                                 Text="{Binding Loyalty.bsd_transacted_format}"/>
+                                        <controls:LabelField Title="{x:Static lang:Language.bac_thanh_vien}"
+                                                 Text="{Binding Loyalty.membershiptier_name}" FontAttributeText="Bold"/>
                                         <controls:LabelField Title="{x:Static lang:Language.tong_tien_giao_dich}"
                                                  Text="{Binding Loyalty.bsd_totaltransaction}"/>
-                                        <controls:LabelField Title="{x:Static lang:Language.bac_thanh_vien}"
-                                                 Text="{Binding Loyalty.membershiptier_name}"/>
-                                        <controls:LabelField Title="{x:Static lang:Language.tong_diem_so_huu}"
-                                                 Text="{Binding Loyalty.bsd_totalpointsofownership}"/>
-                                        <controls:LabelField Title="{x:Static lang:Language.tong_diem_bao_gom_dieu_kien}"
-                                                 Text="{Binding Loyalty.bsd_totalpointsincludecondition}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.tong_tien_trong_thoi_gian_hieu_luc}"
                                                  Text="{Binding Loyalty.bsd_totalamountineffectivetime,StringFormat=''}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.tong_tien_so_huu}"
                                                  Text="{Binding Loyalty.bsd_totalamountofownership_format}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.layalty_date}"
                                                  Text="{Binding Loyalty.bsd_loyaltydate,StringFormat='{0:dd/MM/yyyy}'}"/>
-                                        <controls:LabelField Title="{x:Static lang:Language.hang}"
-                                                 Text="{Binding Loyalty.bsd_rankup_name}"/>
-                                        <controls:LabelField Title="{x:Static lang:Language.hang_dac_biet}"
-                                                 Text="{Binding Loyalty.bsd_rankupspecial_name}"/>
-                                        <controls:LabelField Title="{x:Static lang:Language.tong_diem_dieu_kien}"
-                                                 Text="{Binding Loyalty.bsd_totalpointsofcondition}"/>
                                     </StackLayout>
                                 </controls:TitleSection.Content>
                             </controls:TitleSection>

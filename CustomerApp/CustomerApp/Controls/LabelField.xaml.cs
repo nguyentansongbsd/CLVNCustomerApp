@@ -79,6 +79,7 @@ namespace CustomerApp.Controls
             // lb_text.SetBinding(Label.TextProperty, "Text");
             lb_title.BindingContext = this;
             lb_text.SetBinding(Label.FontAttributesProperty, new Binding("FontAttributeText") { Source = this });
+            
         }
 
         private void Text_Tapped(object sender, EventArgs e)

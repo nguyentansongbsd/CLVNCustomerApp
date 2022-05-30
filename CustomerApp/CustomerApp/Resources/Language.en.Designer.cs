@@ -1111,6 +1111,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Purchase.
+        /// </summary>
+        internal static string contract_purchase_type {
+            get {
+                return ResourceManager.GetString("contract_purchase_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Qualify.
         /// </summary>
         internal static string contract_qualify_sts {
@@ -1278,6 +1287,15 @@ namespace CustomerApp.Resources {
         internal static string da_thanh_toan {
             get {
                 return ResourceManager.GetString("da_thanh_toan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount was paid.
+        /// </summary>
+        internal static string da_thanh_toan_lich {
+            get {
+                return ResourceManager.GetString("da_thanh_toan_lich", resourceCulture);
             }
         }
         
@@ -1453,7 +1471,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Follow Up List.
+        ///   Looks up a localized string similar to Follow up list.
         /// </summary>
         internal static string danh_sach_theo_doi {
             get {
@@ -2281,6 +2299,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paid.
+        /// </summary>
+        internal static string installments_paid_sts {
+            get {
+                return ResourceManager.GetString("installments_paid_sts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         internal static string kh_ca_nhan {
@@ -2956,6 +2983,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expired date of signing Contract.
+        /// </summary>
+        internal static string ngay_het_han_contract {
+            get {
+                return ResourceManager.GetString("ngay_het_han_contract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expired date of signing RF.
         /// </summary>
         internal static string ngay_het_han_reservation {
@@ -2992,6 +3028,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DA printed date.
+        /// </summary>
+        internal static string ngay_in_ttdc_vbtt {
+            get {
+                return ResourceManager.GetString("ngay_in_ttdc_vbtt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quotation signed date.
         /// </summary>
         internal static string ngay_ky {
@@ -3001,11 +3046,29 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Signed Contract date.
+        /// </summary>
+        internal static string ngay_ky_contract {
+            get {
+                return ResourceManager.GetString("ngay_ky_contract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reservation signed date.
         /// </summary>
         internal static string ngay_ky_reservation {
             get {
                 return ResourceManager.GetString("ngay_ky_reservation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signed DA date.
+        /// </summary>
+        internal static string ngay_ky_ttdc_vbtt {
+            get {
+                return ResourceManager.GetString("ngay_ky_ttdc_vbtt", resourceCulture);
             }
         }
         
@@ -3874,7 +3937,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maintenance fees.
+        ///   Looks up a localized string similar to Maintenance fee.
         /// </summary>
         internal static string phi_bao_tri {
             get {
@@ -3910,7 +3973,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Management amount.
+        ///   Looks up a localized string similar to Management fee.
         /// </summary>
         internal static string phi_quan_ly {
             get {
@@ -4639,7 +4702,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User name/Email.
+        ///   Looks up a localized string similar to Email/Phone.
         /// </summary>
         internal static string ten_dang_nhap {
             get {
@@ -5062,6 +5125,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Feature under development.
+        /// </summary>
+        internal static string tinh_nang_dang_phat_trien {
+            get {
+                return ResourceManager.GetString("tinh_nang_dang_phat_trien", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Province.
         /// </summary>
         internal static string tinh_thanh {
@@ -5125,6 +5197,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sale - Purchase Agreement (SPA).
+        /// </summary>
+        internal static string title_hop_dong_mua_ban {
+            get {
+                return ResourceManager.GetString("title_hop_dong_mua_ban", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to La Bàn Phong Thủy.
         /// </summary>
         internal static string title_la_ban_phong_thuy {
@@ -5134,7 +5215,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unit Floor Plan.
+        ///   Looks up a localized string similar to Plan.
         /// </summary>
         internal static string title_mat_bang {
             get {
@@ -5251,7 +5332,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Construction Progress.
+        ///   Looks up a localized string similar to Progress.
         /// </summary>
         internal static string title_tien_do {
             get {
@@ -5305,7 +5386,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sumarry.
+        ///   Looks up a localized string similar to Summarry.
         /// </summary>
         internal static string tong_hop {
             get {
@@ -5395,7 +5476,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TTĐC / VBTT.
+        ///   Looks up a localized string similar to Deposit Agreement.
         /// </summary>
         internal static string ttdc_vbtt {
             get {

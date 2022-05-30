@@ -445,7 +445,7 @@
                                                         <Label Text="{Binding bsd_depositamount_format, StringFormat='{0} đ'}" TextColor="Red" FontSize="15" Grid.Column="1"/>
                                                     </Grid>
                                                     <Grid ColumnDefinitions="Auto,*">
-                                                        <Label Text="{Binding Source={x:Static lang:Language.da_thanh_toan},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
+                                                        <Label Text="{Binding Source={x:Static lang:Language.da_thanh_toan_lich},StringFormat='{0}: '}" TextColor="#444444" FontSize="15" Grid.Column="0"/>
                                                         <Label Text="{Binding bsd_amountwaspaid_format, StringFormat='{0} đ'}" TextColor="#444444" FontSize="15" Grid.Column="1"/>
                                                     </Grid>
                                                     <Grid ColumnDefinitions="Auto,Auto,*" IsVisible="{Binding bsd_maintenanceamount_hide}" >
