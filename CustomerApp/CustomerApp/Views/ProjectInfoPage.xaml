@@ -303,35 +303,35 @@
                                     <StackLayout Spacing="1" BackgroundColor="#F1F1F1">
                                         <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
                                             <controls:FormLabel Text="{x:Static lang:Language.phan_tram_coc_}" Grid.Column="0" FontSize="15" TextColor="#444444" Padding="25,10" VerticalOptions="Start"/>
-                                            <controls:FormLabelValue Text="{Binding Project.bsd_depositpercentda_format,StringFormat='{0}%'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="25,10" HorizontalTextAlignment="End"/>
+                                            <controls:FormLabelValue Text="{Binding Project.bsd_depositpercentda_format,StringFormat='{0}%'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="10,10,25,10"  HorizontalTextAlignment="End"/>
                                         </Grid>
                                         <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
                                             <controls:FormLabel Text="{x:Static lang:Language.ngay_du_kien_ban_giao}" Grid.Column="0" FontSize="15" TextColor="#444444" Padding="25,10" VerticalOptions="Start"/>
-                                            <controls:FormLabelValue Text="{Binding Project.bsd_estimatehandoverdate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="25,10" HorizontalTextAlignment="End"/>
+                                            <controls:FormLabelValue Text="{Binding Project.bsd_estimatehandoverdate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="10,10,25,10"  HorizontalTextAlignment="End"/>
                                         </Grid>
                                         <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
                                             <controls:FormLabel Text="{x:Static lang:Language.gia_tri_qsdd_m}" Grid.Column="0" FontSize="15" TextColor="#444444" Padding="25,10" VerticalOptions="Start"/>
-                                            <controls:FormLabelValue Text="{Binding Project.bsd_landvalueofproject_format,StringFormat='{0} đ'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="25,10" HorizontalTextAlignment="End"/>
+                                            <controls:FormLabelValue Text="{Binding Project.bsd_landvalueofproject_format,StringFormat='{0} đ'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="10,10,25,10"  HorizontalTextAlignment="End"/>
                                         </Grid>
                                         <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
                                             <controls:FormLabel Text="{Binding Source={x:Static lang:Language.phi_bao_tri},StringFormat='{0} (%)'}" Grid.Column="0" FontSize="15" TextColor="#444444" Padding="25,10" VerticalOptions="Start"/>
-                                            <controls:FormLabelValue Text="{Binding Project.bsd_maintenancefeespercent_format,StringFormat='{0}%'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="25,10" HorizontalTextAlignment="End"/>
+                                            <controls:FormLabelValue Text="{Binding Project.bsd_maintenancefeespercent_format,StringFormat='{0}%'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="10,10,25,10" HorizontalTextAlignment="End"/>
                                         </Grid>
                                         <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
                                             <controls:FormLabel Text="{x:Static lang:Language.so_thang_tinh_phi_quan_ly}" Grid.Column="0" FontSize="15" TextColor="#444444" Padding="25,10" VerticalOptions="Start"/>
-                                            <controls:FormLabelValue Text="{Binding Project.bsd_numberofmonthspaidmf}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="25,10" HorizontalTextAlignment="End"/>
+                                            <controls:FormLabelValue Text="{Binding Project.bsd_numberofmonthspaidmf}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="10,10,25,10"  HorizontalTextAlignment="End"/>
                                         </Grid>
                                         <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
                                             <controls:FormLabel Text="{x:Static lang:Language.don_gia_phi_quan_ly_thang}" Grid.Column="0" FontSize="15" TextColor="#444444" Padding="25,10" VerticalOptions="Start"/>
-                                            <controls:FormLabelValue Text="{Binding Project.bsd_managementamount_format,StringFormat='{0} đ'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="25,10" HorizontalTextAlignment="End"/>
+                                            <controls:FormLabelValue Text="{Binding Project.bsd_managementamount_format,StringFormat='{0} đ'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="10,10,25,10" HorizontalTextAlignment="End"/>
                                         </Grid>
                                         <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
                                             <controls:FormLabel Text="{x:Static lang:Language.tien_giu_cho}" Grid.Column="0" FontSize="15" TextColor="#444444" Padding="25,10" VerticalOptions="Start"/>
-                                            <controls:FormLabelValue Text="{Binding Project.bsd_bookingfee_format,StringFormat='{0} đ'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="25,10" HorizontalTextAlignment="End"/>
+                                            <controls:FormLabelValue Text="{Binding Project.bsd_bookingfee_format,StringFormat='{0} đ'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="10,10,25,10"  HorizontalTextAlignment="End"/>
                                         </Grid>
                                         <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
                                             <controls:FormLabel Text="{x:Static lang:Language.tien_dat_coc}" Grid.Column="0" FontSize="15" TextColor="#444444" Padding="25,10" VerticalOptions="Start"/>
-                                            <controls:FormLabelValue Text="{Binding Project.bsd_depositamount_format,StringFormat='{0} đ'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="25,10" HorizontalTextAlignment="End"/>
+                                            <controls:FormLabelValue Text="{Binding Project.bsd_depositamount_format,StringFormat='{0} đ'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="10,10,25,10"  HorizontalTextAlignment="End"/>
                                         </Grid>
                                     </StackLayout>
                                 </controls:TitleSection.Content>

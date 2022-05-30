@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using CustomerApp.Models;
+using CustomerApp.Settings;
 using Firebase.Database;
 using Firebase.Database.Query;
 
@@ -29,7 +30,9 @@ namespace CustomerApp.ViewModels
                                       Key = item.Key,
                                       Id = item.Object.Id,
                                       Title = item.Object.Title,
+                                      TitleEn = item.Object.TitleEn,
                                       Body = item.Object.Body,
+                                      BodyEn = item.Object.BodyEn,
                                       ProjectId = item.Object.ProjectId,
                                       NotificationType = item.Object.NotificationType,
                                       IsRead = item.Object.IsRead,
@@ -37,21 +40,15 @@ namespace CustomerApp.ViewModels
                                   }).OrderByDescending(x=>x.CreatedDate);
             foreach (var item in Items)
             {
-                if (item.IsRead)
-                {
-                    item.BackgroundColor = "#F2F2F2";
-                }
-                else
-                {
-                    item.BackgroundColor = "#ffffff";
-                }
+                item.Title = UserLogged.Language == "vi" ? item.Title : item.TitleEn;
+                item.Body = UserLogged.Language == "vi" ? item.Body : item.BodyEn;
                 this.Notifications.Add(item);
             }
         }
 
         public async Task UpdateStatus(string key, NotificaModel data)
         {
-            await firebaseClient.Child("Notifications").Child(key).PutAsync(new NotificaModel() { Id = data.Id, Title = data.Title,Body = data.Body,ProjectId = data.ProjectId,IsRead= true,NotificationType = data.NotificationType,CreatedDate=data.CreatedDate });
+            await firebaseClient.Child("Notifications").Child(key).PutAsync(new NotificaModel() { Id = data.Id, Title = data.Title, TitleEn = data.TitleEn, Body = data.Body, BodyEn = data.BodyEn, ProjectId = data.ProjectId,IsRead= true,NotificationType = data.NotificationType,CreatedDate=data.CreatedDate });
         }
     }
 }

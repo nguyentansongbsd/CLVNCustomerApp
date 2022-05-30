@@ -34,16 +34,6 @@ namespace CustomerApp
 
             //MainPage = new BlankPage();
             DependencyService.Register<INotificationService, NotificationService>();
-
-            if (UserLogged.Language == "vi")
-            {
-                DependencyService.Register<IDatetimeService, DatetimeService>();
-            }
-            else
-            {
-                DependencyService.Register<IDatetimeService, DatetimeENService>();
-            }
-            
         }
 
         protected override void OnStart ()

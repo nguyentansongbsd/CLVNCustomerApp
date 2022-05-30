@@ -142,7 +142,7 @@
     <value>Logout</value>
   </data>
 	<data name="ten_dang_nhap" xml:space="preserve">
-    <value>User name/Email</value>
+    <value>Email/Phone</value>
   </data>
 	<data name="mat_khau" xml:space="preserve">
     <value>Password</value>
@@ -2026,10 +2026,10 @@
     <value>Project code</value>
   </data>
 	<data name="title_tien_do" xml:space="preserve">
-    <value>Construction Progress</value>
+    <value>Progress</value>
   </data>
 	<data name="title_mat_bang" xml:space="preserve">
-    <value>Unit Floor Plan</value>
+    <value>Plan</value>
   </data>
 	<data name="gia_tri_hop_dong" xml:space="preserve">
     <value>Contract value</value>
@@ -2162,5 +2162,11 @@
   </data>
 	<data name="installments_paid_sts" xml:space="preserve">
     <value>Paid</value>
+  </data>
+  <data name="tinh_nang_dang_phat_trien" xml:space="preserve">
+    <value>Feature under development</value>
+  </data>
+  <data name="da_thanh_toan_lich" xml:space="preserve">
+    <value>Amount was paid</value>
   </data>
 </root>

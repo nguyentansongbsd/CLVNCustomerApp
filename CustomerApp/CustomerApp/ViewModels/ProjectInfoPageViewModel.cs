@@ -573,6 +573,7 @@ namespace CustomerApp.ViewModels
                                       Name = item.Object.Name,
                                       Thumnail = item.Object.Thumnail,
                                       GroupName = item.Object.GroupName,
+                                      GroupNameEn= item.Object.GroupNameEn,
                                       GroupId = item.Object.GroupId,
                                       ParentId = item.Object.ParentId,
                                       IsGroup = item.Object.IsGroup
@@ -584,10 +585,10 @@ namespace CustomerApp.ViewModels
                     {
                         string file = item.ImageSource;
                         string link = $"https://firebasestorage.googleapis.com/v0/b/smsappcrm.appspot.com/o/{Project.bsd_projectcode}%2Fimages%2F{file}?alt=media";
-
+                        string groupName = (!string.IsNullOrWhiteSpace(item.GroupNameEn) && UserLogged.Language != "vi") ? item.GroupNameEn : item.GroupName;
                         if (item.SharePointType == SharePointType.Image && item.IsGroup == true)
                         {
-                            list.Add(new CollectionData { ImageSource = link,Name = item.Name, GroupName = item.GroupName, GroupId = item.GroupId, SharePointType = item.SharePointType });
+                            list.Add(new CollectionData { ImageSource = link,Name = item.Name, GroupName = groupName, GroupId = item.GroupId, SharePointType = item.SharePointType });
                             numGroup++;
                         }
                     }

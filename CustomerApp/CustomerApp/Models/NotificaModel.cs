@@ -9,7 +9,9 @@ namespace CustomerApp.Models
 
         public Guid Id { get; set; }
         public string Title { get; set; }
+        public string TitleEn { get; set; }
         public string Body { get; set; }
+        public string BodyEn { get; set; }
         public bool IsRead { get; set; }
         public NotificationType NotificationType { get; set; }
         public DateTime CreatedDate { get; set; }

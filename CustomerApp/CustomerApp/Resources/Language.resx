@@ -2166,4 +2166,10 @@
 	<data name="installments_paid_sts" xml:space="preserve">
     <value>Đã thanh toán</value>
   </data>
+  <data name="tinh_nang_dang_phat_trien" xml:space="preserve">
+    <value>Tính năng đang phát triển</value>
+  </data>
+  <data name="da_thanh_toan_lich" xml:space="preserve">
+    <value>Đã thanh toán</value>
+  </data>
 </root>

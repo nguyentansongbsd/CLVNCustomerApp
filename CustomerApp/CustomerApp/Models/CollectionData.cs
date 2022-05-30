@@ -16,6 +16,7 @@ namespace CustomerApp.Models
         public int Index { get; set; }
         public string GroupId { get; set; }
         public string GroupName { get; set; }
+        public string GroupNameEn { get; set; }
         public string ParentId { get; set; }
         public bool IsGroup { get; set; }
         public CollectionData()
