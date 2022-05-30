@@ -143,7 +143,7 @@
                                                             </Label.GestureRecognizers>
                                                             <Label.Text>
                                                                 <MultiBinding StringFormat="{}{0} ({1})">
-                                                                    <Binding Path="bsd_discountnumber" />
+                                                                    <Binding Path="bsd_name" /> <!--bsd_discountnumber-->
                                                                     <Binding Path="value_format" />
                                                                 </MultiBinding>
                                                             </Label.Text>

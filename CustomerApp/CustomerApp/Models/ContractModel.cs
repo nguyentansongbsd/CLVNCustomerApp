@@ -1,5 +1,6 @@
 ﻿using CustomerApp.Datas;
 using CustomerApp.Helpers;
+using CustomerApp.Resources;
 using CustomerApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -198,9 +199,9 @@ namespace CustomerApp.Models
             get
             {
                 if (bsd_contracttype == 100000000)
-                    return "Cho thuê dài hạn"; // Long Term Lease
+                    return Language.contract_long_term_lease_type; // Long Term Lease //contract_long_term_lease_type
                 else if (bsd_contracttype == 100000001)
-                    return "Mua bán";//Purchase
+                    return Language.contract_purchase_type;//Purchase //contract_purchase_type
                 else
                     return "";
             }

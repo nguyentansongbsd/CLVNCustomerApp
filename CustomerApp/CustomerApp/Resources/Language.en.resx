@@ -613,7 +613,7 @@
     <value>Land value of unit</value>
   </data>
 	<data name="phi_bao_tri" xml:space="preserve">
-    <value>Maintenance fees</value>
+    <value>Maintenance fee</value>
   </data>
 	<data name="so_thang_tinh_phi_quan_ly" xml:space="preserve">
     <value>Number of months paid M.F</value>
@@ -1438,7 +1438,7 @@
     <value>Policy</value>
   </data>
 	<data name="tong_hop" xml:space="preserve">
-    <value>Sumarry</value>
+    <value>Summarry</value>
   </data>
 	<data name="chi_tiet" xml:space="preserve">
     <value>Detail</value>
@@ -1471,7 +1471,7 @@
     <value>Special discount</value>
   </data>
 	<data name="danh_sach_theo_doi" xml:space="preserve">
-    <value>Follow Up List</value>
+    <value>Follow up list</value>
   </data>
 	<data name="dien_tich_thuc_te" xml:space="preserve">
     <value>Actual area (sqm)</value>
@@ -1537,7 +1537,7 @@
     <value>Land value deduction</value>
   </data>
 	<data name="phi_quan_ly" xml:space="preserve">
-    <value>Management amount</value>
+    <value>Management fee</value>
   </data>
 	<data name="so_thang_dong_phi" xml:space="preserve">
     <value>Number of months paid M.F</value>
@@ -1690,7 +1690,7 @@
     <value>Co-Owner</value>
   </data>
 	<data name="ttdc_vbtt" xml:space="preserve">
-    <value>TTĐC / VBTT</value>
+    <value>Deposit Agreement</value>
   </data>
 	<data name="ngay_ttdc_vbtt" xml:space="preserve">
     <value>DA date</value>
@@ -2138,5 +2138,29 @@
   </data>
   <data name="vo_hieu_luc_sts_ckdb" xml:space="preserve">
     <value>Inactive</value>
+  </data>
+	<data name="contract_long_term_lease_type" xml:space="preserve">
+    <value>Long Term Lease</value>
+  </data>
+	<data name="contract_purchase_type" xml:space="preserve">
+    <value>Purchase</value>
+  </data>
+	<data name="ngay_het_han_contract" xml:space="preserve">
+    <value>Expired date of signing Contract</value>
+  </data>
+	<data name="ngay_ky_contract" xml:space="preserve">
+    <value>Signed Contract date</value>
+  </data>
+	<data name="title_hop_dong_mua_ban" xml:space="preserve">
+    <value>Sale - Purchase Agreement (SPA)</value>
+  </data>
+	<data name="ngay_in_ttdc_vbtt" xml:space="preserve">
+    <value>DA printed date</value>
+  </data>
+	<data name="ngay_ky_ttdc_vbtt" xml:space="preserve">
+    <value>Signed DA date</value>
+  </data>
+	<data name="installments_paid_sts" xml:space="preserve">
+    <value>Paid</value>
   </data>
 </root>
