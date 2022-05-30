@@ -2142,4 +2142,28 @@
   <data name="vo_hieu_luc_sts_ckdb" xml:space="preserve">
     <value>Vô hiệu lực</value>
   </data>
+	<data name="contract_long_term_lease_type" xml:space="preserve">
+    <value>Cho thuê dài hạn</value>
+  </data>
+	<data name="contract_purchase_type" xml:space="preserve">
+    <value>Mua bán</value>
+  </data>
+	<data name="ngay_het_han_contract" xml:space="preserve">
+    <value>Ngày hết hạn ký</value>
+  </data>
+	<data name="ngay_ky_contract" xml:space="preserve">
+    <value>Ngày ký</value>
+  </data>
+	<data name="title_hop_dong_mua_ban" xml:space="preserve">
+    <value>Thông Tin Hợp Đồng</value>
+  </data>
+	<data name="ngay_in_ttdc_vbtt" xml:space="preserve">
+    <value>Ngày in</value>
+  </data>
+	<data name="ngay_ky_ttdc_vbtt" xml:space="preserve">
+    <value>Ngày ký</value>
+  </data>
+	<data name="installments_paid_sts" xml:space="preserve">
+    <value>Đã thanh toán</value>
+  </data>
 </root>

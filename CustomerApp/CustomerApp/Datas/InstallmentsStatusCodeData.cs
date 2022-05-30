@@ -14,8 +14,8 @@ namespace CustomerApp.Datas
             return new List<StatusCodeModel>()
             {
                 new StatusCodeModel("1",Language.ful_nhap,"#06CF79"), // nháp
-                new StatusCodeModel("100000000",Language.chua_thanh_toan,"#FDC206"),  // chưa thnah toán
-                new StatusCodeModel("100000001",Language.da_thanh_toan,"#03ACF5"),  // đã thah toán
+                new StatusCodeModel("100000000",Language.chua_thanh_toan,"#FDC206"),  // chưa thnah toán installments_paid_sts
+                new StatusCodeModel("100000001",Language.installments_paid_sts,"#03ACF5"),  // đã thah toán
                 new StatusCodeModel("2",Language.vo_hieu_luc,"#FA7901"), //Inactive
                 new StatusCodeModel("0","","#f1f1f1")
             };
