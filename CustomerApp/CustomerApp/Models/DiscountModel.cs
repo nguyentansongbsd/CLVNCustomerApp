@@ -1,5 +1,6 @@
 ﻿using CustomerApp.Datas;
 using CustomerApp.Helpers;
+using CustomerApp.Resources;
 using CustomerApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -32,9 +33,9 @@ namespace CustomerApp.Models
             get
             {
                 if (bsd_method == 100000001)
-                    return "Tổng tiền"; //Amount
+                    return Language.tong_tien; //Amount
                 else if (bsd_method == 100000000)
-                    return "Phần trăm"; //Percent
+                    return Language.phan_tram; //Percent
                 else
                     return null;
             }

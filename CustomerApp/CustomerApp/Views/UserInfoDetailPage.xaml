@@ -126,11 +126,11 @@
                                         <controls:LabelField Title="{x:Static lang:Language.tong_diem_bao_gom_dieu_kien}"
                                                  Text="{Binding Loyalty.bsd_totalpointsincludecondition}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.tong_tien_trong_thoi_gian_hieu_luc}"
-                                                 Text="{Binding Loyalty.bsd_totalamountineffectivetime}"/>
+                                                 Text="{Binding Loyalty.bsd_totalamountineffectivetime,StringFormat=''}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.tong_tien_so_huu}"
-                                                 Text="{Binding Loyalty.bsd_totalamountofownership}"/>
+                                                 Text="{Binding Loyalty.bsd_totalamountofownership_format}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.layalty_date}"
-                                                 Text="{Binding Loyalty.bsd_loyaltydate}"/>
+                                                 Text="{Binding Loyalty.bsd_loyaltydate,StringFormat='{0:dd/MM/yyyy}'}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.hang}"
                                                  Text="{Binding Loyalty.bsd_rankup_name}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.hang_dac_biet}"
