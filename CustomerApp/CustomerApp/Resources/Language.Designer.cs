@@ -1795,6 +1795,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duyệt.
+        /// </summary>
+        internal static string duyet_sts_ckdb {
+            get {
+                return ResourceManager.GetString("duyet_sts_ckdb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         internal static string email {
@@ -3276,6 +3285,15 @@ namespace CustomerApp.Resources {
         internal static string nhap_so_nha_duong_phuong {
             get {
                 return ResourceManager.GetString("nhap_so_nha_duong_phuong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nháp.
+        /// </summary>
+        internal static string nhap_sts_ckdb {
+            get {
+                return ResourceManager.GetString("nhap_sts_ckdb", resourceCulture);
             }
         }
         
@@ -5404,6 +5422,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Từ Chối.
+        /// </summary>
+        internal static string tu_choi_sts_ckdb {
+            get {
+                return ResourceManager.GetString("tu_choi_sts_ckdb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tuỳ chọn.
         /// </summary>
         internal static string tuy_chon {
@@ -5589,6 +5616,15 @@ namespace CustomerApp.Resources {
         internal static string vo_hieu_luc {
             get {
                 return ResourceManager.GetString("vo_hieu_luc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vô hiệu lực.
+        /// </summary>
+        internal static string vo_hieu_luc_sts_ckdb {
+            get {
+                return ResourceManager.GetString("vo_hieu_luc_sts_ckdb", resourceCulture);
             }
         }
         

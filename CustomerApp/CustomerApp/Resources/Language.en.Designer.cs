@@ -1273,7 +1273,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Amount was paid.
+        ///   Looks up a localized string similar to Total amount.
         /// </summary>
         internal static string da_thanh_toan {
             get {
@@ -1732,7 +1732,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Co_Owner.
+        ///   Looks up a localized string similar to Co-Owner.
         /// </summary>
         internal static string dong_so_huu {
             get {
@@ -1773,6 +1773,15 @@ namespace CustomerApp.Resources {
         internal static string du_an {
             get {
                 return ResourceManager.GetString("du_an", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approved.
+        /// </summary>
+        internal static string duyet_sts_ckdb {
+            get {
+                return ResourceManager.GetString("duyet_sts_ckdb", resourceCulture);
             }
         }
         
@@ -2551,7 +2560,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calendar.
+        ///   Looks up a localized string similar to Installment.
         /// </summary>
         internal static string lich {
             get {
@@ -3258,6 +3267,15 @@ namespace CustomerApp.Resources {
         internal static string nhap_so_nha_duong_phuong {
             get {
                 return ResourceManager.GetString("nhap_so_nha_duong_phuong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        internal static string nhap_sts_ckdb {
+            get {
+                return ResourceManager.GetString("nhap_sts_ckdb", resourceCulture);
             }
         }
         
@@ -5395,6 +5413,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reject.
+        /// </summary>
+        internal static string tu_choi_sts_ckdb {
+            get {
+                return ResourceManager.GetString("tu_choi_sts_ckdb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         internal static string tuy_chon {
@@ -5580,6 +5607,15 @@ namespace CustomerApp.Resources {
         internal static string vo_hieu_luc {
             get {
                 return ResourceManager.GetString("vo_hieu_luc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inactive.
+        /// </summary>
+        internal static string vo_hieu_luc_sts_ckdb {
+            get {
+                return ResourceManager.GetString("vo_hieu_luc_sts_ckdb", resourceCulture);
             }
         }
         

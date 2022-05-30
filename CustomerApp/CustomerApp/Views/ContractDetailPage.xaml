@@ -44,11 +44,11 @@
                                 </Label>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
-                                <Label Grid.Column="0" Text="{x:Binding Source={x:Static lang:Language.hop_dong},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
+                                <Label Grid.Column="0" Text="{x:Binding Source={x:Static lang:Language.ma_hop_dong},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
                                 <Label Grid.Column="1" Text="{Binding Contract.bsd_contractnumber}" TextColor="#4BA8F1" FontSize="15"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
-                                <Label Grid.Column="0" Text="{x:Binding Source={x:Static lang:Language.gia_tri_hop_dong},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
+                                <Label Grid.Column="0" Text="{x:Binding Source={x:Static lang:Language.tong_tien},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
                                 <Label Grid.Column="1" Text="{Binding Contract.bsd_totalamount_format, StringFormat='{0} đ'}" TextColor="Red" FontSize="15"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">

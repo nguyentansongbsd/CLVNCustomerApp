@@ -133,7 +133,7 @@
     <value>Feedback</value>
   </data>
 	<data name="lich" xml:space="preserve">
-    <value>Calendar</value>
+    <value>Installment</value>
   </data>
 	<data name="tin_tuc" xml:space="preserve">
     <value>News</value>
@@ -1348,7 +1348,7 @@
     <value>Not Paid</value>
   </data>
 	<data name="da_thanh_toan" xml:space="preserve">
-    <value>Amount was paid</value>
+    <value>Total amount</value>
   </data>
 	<data name="vo_hieu_luc" xml:space="preserve">
     <value>Inactive</value>
@@ -1687,7 +1687,7 @@
     <value>Termination letter</value>
   </data>
 	<data name="dong_so_huu" xml:space="preserve">
-    <value>Co_Owner</value>
+    <value>Co-Owner</value>
   </data>
 	<data name="ttdc_vbtt" xml:space="preserve">
     <value>TTĐC / VBTT</value>
@@ -2120,5 +2120,23 @@
   </data>
   <data name="dang_tai_video_vui_long_doi" xml:space="preserve">
     <value>Video is loading. Please wait.</value>
+  </data>
+  <data name="tong_tien" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="phan_tram" xml:space="preserve">
+    <value>Percent</value>
+  </data>
+  <data name="nhap_sts_ckdb" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="duyet_sts_ckdb" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="tu_choi_sts_ckdb" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="vo_hieu_luc_sts_ckdb" xml:space="preserve">
+    <value>Inactive</value>
   </data>
 </root>

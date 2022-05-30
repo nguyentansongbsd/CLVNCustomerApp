@@ -1,4 +1,5 @@
 ﻿using CustomerApp.Datas;
+using CustomerApp.Helpers;
 using System;
 namespace CustomerApp.Models
 {
@@ -7,6 +8,7 @@ namespace CustomerApp.Models
         public Guid contactid { get; set; }
         public decimal? bsd_totalamountofownership3years { get; set; }
         public decimal? bsd_totalamountofownership { get; set; }
+        public string bsd_totalamountofownership_format { get => StringFormatHelper.FormatCurrency(bsd_totalamountofownership) + " đ"; }
         public string bsd_loyaltystatus { get; set; }
         public DateTime? bsd_loyaltydate { get; set; }
         public Guid membershiptier_id { get; set; }
