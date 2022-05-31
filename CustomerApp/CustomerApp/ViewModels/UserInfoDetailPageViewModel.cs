@@ -283,6 +283,7 @@ namespace CustomerApp.ViewModels
                                     <attribute name='bsd_rankup' />
                                     <attribute name='bsd_rankupspecial' />
                                     <attribute name='bsd_totalpointsofcondition' />
+                                    <attribute name='bsd_totalamountineffectivetime' />
                                     <order attribute='createdon' descending='true' />
                                     <filter type='and'>
                                       <condition attribute='contactid' operator='eq' value='{UserLogged.Id}'/>

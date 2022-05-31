@@ -202,7 +202,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Estimate handover date (Contract).
+        ///   Looks up a localized string similar to Estimate handover date.
         /// </summary>
         internal static string ban_giao_du_kien_hd {
             get {
@@ -2691,6 +2691,15 @@ namespace CustomerApp.Resources {
         internal static string loai_unit {
             get {
                 return ResourceManager.GetString("loai_unit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit type.
+        /// </summary>
+        internal static string loai_unit_dkbg {
+            get {
+                return ResourceManager.GetString("loai_unit_dkbg", resourceCulture);
             }
         }
         
