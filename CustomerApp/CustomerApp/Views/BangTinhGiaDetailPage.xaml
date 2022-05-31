@@ -523,7 +523,7 @@
                                         <Grid ColumnDefinitions="Auto,*" Padding="20,0" BackgroundColor="White">
                                             <BoxView WidthRequest="1" HorizontalOptions="CenterAndExpand" Grid.Column="0" BackgroundColor="Gray"/>
                                             <Label Text="&#xf111;"  TextColor="#1399D5" FontSize="10" FontFamily="FontAwesomeSolid" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
-                                            <telerikPrimitives:RadBorder BorderThickness="1" CornerRadius="10" BorderColor="Gray" Grid.Column="1" Margin="20,10,0,10">
+                                            <telerikPrimitives:RadBorder BorderThickness="1" CornerRadius="10" BorderColor="Gray" Grid.Column="1" Margin="10,10,0,10">
                                                 <StackLayout Padding="10">
                                                     <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto">
                                                         <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statuscode_color}">
@@ -665,17 +665,17 @@
                                 </telerikPrimitives:RadBorder>
                             </Grid>
 
+                            <Grid ColumnDefinitions="4*,6*" IsVisible="{Binding HandoverConditionItem.bsd_byunittype}">
+                                <controls:FormLabel Text="{x:Static lang:Language.loai_unit_dkbg}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="0" VerticalOptions="Center"/>
+                                <telerikPrimitives:RadBorder Grid.Column="1" Grid.Row="0" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                                    <Label Text="{Binding HandoverConditionItem.name_unit_type}" FontSize="14" TextColor="#444444" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </telerikPrimitives:RadBorder>
+                            </Grid>
+
                             <Grid ColumnDefinitions="4*,6*">
                                 <controls:FormLabel Text="{x:Static lang:Language.phuong_thuc}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="0" VerticalOptions="Center"/>
                                 <telerikPrimitives:RadBorder Grid.Column="1" Grid.Row="0" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
                                     <Label Text="{Binding HandoverConditionItem.method_format}" FontSize="14" TextColor="#444444" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                </telerikPrimitives:RadBorder>
-                            </Grid>
-
-                            <Grid ColumnDefinitions="4*,6*" IsVisible="{Binding HandoverConditionItem.bsd_byunittype}">
-                                <controls:FormLabel Text="{x:Static lang:Language.loai_unit}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="0" VerticalOptions="Center"/>
-                                <telerikPrimitives:RadBorder Grid.Column="1" Grid.Row="0" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
-                                    <Label Text="{Binding HandoverConditionItem.name_unit_type}" FontSize="14" TextColor="#444444" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 </telerikPrimitives:RadBorder>
                             </Grid>
 

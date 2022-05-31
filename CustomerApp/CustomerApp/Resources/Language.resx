@@ -1681,7 +1681,7 @@
     <value>Tỷ giá</value>
   </data>
 	<data name="ban_giao_du_kien_hd" xml:space="preserve">
-    <value>Bàn giao dự kiến (HĐ)</value>
+    <value>Bàn giao dự kiến</value>
   </data>
 	<data name="thu_thanh_ly" xml:space="preserve">
     <value>Thư thanh lý</value>
@@ -2155,7 +2155,7 @@
     <value>Ngày ký</value>
   </data>
 	<data name="title_hop_dong_mua_ban" xml:space="preserve">
-    <value>Thông Tin Hợp Đồng</value>
+    <value>Hợp Đồng Mua Bán</value>
   </data>
 	<data name="ngay_in_ttdc_vbtt" xml:space="preserve">
     <value>Ngày in</value>
@@ -2171,5 +2171,8 @@
   </data>
   <data name="da_thanh_toan_lich" xml:space="preserve">
     <value>Đã thanh toán</value>
+  </data>
+  <data name="loai_unit_dkbg" xml:space="preserve">
+    <value>Loại sản phẩm</value>
   </data>
 </root>

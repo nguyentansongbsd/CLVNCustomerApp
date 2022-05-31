@@ -27,6 +27,7 @@ namespace CustomerApp.Models
         public decimal bsd_totalpointsincludecondition { get; set; }
         //Total Amount in effective time tong_tien_trong_thoi_gian_hieu_luc Tổng tiền trong thời gian hiệu lực
         public decimal bsd_totalamountineffectivetime { get; set; }
+        public string bsd_totalamountineffectivetime_format { get => StringFormatHelper.FormatCurrency(bsd_totalamountineffectivetime) + " đ"; }
         //Rank Up hang Hạng
         public string bsd_rankup { get; set; }
         public string bsd_rankup_name { get; set; }

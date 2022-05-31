@@ -5,7 +5,7 @@
       ColumnDefinitions="Auto,*"
       BackgroundColor="White" x:Name="gridLableField">
     <Label x:Name="lb_title" Text="{Binding Title}" FontSize="15" TextColor="{StaticResource TextColor}" Grid.Column="0" Padding="25,10,0,10"/>
-    <Label x:Name="lb_text" Text="{Binding Text}" FontSize="15" Grid.Column="1" Padding="0,10,25,10" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End">
+    <Label x:Name="lb_text" Text="{Binding Text}" FontSize="15" Grid.Column="1" Padding="0,10,25,10" VerticalOptions="Center" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End">
         <Label.GestureRecognizers>
             <TapGestureRecognizer Tapped="Text_Tapped" NumberOfTapsRequired="1"/>
         </Label.GestureRecognizers>

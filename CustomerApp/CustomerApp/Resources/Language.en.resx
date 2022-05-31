@@ -1681,7 +1681,7 @@
     <value>Applying exchange rate</value>
   </data>
 	<data name="ban_giao_du_kien_hd" xml:space="preserve">
-    <value>Estimate handover date (Contract)</value>
+    <value>Estimate handover date</value>
   </data>
 	<data name="thu_thanh_ly" xml:space="preserve">
     <value>Termination letter</value>
@@ -2168,5 +2168,8 @@
   </data>
   <data name="da_thanh_toan_lich" xml:space="preserve">
     <value>Amount was paid</value>
+  </data>
+  <data name="loai_unit_dkbg" xml:space="preserve">
+    <value>Unit type</value>
   </data>
 </root>

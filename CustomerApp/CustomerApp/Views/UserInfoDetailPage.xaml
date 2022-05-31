@@ -119,8 +119,8 @@
                                                  Text="{Binding Loyalty.membershiptier_name}" FontAttributeText="Bold"/>
                                         <controls:LabelField Title="{x:Static lang:Language.tong_tien_giao_dich}"
                                                  Text="{Binding Loyalty.bsd_totaltransaction}"/>
-                                        <controls:LabelField Title="{x:Static lang:Language.tong_tien_trong_thoi_gian_hieu_luc}"
-                                                 Text="{Binding Loyalty.bsd_totalamountineffectivetime,StringFormat=''}"/>
+                                        <controls:LabelField Title="{x:Static lang:Language.tong_tien_trong_thoi_gian_hieu_luc}" ColumnDefinitions="*,*" 
+                                                 Text="{Binding Loyalty.bsd_totalamountineffectivetime_format}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.tong_tien_so_huu}"
                                                  Text="{Binding Loyalty.bsd_totalamountofownership_format}"/>
                                         <controls:LabelField Title="{x:Static lang:Language.layalty_date}"

@@ -202,7 +202,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bàn giao dự kiến (HĐ).
+        ///   Looks up a localized string similar to Bàn giao dự kiến.
         /// </summary>
         internal static string ban_giao_du_kien_hd {
             get {
@@ -2713,6 +2713,15 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loại sản phẩm.
+        /// </summary>
+        internal static string loai_unit_dkbg {
+            get {
+                return ResourceManager.GetString("loai_unit_dkbg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lỗi hệ thống..
         /// </summary>
         internal static string loi_he_thong {
@@ -5206,7 +5215,7 @@ namespace CustomerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thông Tin Hợp Đồng.
+        ///   Looks up a localized string similar to Hợp Đồng Mua Bán.
         /// </summary>
         internal static string title_hop_dong_mua_ban {
             get {

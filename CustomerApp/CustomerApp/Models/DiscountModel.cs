@@ -33,7 +33,7 @@ namespace CustomerApp.Models
             get
             {
                 if (bsd_method == 100000001)
-                    return Language.tong_tien; //Amount
+                    return Language.so_tien; //Amount
                 else if (bsd_method == 100000000)
                     return Language.phan_tram; //Percent
                 else
